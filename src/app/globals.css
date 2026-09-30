@@ -112,3 +112,19 @@ html[data-seen] .loader {
   70% { transform: translateY(12px); opacity: 0; }
   100% { transform: translateY(0); opacity: 0; }
 }
+
+/* Hero: when its intro will animate, start the animated parts hidden so the
+   finished hero never flashes before the animation replays it. (No effect
+   without JavaScript or for visitors who prefer reduced motion.) */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .hero-slide .hl,
+  html.js .hero-slide .hl-btn,
+  html.js .hero-badge,
+  html.js .hero-disc,
+  html.js .hero-photo {
+    opacity: 0;
+  }
+  html.js .hero-slide .hc {
+    opacity: 0;
+  }
+}

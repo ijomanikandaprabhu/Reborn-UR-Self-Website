@@ -67,10 +67,10 @@ export default function HeroSlider() {
       intro
         .fromTo(".hero-draw circle", { strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut" })
         .to(".hero-draw", { opacity: 0, duration: 0.8 }, "-=0.2")
-        .from(".hero-disc", { scale: 0.85, opacity: 0, duration: 1.4, ease: "expo.out" }, 0.3)
-        .from(".hero-photo", { yPercent: 12, opacity: 0, duration: 1.4, ease: "expo.out" }, 0.9)
+        .fromTo(".hero-disc", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4, ease: "expo.out" }, 0.3)
+        .fromTo(".hero-photo", { yPercent: 12, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.4, ease: "expo.out" }, 0.9)
         // Then the rings start growing out from behind the circle, as on the old site.
-        .fromTo(".hero-ring", { scale: 1, opacity: 0.2 }, { scale: 2, opacity: 0, duration: 5, ease: "none", stagger: { each: 1.5, repeat: -1 } }, 1.6);
+        .fromTo(".hero-ring", { scale: 1, opacity: 0.2 }, { scale: 2, opacity: 0, duration: 5, ease: "none", immediateRender: false, stagger: { each: 1.5, repeat: -1 } }, 1.6);
 
       // Mouse depth: each layer drifts by a different amount.
       if (window.matchMedia("(pointer: fine)").matches) {
@@ -151,7 +151,7 @@ export default function HeroSlider() {
       const inn = slides[active];
       tl.set(inn, { autoAlpha: 1 }, start)
         .fromTo(inn.querySelectorAll(".hl"), { x: -60, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1.2, ease }, start)
-        .fromTo(inn.querySelectorAll(".hc"), { yPercent: 110 }, { yPercent: 0, duration: 1, ease, stagger: 0.035 }, start + 0.2)
+        .fromTo(inn.querySelectorAll(".hc"), { yPercent: 110, opacity: 1 }, { yPercent: 0, duration: 1, ease, stagger: 0.035 }, start + 0.2)
         .fromTo(inn.querySelector(".hl-btn"), { y: 150, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.5, ease }, start + 0.8)
         .fromTo(badge, { x: 100, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1.5, ease }, start + 0.5)
         .fromTo(`${badge} .hb-icon`, { y: -50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.5, ease }, start + 1)
