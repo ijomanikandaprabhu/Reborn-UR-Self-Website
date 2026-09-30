@@ -58,7 +58,31 @@ export const galleryItems: { src: string; w: number; h: number; alt: string; cat
 ];
 
 export const heroSlides = [
-  { image: "/assets/img/hero/spa-girl-1.png", line1: "Beauty,", line2: "Redefined." },
-  { image: "/assets/img/hero/handsome-man.png", line1: "Brows & Lips,", line2: "Perfected." },
-  { image: "/assets/img/hero/spa-girl-4.png", line1: "Flawless,", line2: "Every Day." },
+  {
+    image: "/assets/img/hero/spa-girl-1.png",
+    eyebrow: "Permanent brows in Chennai",
+    line1: "Beauty,",
+    line2: "Redefined.",
+    text: "Natural, hair-like microblading and soft powder brows, mapped by hand to suit your face.",
+    topic: "Microblading",
+    href: "/microblading",
+  },
+  {
+    image: "/assets/img/hero/handsome-man.png",
+    eyebrow: "Permanent makeup for men",
+    line1: "Brows & Lips,",
+    line2: "Perfected.",
+    text: "Subtle, masculine results that fill sparse brows and even out lip tone, with no made-up look.",
+    topic: "Treatments for Men",
+    href: "/microblading-for-men",
+  },
+  {
+    image: "/assets/img/hero/spa-girl-4.png",
+    eyebrow: "Lip blushing & beauty spot",
+    line1: "Flawless,",
+    line2: "Every Day.",
+    text: "A soft, semi-permanent flush of colour for fuller, defined lips that stay perfect from morning to night.",
+    topic: "Lip Blushing",
+    href: "/lip-blushing",
+  },
 ];
