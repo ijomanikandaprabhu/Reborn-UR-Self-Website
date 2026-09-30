@@ -181,7 +181,7 @@ export default function HeroSlider() {
       onMouseLeave={() => setPaused(false)}
     >
       <div
-        className="relative flex min-h-[calc(100svh-var(--header-h,161px))] flex-col items-center md:max-lg:min-h-[min(640px,62svh)] md:flex-row md:items-end md:justify-between md:px-10 lg:block lg:h-[calc(100svh-var(--header-h,161px))] lg:min-h-[600px] lg:px-0 lg:portrait:h-[760px]"
+        className="relative flex min-h-[calc(100svh-var(--header-h,161px))] flex-col items-center justify-center md:max-lg:min-h-[min(640px,62svh)] md:flex-row md:items-end md:justify-between md:px-10 lg:block lg:h-[calc(100svh-var(--header-h,161px))] lg:min-h-[600px] lg:px-0 lg:portrait:h-[760px]"
         style={stageVars}
       >
         {/* Leaves, framing the circle */}
@@ -212,7 +212,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Circle and photo */}
-        <div className="hero-scroll-art hero-art relative mt-auto aspect-square w-full max-w-[min(520px,84vw,calc(100svh-var(--header-h,145px)-372px))] md:mt-10 md:max-w-[min(52%,calc(62svh-40px))] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto lg:w-auto lg:max-w-none">
+        <div className="hero-scroll-art hero-art relative mt-2 aspect-square w-full max-w-[min(520px,84vw,calc(100svh-var(--header-h,145px)-380px))] md:mt-10 md:max-w-[min(52%,calc(62svh-40px))] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto lg:w-auto lg:max-w-none">
           <div data-depth="12" className="absolute inset-[4%] flex items-center justify-center lg:inset-auto lg:top-[var(--ctop)] lg:left-[calc(var(--cx)-var(--d)/2)] lg:size-[var(--d)]" aria-hidden="true">
             {[0, 1, 2].map((i) => (
               <span key={i} className="hero-ring absolute size-[66%] rounded-full bg-theme opacity-0" />
