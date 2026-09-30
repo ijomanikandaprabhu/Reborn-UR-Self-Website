@@ -75,6 +75,14 @@ export default function SmoothScroll() {
         });
       });
 
+      // data-wipe: the photo is uncovered from left to right, with a slight zoom-out.
+      gsap.utils.toArray<HTMLElement>("[data-wipe]").forEach((el, i) => {
+        const trigger = { trigger: el, start: "top 85%", once: true };
+        gsap.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.2, delay: (i % 2) * 0.25, ease: "power3.inOut", scrollTrigger: trigger, clearProps: "clipPath" });
+        const img = el.querySelector("img");
+        if (img) gsap.fromTo(img, { scale: 1.2 }, { scale: 1, duration: 1.6, delay: (i % 2) * 0.25, ease: "power3.out", scrollTrigger: trigger, clearProps: "transform" });
+      });
+
       gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
         const speed = Number(el.dataset.parallax) || 0.15;
         gsap.fromTo(

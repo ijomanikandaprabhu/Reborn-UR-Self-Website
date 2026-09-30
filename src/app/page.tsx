@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram } from "react-icons/fa6";
-import { LuArrowRight } from "react-icons/lu";
+import { LuArrowRight, LuHourglass, LuMessagesSquare, LuSparkles } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
 import Gallery from "@/components/Gallery";
 import HeroSlider from "@/components/HeroSlider";
@@ -160,22 +160,45 @@ export default function Home() {
       <Testimonials />
 
       <section className="section">
-        <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div data-reveal="left" className="relative w-full max-w-[560px] pb-28">
-            <Image src="/assets/img/about/about-9-1.jpg" alt="Brow treatment in progress at the Rebornurself studio in Chennai" width={450} height={480} className="w-[80%]" sizes="(min-width: 1024px) 450px, 80vw" />
-            <Image src="/assets/img/about/about-9-2.jpg" alt="Close-up of finished permanent makeup brows" width={380} height={380} data-parallax="0.35" className="absolute right-0 bottom-0 w-[62%] border-[10px] border-white shadow-card-hover" sizes="(min-width: 1024px) 350px, 62vw" />
+        <div className="container-site grid items-center gap-12 md:grid-cols-2 md:gap-10 lg:gap-14">
+          <div className="relative mx-auto w-full max-w-[560px] pb-24 md:mx-0 lg:justify-self-end lg:pb-28">
+            <div data-wipe className="w-[80%] overflow-hidden">
+              <Image src="/assets/img/about/about-9-1.jpg" alt="Brow treatment in progress at the Rebornurself studio in Chennai" width={450} height={480} className="w-full" sizes="(min-width: 1024px) 450px, 80vw" />
+            </div>
+            <div data-parallax="0.35" className="absolute right-0 bottom-0 w-[62%]">
+              <div data-wipe className="overflow-hidden border-[10px] border-white shadow-card-hover">
+                <Image src="/assets/img/about/about-9-2.jpg" alt="Close-up of finished permanent makeup brows" width={380} height={380} className="w-full" sizes="(min-width: 1024px) 350px, 62vw" />
+              </div>
+            </div>
           </div>
-          <div data-reveal="right">
-            <span className="eyebrow">Why Choose Us?</span>
-            <h2 className="text-4xl lg:text-5xl">The Ultimate Beauty Experience</h2>
-            <p className="mt-6">
-              At our studio, we combine expert techniques with personalized care to provide you with flawless, natural-looking
-              brows and lips. Our permanent solutions are designed to last 2-3 years, offering you long-lasting beauty and
-              convenience. We customize each treatment to suit your unique features, ensuring the best results every time.
-              With options for in-store, on-site, or virtual consultations, we make it easy and comfortable for you to achieve
-              your desired look. Above all, your satisfaction is our priority, and we’re committed to helping you feel
-              confident and beautiful.
-            </p>
+          <div>
+            <div data-reveal="right">
+              <span className="eyebrow">Why Choose Us?</span>
+              <h2 className="text-4xl lg:text-5xl">The Ultimate Beauty Experience</h2>
+              <p className="mt-6">
+                At our studio, we combine expert techniques with personalized care to provide you with flawless, natural-looking
+                brows and lips. Above all, your satisfaction is our priority, and we’re committed to helping you feel confident
+                and beautiful.
+              </p>
+            </div>
+            <ul data-reveal="stagger" className="mt-7 space-y-4">
+              {[
+                { Icon: LuHourglass, title: "Long-lasting results", text: "Designed to last 2-3 years, so you wake up ready every day." },
+                { Icon: LuSparkles, title: "Tailored to you", text: "Every treatment is customised to your unique features." },
+                { Icon: LuMessagesSquare, title: "Easy consultations", text: "In-store, on-site or virtual, whatever suits you best." },
+              ].map(({ Icon, title, text }) => (
+                <li key={title} className="flex gap-4">
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-peach text-xl text-theme"><Icon aria-hidden="true" /></span>
+                  <span>
+                    <span className="block font-title text-xl text-title">{title}</span>
+                    <span className="block text-[15px]">{text}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div data-reveal className="mt-8">
+              <Link href="/contact" className="btn-theme">Book a Consultation <LuArrowRight /></Link>
+            </div>
           </div>
         </div>
       </section>
