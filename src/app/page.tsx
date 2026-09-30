@@ -9,6 +9,7 @@ import HeroSlider from "@/components/HeroSlider";
 import SectionTitle from "@/components/SectionTitle";
 import ServiceTabs from "@/components/ServiceTabs";
 import Testimonials from "@/components/Testimonials";
+import { galleryItems } from "@/data/content";
 import { getService, iconPath, servicePath } from "@/data/services";
 import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -133,6 +134,25 @@ export default function Home() {
             <a href={site.social.instagram} target="_blank" rel="noopener" className="btn bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#c1358f] text-white hover:opacity-90">
               <FaInstagram className="text-lg" /> Follow on Instagram
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Training & events: proof of expertise, kept apart from the treatment results. */}
+      <section className="section bg-cream">
+        <div className="container-site">
+          <SectionTitle eyebrow="Beyond the studio" title="Training & Events">
+            Sandhiya trains new artists and takes part in beauty industry events.
+          </SectionTitle>
+          <ul data-reveal="stagger" className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+            {galleryItems.filter((g) => g.cat === "events").slice(0, 4).map((g) => (
+              <li key={g.src} className="group relative aspect-[4/5] overflow-hidden rounded-lg bg-smoke">
+                <Image src={g.src} alt={g.alt} fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+              </li>
+            ))}
+          </ul>
+          <div data-reveal className="mt-10 text-center">
+            <Link href="/gallery" className="btn-theme">See all in the Gallery <LuArrowRight /></Link>
           </div>
         </div>
       </section>

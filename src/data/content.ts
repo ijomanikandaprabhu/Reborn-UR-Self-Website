@@ -41,20 +41,20 @@ export type GalleryCategory = (typeof galleryCategories)[number]["id"];
 const g = (file: string) => `/assets/img/gallery/${file}`;
 
 export const galleryItems: { src: string; w: number; h: number; tag: string; alt: string; cat: GalleryCategory }[] = [
-  { src: g("combination-1.jpg"), w: 720, h: 1280, tag: "Before · During · Healed", alt: "Combination brows before, during and healed result", cat: "combination" },
+  { src: g("combination-1.jpg"), w: 720, h: 1280, tag: "Before / After", alt: "Combination brows before, during and healed result", cat: "combination" },
   { src: g("combination-2.jpg"), w: 760, h: 1351, tag: "Before / After", alt: "Combination brows before and after", cat: "combination" },
-  { src: g("ombre-1.jpg"), w: 720, h: 1280, tag: "Result with before", alt: "Ombre powder brows result with before inset", cat: "ombre" },
+  { src: g("ombre-1.jpg"), w: 720, h: 1280, tag: "Before / After", alt: "Ombre powder brows result with before inset", cat: "ombre" },
   { src: g("ombre-2.jpg"), w: 760, h: 760, tag: "Before / After", alt: "Soft ombre powder brows before and after", cat: "ombre" },
-  { src: g("neutralization-1.jpg"), w: 720, h: 1280, tag: "Before / After · Men", alt: "Lip neutralization for men, before and after", cat: "neutralization" },
+  { src: g("neutralization-1.jpg"), w: 720, h: 1280, tag: "Before / After", alt: "Lip neutralization for men, before and after", cat: "neutralization" },
   { src: g("beauty-spot-1.jpg"), w: 760, h: 760, tag: "Before / After", alt: "Beauty spot placed beside the lips, before and after", cat: "beauty-spot" },
-  { src: g("event-1.jpg"), w: 719, h: 1280, tag: "Studio & training", alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
-  { src: g("event-2.jpg"), w: 760, h: 1013, tag: "Studio & training", alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
-  { src: g("event-3.jpg"), w: 760, h: 1013, tag: "Studio & training", alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
-  { src: g("client-at-studio.jpg"), w: 1600, h: 1280, tag: "Studio & training", alt: "Client at the Rebornurself studio", cat: "events" },
-  { src: g("certificate-presentation-1.jpg"), w: 1600, h: 1280, tag: "Studio & training", alt: "Certificate presentation at Rebornurself", cat: "events" },
-  { src: g("microblading-training-group.jpg"), w: 1600, h: 1280, tag: "Studio & training", alt: "Microblading training session group photo", cat: "events" },
-  { src: g("certificate-presentation-2.jpg"), w: 1600, h: 1280, tag: "Studio & training", alt: "Certificate presentation at Rebornurself", cat: "events" },
-  { src: g("rebornurself-training-group.jpg"), w: 1600, h: 900, tag: "Studio & training", alt: "Rebornurself training group", cat: "events" },
+  { src: g("event-1.jpg"), w: 719, h: 1280, tag: "", alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
+  { src: g("event-2.jpg"), w: 760, h: 1013, tag: "", alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
+  { src: g("event-3.jpg"), w: 760, h: 1013, tag: "", alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
+  { src: g("client-at-studio.jpg"), w: 1600, h: 1280, tag: "", alt: "Client at the Rebornurself studio", cat: "events" },
+  { src: g("certificate-presentation-1.jpg"), w: 1600, h: 1280, tag: "", alt: "Certificate presentation at Rebornurself", cat: "events" },
+  { src: g("microblading-training-group.jpg"), w: 1600, h: 1280, tag: "", alt: "Microblading training session group photo", cat: "events" },
+  { src: g("certificate-presentation-2.jpg"), w: 1600, h: 1280, tag: "", alt: "Certificate presentation at Rebornurself", cat: "events" },
+  { src: g("rebornurself-training-group.jpg"), w: 1600, h: 900, tag: "", alt: "Rebornurself training group", cat: "events" },
 ];
 
 export const heroSlides = [

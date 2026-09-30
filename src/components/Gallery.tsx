@@ -90,7 +90,7 @@ export default function Gallery({ limit, masonry = false, resultsOnly = false }:
                 </span>
                 <span className="pointer-events-none absolute inset-x-3 bottom-3 flex flex-wrap items-center gap-1.5 text-left">
                   <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-title backdrop-blur">{galleryCategories.find((c) => c.id === g.cat)?.label}</span>
-                  <span className="rounded-full bg-theme/90 px-3 py-1 text-xs font-medium text-white backdrop-blur">{g.tag}</span>
+                  {g.tag && <span className="rounded-full bg-theme/90 px-3 py-1 text-xs font-medium text-white backdrop-blur">{g.tag}</span>}
                 </span>
                 <span className="sr-only">Enlarge: {g.alt}</span>
               </button>
