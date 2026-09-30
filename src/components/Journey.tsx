@@ -23,13 +23,13 @@ export default function Journey({ steps, whatsappHref }: { steps: JourneyStep[];
     <section className="section">
       <div className="container-site">
         <SectionTitle eyebrow="What to expect" title="Your Journey With Us" />
-        <ol className="relative mx-auto max-w-[1080px] before:absolute before:inset-y-0 before:left-[19px] before:w-0.5 before:bg-theme/20 lg:before:left-1/2 lg:before:-ml-px">
+        <ol className="relative mx-auto max-w-[1080px] before:absolute before:inset-y-0 before:left-[19px] before:w-0.5 before:bg-theme/20 md:before:left-1/2 md:before:-ml-px">
           {steps.map((step, i) => {
             const Icon = icons[step.icon] ?? LuStar;
             const right = i % 2 === 1;
             return (
-              <li key={step.title} data-reveal={right ? "right" : "left"} className={`relative mb-7 pl-14 last:mb-0 lg:mb-0 lg:w-1/2 ${i > 0 ? "lg:-mt-24" : ""} ${right ? "lg:ml-[50%] lg:pl-14" : "lg:pr-14 lg:pl-0"}`}>
-                <span className={`absolute top-8 left-0 flex size-10 items-center justify-center rounded-full bg-theme font-bold text-white ring-5 ring-white ${right ? "lg:-left-5" : "lg:right-[-20px] lg:left-auto"}`}>
+              <li key={step.title} data-reveal={right ? "right" : "left"} className={`relative mb-7 pl-14 last:mb-0 md:mb-0 md:w-1/2 ${i > 0 ? "md:-mt-24" : ""} ${right ? "md:ml-[50%] md:pl-14" : "md:pr-14 md:pl-0"}`}>
+                <span className={`absolute top-8 left-0 flex size-10 items-center justify-center rounded-full bg-theme font-bold text-white ring-5 ring-white ${right ? "md:-left-5" : "md:right-[-20px] md:left-auto"}`}>
                   {i + 1}
                 </span>
                 <div className="card p-6 sm:p-7">

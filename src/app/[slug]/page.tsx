@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps<"/[slug]">): Promis
 
 function Blocks({ blocks }: { blocks: ContentBlock[] }) {
   return blocks.map((b, i) => {
-    if (b.type === "h2") return <h2 key={i} className="mt-12 mb-4 text-[32px] uppercase first:mt-0">{b.text}</h2>;
+    if (b.type === "h2") return <h2 key={i} className="mt-10 mb-4 text-2xl uppercase first:mt-0 sm:mt-12 sm:text-[32px]">{b.text}</h2>;
     if (b.type === "h3") return <h3 key={i} className="mt-8 mb-3 text-2xl">{b.text}</h3>;
     if (b.type === "p") return <p key={i} className="mb-4">{b.text}</p>;
     return (
@@ -70,7 +70,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
         title={titleStart}
         highlight={titleEnd}
         crumbs={[{ name, path: servicePath(s) }]}
-        current={`${name} Service Details`}
+        current={<>{name}<span className="hidden sm:inline"> Service Details</span></>}
       />
 
       <section className="section">
@@ -88,7 +88,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
             <Blocks blocks={s.body} />
           </article>
 
-          <aside data-reveal="left" className="space-y-6 lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
+          <aside data-reveal="left" className="space-y-6 md:grid md:grid-cols-2 md:items-start md:gap-6 md:space-y-0 lg:block lg:space-y-6 lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
             <div className="relative mx-auto hidden max-w-[215px] lg:block">
               {/* Leaf tucked behind the pill, floating up and down as on the old site. */}
               <div className="absolute top-[34%] -left-[82px] w-[130px] animate-float">
