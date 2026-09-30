@@ -104,7 +104,6 @@ export default function HeroSlider() {
         const trigger = { trigger: scope.current, start: "top top", end: "bottom top", scrub: true };
         gsap.to(".hero-scroll-art", { yPercent: 18, ease: "none", scrollTrigger: trigger });
         gsap.to(".hero-scroll-text", { opacity: 0, yPercent: -30, ease: "none", scrollTrigger: { ...trigger, end: "60% top" } });
-        gsap.to(".hero-cue", { opacity: 0, ease: "none", scrollTrigger: { ...trigger, end: "15% top" } });
       });
       return () => mm.revert();
     },
@@ -163,11 +162,6 @@ export default function HeroSlider() {
     },
     { scope, dependencies: [active] },
   );
-
-  const scrollOn = () => {
-    const next = scope.current?.nextElementSibling as HTMLElement | null;
-    next?.scrollIntoView({ behavior: reducedMotion() ? "auto" : "smooth" });
-  };
 
   // Phones: stacked (text, then photo). Tablets: text left, photo right.
   // Desktop: a full-width stage laid out from the CSS variables above.
@@ -284,13 +278,6 @@ export default function HeroSlider() {
           ))}
         </div>
 
-        {/* Scroll cue */}
-        <button type="button" onClick={scrollOn} aria-label="Scroll to the next section" className="hero-cue absolute right-[calc(max(48px,4vw)+var(--bw)+32px)] bottom-8 z-10 hidden flex-col items-center gap-2 text-[11px] font-semibold tracking-[0.25em] text-title/60 uppercase hover:text-theme lg:flex">
-          <span className="relative h-10 w-6 rounded-full border-2 border-current">
-            <span className="absolute top-2 left-[calc(50%-2px)] h-2 w-1 animate-[cue_1.8s_ease-in-out_infinite] rounded-full bg-current motion-reduce:animate-none" />
-          </span>
-          Scroll
-        </button>
       </div>
     </section>
   );
