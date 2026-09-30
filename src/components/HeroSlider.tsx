@@ -183,7 +183,7 @@ export default function HeroSlider() {
         style={stageVars}
       >
         {/* Leaves, framing the circle */}
-        <div data-depth="45" className="absolute top-[calc(var(--ctop)+var(--d)*0.3)] left-[calc(var(--cx)+var(--d)/2+36px)] z-10 hidden w-[clamp(60px,5vw,110px)] lg:block">
+        <div data-depth="45" className="absolute top-[calc(var(--ctop)-var(--d)*0.04)] left-[calc(var(--cx)+var(--d)*0.12)] z-10 hidden w-[clamp(60px,5vw,110px)] lg:block">
           <Image src="/assets/img/hero/leaf-1-5.png" alt="" width={193} height={206} className="w-full animate-float [animation-delay:1.5s]" />
         </div>
         <div data-depth="35" className="absolute top-[calc(var(--ctop)+var(--d)*0.95)] left-[calc(var(--cx)-var(--d)/2-var(--g)-clamp(50px,4.5vw,95px))] z-10 hidden w-[clamp(50px,4.5vw,95px)] lg:block">
@@ -200,9 +200,9 @@ export default function HeroSlider() {
                   <Letters text={s.line1} />
                   <Letters text={s.line2} />
                 </p>
-                <Link href="/contact" tabIndex={i === active ? 0 : -1} className="hl-btn mt-7 inline-flex items-center gap-4 whitespace-nowrap rounded-full bg-white py-2 pr-2 pl-6 text-base text-theme shadow-sm hover:text-title">
+                <Link href="/contact" tabIndex={i === active ? 0 : -1} className="hl-btn btn-shine group mt-7 inline-flex items-center gap-4 whitespace-nowrap rounded-full bg-white py-2 pr-2 pl-6 text-base text-theme shadow-sm transition-[box-shadow,color] hover:shadow-card-hover hover:text-title">
                   Make Appointment
-                  <span className="flex size-[46px] items-center justify-center rounded-full bg-theme text-xl text-white"><LuArrowRight /></span>
+                  <span className="flex size-[46px] items-center justify-center rounded-full bg-theme text-xl text-white transition group-hover:bg-title"><LuArrowRight className="transition-transform duration-300 group-hover:translate-x-1" /></span>
                 </Link>
               </div>
             ))}
@@ -235,13 +235,13 @@ export default function HeroSlider() {
           </div>
         </div>
 
-        {/* Badge: lower right, overlapping the circle. Why book, and how. */}
-        <div data-depth="18" className="absolute top-[min(46%,calc(100%-440px))] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
-          <div className="hero-badge relative bg-theme px-6 pt-7 pb-6 text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
-            <Image src="/assets/img/wordmark-white.svg" alt="Rebornurself" width={156} height={44} className="hb-icon mx-auto h-auto w-[78%]" />
-            <span className="hb-txt mx-auto mt-4 block h-px w-16 bg-white/40" aria-hidden="true" />
+        {/* Badge: overlapping the circle, centred on the same line as the headline block. */}
+        <div data-depth="18" className="absolute top-[clamp(24px,calc(50%-175px),calc(100%-440px))] [@media(max-height:820px)]:top-[clamp(20px,calc(50%-140px),calc(100%-350px))] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
+          <div className="hero-badge relative bg-theme px-6 pt-7 pb-6 [@media(max-height:820px)]:px-5 [@media(max-height:820px)]:pt-5 [@media(max-height:820px)]:pb-4 text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
+            <Image src="/assets/img/wordmark-white.svg" alt="Rebornurself" width={156} height={44} className="hb-icon mx-auto h-auto w-[78%] [@media(max-height:820px)]:w-[64%]" />
+            <span className="hb-txt mx-auto mt-4 block h-px w-16 [@media(max-height:820px)]:mt-3 bg-white/40" aria-hidden="true" />
 
-            <ul className="mt-4 space-y-2 text-[13px] font-semibold">
+            <ul className="mt-4 space-y-2 text-[13px] font-semibold [@media(max-height:820px)]:mt-3 [@media(max-height:820px)]:space-y-1 [@media(max-height:820px)]:text-xs">
               {[
                 { Icon: LuAward, text: "Certified PMU Artist" },
                 { Icon: LuHourglass, text: "Results last up to 2–3 years" },
@@ -253,8 +253,8 @@ export default function HeroSlider() {
               ))}
             </ul>
 
-            <p className="hb-txt mt-5 text-[11px] font-bold tracking-[0.2em] text-white/70 uppercase">How to book</p>
-            <ol className="mt-2 space-y-1.5 text-[13px]">
+            <p className="hb-txt mt-5 [@media(max-height:820px)]:mt-3 text-[11px] font-bold tracking-[0.2em] text-white/70 uppercase">How to book</p>
+            <ol className="mt-2 space-y-1.5 text-[13px] [@media(max-height:820px)]:space-y-1 [@media(max-height:820px)]:text-xs">
               {["Send a photo on WhatsApp", "Get honest advice", "Book your slot"].map((step, i) => (
                 <li key={step} className="hb-txt flex items-center gap-2.5">
                   <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-white text-[11px] font-bold text-theme">{i + 1}</span>
@@ -263,8 +263,8 @@ export default function HeroSlider() {
               ))}
             </ol>
 
-            <a href={whatsappLink("Hi Rebornurself, I would like to book an appointment.")} target="_blank" rel="noopener" className="hb-txt mt-5 flex items-center justify-center gap-2 rounded-full bg-white py-2.5 text-sm font-semibold text-theme transition hover:bg-title hover:text-white">
-              <FaWhatsapp className="text-base" /> Book on WhatsApp
+            <a href={whatsappLink("Hi Rebornurself, I would like to book an appointment.")} target="_blank" rel="noopener" className="hb-txt btn-shine btn-pulse group mt-5 flex items-center justify-center gap-2 rounded-full bg-white py-2.5 [@media(max-height:820px)]:mt-3 [@media(max-height:820px)]:py-2 text-sm font-semibold text-theme transition-[translate,background-color,color] duration-300 hover:-translate-y-0.5 hover:bg-title hover:text-white">
+              <FaWhatsapp className="text-base group-hover:animate-[wiggle_0.6s_ease-in-out]" /> Book on WhatsApp
             </a>
           </div>
         </div>

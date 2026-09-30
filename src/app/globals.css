@@ -128,3 +128,43 @@ html[data-seen] .loader {
     opacity: 0;
   }
 }
+
+/* Button effects: a light sweep on hover, a soft attention pulse, an icon wiggle. */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.55) 50%, transparent 70%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  transition: transform 0.7s ease;
+  transform: translateX(120%);
+}
+.btn-pulse {
+  animation: btn-pulse 3s ease-out infinite;
+}
+.btn-pulse:hover {
+  animation: none;
+}
+@keyframes btn-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(255 255 255 / 0.55); }
+  60%, 100% { box-shadow: 0 0 0 12px rgb(255 255 255 / 0); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-14deg); }
+  50% { transform: rotate(12deg); }
+  75% { transform: rotate(-6deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-pulse { animation: none; }
+  .btn-shine::after { display: none; }
+}
