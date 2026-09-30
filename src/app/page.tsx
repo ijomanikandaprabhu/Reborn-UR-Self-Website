@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram } from "react-icons/fa6";
-import { LuArrowRight, LuChevronUp } from "react-icons/lu";
+import { LuArrowRight } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
 import Gallery from "@/components/Gallery";
 import HeroSlider from "@/components/HeroSlider";
@@ -15,13 +15,27 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({ title: `${site.tagline} | ${site.name}`, path: "/" });
 
+// card: short summary for the cards. panel: a different angle for the peach panel,
+// so the two sections never repeat each other.
 const highlights = [
-  { slug: "microblading", name: "Microblading", text: "Creates natural, hair-like strokes to enhance and shape brows, offering fuller, defined results that last 2-3 years.", icon: "4" },
-  { slug: "lip-blushing", name: "Lip Blushing", text: "Enhances natural lip color and shape with a semi-permanent flush, making lips appear fuller, more defined, and vibrant.", icon: "3" },
-  { slug: "ombre-powder-brows", name: "Ombre Brows", text: "Provides a soft, gradient effect for fuller, defined brows with a makeup-like finish, perfect for long-lasting beauty.", icon: "6" },
-  { slug: "beauty-spot", name: "Beauty Spot", text: "Creates realistic beauty marks using semi-permanent pigment, enhancing your natural features with subtle, defined elegance.", icon: "1" },
-  { slug: "combination-brows", name: "Combination Brows", text: "Combines microblading and powder shading for a balanced, natural look with defined brows and soft, fuller results.", icon: "2" },
-  { slug: "lip-neutralization", name: "Lip Neutralization", text: "Corrects uneven lip tones, offering a smooth, natural finish by balancing pigmentation and enhancing lip shape.", icon: "5" },
+  { slug: "microblading", name: "Microblading", icon: "4",
+    card: "Fine, hair-like strokes that fill sparse brows naturally, with results lasting 2–3 years.",
+    panel: "Best for sparse or over-plucked brows. Each stroke follows the direction your own hair grows." },
+  { slug: "lip-blushing", name: "Lip Blushing", icon: "3",
+    card: "A soft semi-permanent flush that makes lips look fuller, more defined and more vibrant.",
+    panel: "Lasts 1–3 years. Colour and definition every day, without reapplying lipstick." },
+  { slug: "ombre-powder-brows", name: "Ombre Brows", icon: "6",
+    card: "A soft powder gradient for fuller, defined brows with a lasting, makeup-like finish.",
+    panel: "Lighter at the front and deeper towards the tail, like a lightly pencilled brow." },
+  { slug: "beauty-spot", name: "Beauty Spot", icon: "1",
+    card: "Realistic semi-permanent beauty marks that add subtle, defined elegance to your features.",
+    panel: "Sized and positioned with you before any pigment goes in, so it looks naturally yours." },
+  { slug: "combination-brows", name: "Combination Brows", icon: "2",
+    card: "Microblading strokes blended with powder shading for balanced, natural and fuller brows.",
+    panel: "Lasts 12–18 months. Strokes at the front, shading behind, for definition and density." },
+  { slug: "lip-neutralization", name: "Lip Neutralization", icon: "5",
+    card: "Corrects dark or uneven lip tone for a smooth, balanced and natural-looking finish.",
+    panel: "Lasts 1–3 years. Evens out darkness from sun or smoking before any colour is added." },
 ];
 
 // Left and right columns of the feature panel, in the old layout's order.
@@ -38,7 +52,7 @@ function PanelItem({ slug, side }: { slug: string; side: "left" | "right" }) {
       </span>
       <div>
         <h3 className="text-2xl"><Link href={`/${h.slug}`} className="hover:text-theme">{h.name}</Link></h3>
-        <p className="mt-2">{h.text}</p>
+        <p className="mt-2">{h.panel}</p>
       </div>
     </li>
   );
@@ -57,15 +71,22 @@ export default function Home() {
             {highlights.map((h) => {
               const s = getService(h.slug)!;
               return (
-                <li key={h.slug} className="relative w-[85%] shrink-0 snap-center rounded-md bg-white p-3 sm:w-auto shadow-[0_10px_30px_rgb(154_86_58/0.08)]">
-                  <div className="flex h-full flex-col items-center border border-dashed border-theme/35 px-8 pt-24 pb-10 text-center">
-                    <div className="absolute -top-12 left-1/2 flex size-[140px] -translate-x-1/2 items-center justify-center rounded-full border-[6px] border-white bg-peach">
-                      <Image src={iconPath(s)} alt="" width={67} height={67} />
+                <li key={h.slug} className="w-[85%] shrink-0 snap-center sm:w-auto">
+                  {/* The whole card is the link. On hover it lifts, the icon circle turns brown,
+                      the border turns solid and "Learn more" appears. */}
+                  <Link href={servicePath(s)} className="group relative block h-full rounded-md bg-white p-3 shadow-[0_10px_30px_rgb(154_86_58/0.08)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_22px_45px_rgb(154_86_58/0.18)]">
+                    <div className="flex h-full flex-col items-center border border-dashed border-theme/35 px-8 pt-24 pb-8 text-center transition-colors duration-300 group-hover:border-solid group-hover:border-theme">
+                      <div className="absolute -top-12 left-1/2 flex size-[140px] -translate-x-1/2 items-center justify-center rounded-full border-[6px] border-white bg-peach transition-colors duration-300 group-hover:bg-theme">
+                        <Image src={iconPath(s)} alt="" width={67} height={67} className="transition duration-300 group-hover:scale-110 group-hover:brightness-0 group-hover:invert" />
+                      </div>
+                      <h2 className="text-[28px] transition-colors group-hover:text-theme">{h.name}</h2>
+                      <span className="mt-4 mb-4 block h-0.5 w-10 rounded-full bg-theme/40 transition-all duration-300 group-hover:w-16 group-hover:bg-theme" aria-hidden="true" />
+                      <p className="min-h-[5.25em]">{h.card}</p>
+                      <span className="mt-4 inline-flex translate-y-2 items-center gap-1.5 text-sm font-semibold text-theme opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 [@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100">
+                        Learn more <LuArrowRight />
+                      </span>
                     </div>
-                    <h2 className="text-[28px]"><Link href={servicePath(s)} className="hover:text-theme">{h.name}</Link></h2>
-                    <span className="mt-3 mb-4 flex gap-1 text-theme/45" aria-hidden="true">{[0, 1, 2, 3].map((i) => <LuChevronUp key={i} strokeWidth={3} />)}</span>
-                    <p>{h.text}</p>
-                  </div>
+                  </Link>
                 </li>
               );
             })}
