@@ -58,6 +58,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
   if (!s) notFound();
 
   const name = serviceFullName(s);
+  const firstP = Math.max(0, s.intro.findIndex((b) => b.type === "p"));
   const enquire = whatsappLink(enquiryMessage(name));
   const other = counterpart(s);
   const related = servicesFor(s.gender).filter((o) => o.slug !== s.slug);
@@ -77,7 +78,12 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
         <div className="container-site grid gap-12 lg:grid-cols-[300px_1fr] xl:gap-14">
           <article className="lg:col-start-2 lg:row-start-1">
             <Image data-reveal="zoom" src={s.heroImage} alt={`${name} at Rebornurself, New Perungalathur, Chennai`} width={895} height={499} priority sizes="(min-width: 1200px) 800px, 100vw" className="mb-10 w-full rounded-lg" />
-            <Blocks blocks={s.intro} />
+            <Blocks blocks={s.intro.slice(0, firstP + 1)} />
+            {/* Phones and tablets: the booking box sits after the article, so offer WhatsApp early too. */}
+            <a href={enquire} target="_blank" rel="noopener" className="btn-wa mt-2 mb-6 w-full sm:w-auto lg:hidden">
+              <FaWhatsapp className="text-lg" /> Enquire on WhatsApp
+            </a>
+            <Blocks blocks={s.intro.slice(firstP + 1)} />
             {s.pairImages.length > 0 && (
               <div data-reveal="stagger" className="my-10 grid grid-cols-2 gap-4">
                 {s.pairImages.map((src, i) => (
