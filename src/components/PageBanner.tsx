@@ -11,7 +11,7 @@ export default function PageBanner({
   highlight,
   crumbs,
   current,
-  image = "/assets/img/breadcumb/breadcumb-bg-4.jpg",
+  image = "/assets/img/breadcumb/breadcumb-bg-4.webp",
 }: {
   title: string;
   highlight?: string;

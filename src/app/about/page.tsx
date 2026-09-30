@@ -34,9 +34,9 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd data={founderSchema()} />
-      <PageBanner title="About" highlight="Us" crumbs={[{ name: "About Us", path: "/about" }]} image="/assets/img/breadcumb/breadcumb-bg-2.jpg" />
+      <PageBanner title="About" highlight="Us" crumbs={[{ name: "About Us", path: "/about" }]} image="/assets/img/breadcumb/breadcumb-bg-2.webp" />
 
-      <section className="bg-cream bg-cover bg-center" style={{ backgroundImage: "url(/assets/img/bg/body-bg-1.jpg)" }}>
+      <section className="bg-cream bg-cover bg-center" style={{ backgroundImage: "url(/assets/img/bg/body-bg-1.webp)" }}>
         <div className="relative mx-auto max-w-[1140px] bg-white px-4 py-20 sm:px-4 lg:py-28">
           <Image src="/assets/img/hero/hero-leaf-5.png" alt="" width={246} height={251} data-parallax="0.6" className="absolute top-4 right-[15%] hidden w-40 xl:block" />
           <div className="grid items-center gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">

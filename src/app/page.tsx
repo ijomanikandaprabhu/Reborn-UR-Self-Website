@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FaInstagram } from "react-icons/fa6";
 import { LuArrowRight, LuHourglass, LuMessagesSquare, LuSparkles } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
+import Faq from "@/components/Faq";
 import Gallery from "@/components/Gallery";
 import HeroSlider from "@/components/HeroSlider";
 import SectionTitle from "@/components/SectionTitle";
@@ -30,6 +31,16 @@ const highlights = [
     card: "Microblading strokes blended with powder shading for balanced, natural and fuller brows.", },
   { slug: "lip-neutralization", name: "Lip Neutralization", icon: "5",
     card: "Corrects dark or uneven lip tone for a smooth, balanced and natural-looking finish.", },
+];
+
+// General questions, answered only with facts already published on the service pages.
+const homeFaqs = [
+  { q: "Does permanent makeup hurt?", a: "Most clients feel very little. A topical numbing cream is applied and left on for about 20 minutes before any work begins, so the procedure stays comfortable." },
+  { q: "How long do the results last?", a: "With proper aftercare, microblading typically lasts 2–3 years, ombre powder brows, lip blushing and lip neutralization 1–3 years, and combination brows 12–18 months, depending on your skin and lifestyle." },
+  { q: "How long does healing take, and is a touch-up needed?", a: "Skin needs about a month to heal fully. A follow-up touch-up can be taken any time between 30 and 90 days, where definition and depth can be adjusted." },
+  { q: "Which treatment is right for me?", a: "Send us a photo of your bare brows or lips in natural light on WhatsApp. We will tell you honestly which procedure suits your features before you book anything." },
+  { q: "How do I book an appointment?", a: "Message us on WhatsApp or call +91 80901 11911. Once we agree on the right procedure, a booking deposit holds your slot and is deducted from the total cost on the day of your visit." },
+  { q: "Do you offer treatments for men?", a: "Yes. Microblading, ombre powder brows, combination brows, lip neutralization and lip blushing are all available for men, with subtle, natural-looking results." },
 ];
 
 export default function Home() {
@@ -97,8 +108,8 @@ export default function Home() {
           </SectionTitle>
           <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {galleryItems.filter((g) => g.cat === "events").slice(0, 4).map((g) => (
-              <li key={g.src} data-wipe className="group relative aspect-[4/5] overflow-hidden rounded-lg bg-smoke">
-                <Image src={g.src} alt={g.alt} fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+              <li key={g.src} data-wipe className="mega-hover group relative aspect-[4/5] overflow-hidden rounded-lg bg-smoke">
+                <Image src={g.src} alt={g.alt} fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover" />
               </li>
             ))}
           </ul>
@@ -109,6 +120,7 @@ export default function Home() {
       </section>
 
       <Testimonials />
+      <Faq faqs={homeFaqs} />
 
       <section className="section">
         <div className="container-site grid items-center gap-12 md:grid-cols-2 md:gap-10 lg:gap-14">

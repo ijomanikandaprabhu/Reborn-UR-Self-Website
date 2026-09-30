@@ -2,7 +2,6 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { FaQuoteRight, FaStar } from "react-icons/fa6";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
@@ -88,7 +87,9 @@ export default function Testimonials() {
                 key={t.name}
                 className={`relative mt-8 rounded-md border-b-4 bg-white px-7 pt-14 pb-8 shadow-[0_10px_30px_rgb(18_31_56/0.06)] transition-colors ${active ? "border-theme" : "border-transparent"} ${show}`}
               >
-                <Image src={t.image} alt="" width={66} height={66} className="absolute -top-8 left-7 size-[66px] rounded-full border-4 border-white shadow" />
+                <span aria-hidden="true" className="absolute -top-8 left-7 flex size-[66px] items-center justify-center rounded-full border-4 border-white bg-peach font-title text-xl text-theme shadow">
+                  {t.name.split(" ").map((w) => w[0]).join("")}
+                </span>
                 <FaQuoteRight className={`absolute -top-6 right-7 text-6xl ${active ? "text-theme" : "text-theme/20"}`} aria-hidden="true" />
                 <div className="flex gap-1 text-theme" role="img" aria-label="5 out of 5 stars">
                   {Array.from({ length: 5 }, (_, i) => <FaStar key={i} aria-hidden="true" />)}
