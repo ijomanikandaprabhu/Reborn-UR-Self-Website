@@ -95,14 +95,14 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
           </article>
 
           <aside data-reveal="left" className="space-y-6 md:max-w-md lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
-            <div className="relative mx-auto hidden max-w-[215px] lg:block">
+            <div className="relative mx-auto hidden max-w-[270px] lg:block">
               {/* Leaf tucked behind the pill, floating up and down as on the old site. */}
-              <div className="absolute top-[34%] -left-[82px] w-[130px] animate-float">
+              <div className="absolute top-[34%] -left-[92px] w-[150px] animate-float">
                 <Image src="/assets/img/shape/leaf-1-7.png" alt="" width={265} height={186} className="w-full" />
               </div>
               <div className="relative rounded-full border border-theme/15 bg-white p-1.5">
-                <div className="flex justify-center rounded-full bg-peach px-8 py-20">
-                  <Image src="/assets/img/about/price-2-1-1.png" alt="" width={187} height={349} className="w-[105px]" />
+                <div className="flex justify-center rounded-full bg-peach px-6 py-14">
+                  <Image src="/assets/img/about/price-2-1-1.png" alt="" width={187} height={349} className="w-[160px]" />
                 </div>
               </div>
             </div>
