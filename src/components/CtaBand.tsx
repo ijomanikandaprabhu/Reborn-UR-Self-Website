@@ -13,15 +13,15 @@ export default function CtaBand({
 }) {
   return (
     <section data-parallax-bg className="relative bg-theme bg-cover bg-center py-20 text-center lg:py-24" style={{ backgroundImage: "url(/assets/img/bg/cta-bg-1-1.jpg)" }}>
-      <div data-reveal="zoom" className="container-site max-w-2xl">
+      <div data-reveal="stagger" className="container-site max-w-2xl">
         <span className="eyebrow">Ready when you are</span>
         <h2 className="text-4xl lg:text-5xl">{title}</h2>
         <p className="mt-4 text-title/80">{text}</p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href={whatsappLink(message)} target="_blank" rel="noopener" className="btn-theme">
+        <div className="mx-auto mt-8 flex max-w-xs flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+          <a href={whatsappLink(message)} target="_blank" rel="noopener" className="btn-theme btn-shine">
             <FaWhatsapp className="text-lg" /> WhatsApp us
           </a>
-          <a href={`tel:${site.phone}`} className="btn border border-theme/40 bg-white/70 text-title hover:bg-white">
+          <a href={`tel:${site.phone}`} className="btn btn-shine border border-theme/40 bg-white/70 text-title hover:bg-white">
             <LuPhone /> {site.phoneDisplay}
           </a>
         </div>
