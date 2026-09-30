@@ -6,8 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { LuArrowRight } from "react-icons/lu";
+import { FaWhatsapp } from "react-icons/fa6";
+import { LuArrowRight, LuAward, LuHourglass, LuUsers } from "react-icons/lu";
 import { heroSlides } from "@/data/content";
+import { whatsappLink } from "@/lib/site";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -24,7 +26,7 @@ const stageVars = {
   "--d": "min(calc(max(600px, 100svh - var(--header-h, 161px)) * 0.66), calc(57vw - 140px))",
   "--t": "min(360px, 21.5vw)",
   "--g": "24px",
-  "--bw": "clamp(220px, 14vw, 280px)",
+  "--bw": "clamp(250px, 16vw, 290px)",
   "--b": "calc(var(--bw) - 60px)",
   "--cx": "50%",
   "--ctop": "calc(100% - var(--d) * 1.25)",
@@ -233,15 +235,37 @@ export default function HeroSlider() {
           </div>
         </div>
 
-        {/* Badge: lower right, overlapping the circle, as on the old site */}
-        <div data-depth="18" className="absolute top-[min(60%,calc(100%-300px))] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
-          <div className="hero-badge relative bg-theme px-6 py-9 text-center text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
+        {/* Badge: lower right, overlapping the circle. Why book, and how. */}
+        <div data-depth="18" className="absolute top-[min(46%,calc(100%-440px))] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
+          <div className="hero-badge relative bg-theme px-6 pt-7 pb-6 text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
             <Image src="/assets/img/wordmark-white.svg" alt="Rebornurself" width={156} height={44} className="hb-icon mx-auto h-auto w-[78%]" />
-            <ul className="mt-4 space-y-1.5 text-xs font-bold">
-              <li className="hb-txt">Flexible Services</li>
-              <li className="hb-txt">Expert Treatments</li>
-              <li className="hb-txt">Virtual Consults</li>
+            <span className="hb-txt mx-auto mt-4 block h-px w-16 bg-white/40" aria-hidden="true" />
+
+            <ul className="mt-4 space-y-2 text-[13px] font-semibold">
+              {[
+                { Icon: LuAward, text: "Certified PMU Artist" },
+                { Icon: LuHourglass, text: "Results last up to 2–3 years" },
+                { Icon: LuUsers, text: "Women & Men welcome" },
+              ].map(({ Icon, text }) => (
+                <li key={text} className="hb-txt flex items-center gap-2.5">
+                  <Icon className="shrink-0 text-base text-white/80" aria-hidden="true" /> {text}
+                </li>
+              ))}
             </ul>
+
+            <p className="hb-txt mt-5 text-[11px] font-bold tracking-[0.2em] text-white/70 uppercase">How to book</p>
+            <ol className="mt-2 space-y-1.5 text-[13px]">
+              {["Send a photo on WhatsApp", "Get honest advice", "Book your slot"].map((step, i) => (
+                <li key={step} className="hb-txt flex items-center gap-2.5">
+                  <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-white text-[11px] font-bold text-theme">{i + 1}</span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+
+            <a href={whatsappLink("Hi Rebornurself, I would like to book an appointment.")} target="_blank" rel="noopener" className="hb-txt mt-5 flex items-center justify-center gap-2 rounded-full bg-white py-2.5 text-sm font-semibold text-theme transition hover:bg-title hover:text-white">
+              <FaWhatsapp className="text-base" /> Book on WhatsApp
+            </a>
           </div>
         </div>
 
