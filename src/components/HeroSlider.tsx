@@ -238,7 +238,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Badge: lower right, overlapping the circle, with space below it. */}
-        <div data-depth="18" className="absolute bottom-[max(32px,7%)] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
+        <div data-depth="18" className="absolute right-[max(48px,4vw)] bottom-[max(110px,10%)] z-10 hidden w-[var(--bw)] lg:block">
           <div className="hero-badge relative bg-theme px-6 pt-7 pb-6 [@media(max-height:820px)]:px-5 [@media(max-height:820px)]:pt-5 [@media(max-height:820px)]:pb-4 text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
             <Image src="/assets/img/wordmark-white.svg" alt="Rebornurself" width={156} height={44} className="hb-icon mx-auto h-auto w-[78%] [@media(max-height:820px)]:w-[64%]" />
             <span className="hb-txt mx-auto mt-4 block h-px w-16 [@media(max-height:820px)]:mt-3 bg-white/40" aria-hidden="true" />
