@@ -98,3 +98,10 @@ html[data-seen] .loader {
 @media (prefers-reduced-motion: reduce) {
   .loader { animation-delay: 0.2s; }
 }
+
+/* Home hero: text | photo | badge. The middle track may shrink below the
+   photo's width so the photo can spill over both sides without pushing the
+   badge out of the page. */
+@utility hero-grid {
+  grid-template-columns: 300px minmax(0, 1fr) 300px;
+}
