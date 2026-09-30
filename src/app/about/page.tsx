@@ -40,8 +40,8 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-[1140px] bg-white px-4 py-20 sm:px-4 lg:py-28">
           <Image src="/assets/img/hero/hero-leaf-5.png" alt="" width={246} height={251} data-parallax="0.6" className="absolute top-4 right-[15%] hidden w-40 xl:block" />
           <div className="grid items-center gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
-            <div data-wipe className="mx-auto w-full max-w-[300px] rounded-[50%] border border-theme/30 p-1.5 sm:max-w-[380px] lg:max-w-[450px]">
-              <div className="flex aspect-[450/620] items-end justify-center overflow-hidden rounded-[50%] bg-[#e7d3cc] px-4 pt-16">
+            <div data-wipe className="mx-auto w-full max-w-[280px] rounded-full border border-theme/30 p-1.5 sm:max-w-[380px] lg:max-w-[400px]">
+              <div className="flex aspect-[385/540] items-end justify-center overflow-hidden rounded-full bg-[#e7d3cc] px-4 pt-8">
                 <Image src={site.founder.image} alt="Sandhiya Srinivasan, permanent makeup artist and founder of Rebornurself" width={296} height={421} priority sizes="420px" className="h-auto w-[92%]" />
               </div>
             </div>
