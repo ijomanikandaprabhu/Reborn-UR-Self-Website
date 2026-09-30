@@ -238,7 +238,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Badge: lower right, overlapping the circle, with space below it. */}
-        <div data-depth="18" className="absolute right-[max(48px,4vw)] bottom-[max(110px,10%)] z-10 hidden w-[var(--bw)] lg:block">
+        <div data-depth="18" className="absolute right-[max(48px,4vw)] bottom-[max(48px,4vw)] z-10 hidden w-[var(--bw)] lg:block">
           <div className="hero-badge relative bg-theme px-6 pt-7 pb-6 [@media(max-height:820px)]:px-5 [@media(max-height:820px)]:pt-5 [@media(max-height:820px)]:pb-4 text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
             <Image src="/assets/img/wordmark-white.svg" alt="Rebornurself" width={156} height={44} className="hb-icon mx-auto h-auto w-[78%] [@media(max-height:820px)]:w-[64%]" />
             <span className="hb-txt mx-auto mt-4 block h-px w-16 [@media(max-height:820px)]:mt-3 bg-white/40" aria-hidden="true" />
@@ -285,7 +285,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Scroll cue */}
-        <button type="button" onClick={scrollOn} aria-label="Scroll to the next section" className="hero-cue absolute right-8 bottom-8 z-10 hidden flex-col items-center gap-2 text-[11px] font-semibold tracking-[0.25em] text-title/60 uppercase hover:text-theme lg:flex">
+        <button type="button" onClick={scrollOn} aria-label="Scroll to the next section" className="hero-cue absolute right-[calc(max(48px,4vw)+var(--bw)+32px)] bottom-8 z-10 hidden flex-col items-center gap-2 text-[11px] font-semibold tracking-[0.25em] text-title/60 uppercase hover:text-theme lg:flex">
           <span className="relative h-10 w-6 rounded-full border-2 border-current">
             <span className="absolute top-2 left-[calc(50%-2px)] h-2 w-1 animate-[cue_1.8s_ease-in-out_infinite] rounded-full bg-current motion-reduce:animate-none" />
           </span>
