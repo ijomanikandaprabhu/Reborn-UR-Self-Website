@@ -19,7 +19,11 @@ export default function ServiceTabs() {
   useGSAP(
     () => {
       if (!switched.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      gsap.fromTo(`#panel-${gender} > li`, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", stagger: 0.07, clearProps: "transform,opacity" });
+      const cards = `#panel-${gender} > li`;
+      // transition:none stops the cards' CSS hover transition fighting the tween.
+      gsap.set(cards, { transition: "none" });
+      gsap.fromTo(cards, { y: 50, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.7, ease: "power3.out", stagger: 0.09, clearProps: "transform,opacity,transition" });
+      gsap.fromTo(`${cards} > div:first-child`, { scale: 0, rotate: -30 }, { scale: 1, rotate: 0, duration: 0.6, ease: "back.out(2)", stagger: 0.09, delay: 0.25, clearProps: "transform" });
     },
     { scope, dependencies: [gender] },
   );
