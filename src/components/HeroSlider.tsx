@@ -50,6 +50,9 @@ function Letters({ text }: { text: string }) {
 
 export default function HeroSlider() {
   const [active, setActive] = useState(0);
+  // Photos for slides 2 and 3 load only once the slider first moves on.
+  const [loadAll, setLoadAll] = useState(false);
+  if (active !== 0 && !loadAll) setLoadAll(true);
   const [paused, setPaused] = useState(false);
   const scope = useRef<HTMLElement>(null);
 
@@ -67,7 +70,7 @@ export default function HeroSlider() {
 
 
       // The circle's border draws itself in, then the photo rises into it.
-      const intro = gsap.timeline({ delay: firstVisit ? 1.3 : 0.1 });
+      const intro = gsap.timeline({ delay: firstVisit ? 0.8 : 0.1 });
       intro
         .fromTo(".hero-draw circle", { strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut" })
         .to(".hero-draw", { opacity: 0, duration: 0.8 }, "-=0.2")
@@ -142,7 +145,7 @@ export default function HeroSlider() {
           .set(out, { autoAlpha: 0 });
         start = 0.65;
       } else if (!document.documentElement.hasAttribute("data-seen")) {
-        start = 1.4; // wait for the eyes loader on a first visit
+        start = 0.9; // wait for the eyes loader on a first visit
       }
 
       // Slow zoom (Ken Burns) on the photo for as long as the slide shows.
@@ -217,7 +220,7 @@ export default function HeroSlider() {
             </svg>
           </div>
           <div data-depth="24" className="hero-photo absolute inset-x-0 bottom-0 h-[92%] lg:left-[calc(var(--cx)-var(--d)*0.53)] lg:h-[calc(var(--d)*1.1)] lg:w-[calc(var(--d)*1.066)]">
-            {heroSlides.map((s, i) => (
+            {heroSlides.map((s, i) => (i === 0 || loadAll) && (
               <Image
                 key={s.image}
                 src={s.image}
@@ -259,7 +262,7 @@ export default function HeroSlider() {
               ))}
             </ol>
 
-            <a href={whatsappLink("Hi Rebornurself, I would like to book an appointment.")} target="_blank" rel="noopener" className="hb-txt btn-shine btn-pulse group mt-5 flex items-center justify-center gap-2 rounded-full bg-white py-2.5 [@media(max-height:820px)]:mt-3 [@media(max-height:820px)]:py-2 text-sm font-semibold text-theme transition-[translate,background-color,color] duration-300 hover:-translate-y-0.5 hover:bg-title hover:text-white">
+            <a href={whatsappLink("Hi Rebornurself, I would like to book an appointment.")} target="_blank" rel="noopener" className="hb-txt btn-shine group mt-5 flex items-center justify-center gap-2 rounded-full border border-white/70 py-2.5 [@media(max-height:820px)]:mt-3 [@media(max-height:820px)]:py-2 text-sm font-semibold text-white transition-[translate,background-color,color] duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-theme">
               <FaWhatsapp className="text-base group-hover:animate-[wiggle_0.6s_ease-in-out]" /> Book on WhatsApp
             </a>
           </div>

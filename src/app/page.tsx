@@ -16,53 +16,21 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({ title: `${site.tagline} | ${site.name}`, path: "/" });
 
-// card: short summary for the cards. panel: a different angle for the peach panel,
-// so the two sections never repeat each other.
+// Short summaries for the six solution cards.
 const highlights = [
   { slug: "microblading", name: "Microblading", icon: "4",
-    card: "Fine, hair-like strokes that fill sparse brows naturally, with results lasting 2–3 years.",
-    panel: "Best for sparse or over-plucked brows. Each stroke follows the direction your own hair grows." },
+    card: "Fine, hair-like strokes that fill sparse brows naturally, with results lasting 2–3 years.", },
   { slug: "lip-blushing", name: "Lip Blushing", icon: "3",
-    card: "A soft semi-permanent flush that makes lips look fuller, more defined and more vibrant.",
-    panel: "Lasts 1–3 years. Colour and definition every day, without reapplying lipstick." },
+    card: "A soft semi-permanent flush that makes lips look fuller, more defined and more vibrant.", },
   { slug: "ombre-powder-brows", name: "Ombre Brows", icon: "6",
-    card: "A soft powder gradient for fuller, defined brows with a lasting, makeup-like finish.",
-    panel: "Lighter at the front and deeper towards the tail, like a lightly pencilled brow." },
+    card: "A soft powder gradient for fuller, defined brows with a lasting, makeup-like finish.", },
   { slug: "beauty-spot", name: "Beauty Spot", icon: "1",
-    card: "Realistic semi-permanent beauty marks that add subtle, defined elegance to your features.",
-    panel: "Sized and positioned with you before any pigment goes in, so it looks naturally yours." },
+    card: "Realistic semi-permanent beauty marks that add subtle, defined elegance to your features.", },
   { slug: "combination-brows", name: "Combination Brows", icon: "2",
-    card: "Microblading strokes blended with powder shading for balanced, natural and fuller brows.",
-    panel: "Lasts 12–18 months. Strokes at the front, shading behind, for definition and density." },
+    card: "Microblading strokes blended with powder shading for balanced, natural and fuller brows.", },
   { slug: "lip-neutralization", name: "Lip Neutralization", icon: "5",
-    card: "Corrects dark or uneven lip tone for a smooth, balanced and natural-looking finish.",
-    panel: "Lasts 1–3 years. Evens out darkness from sun or smoking before any colour is added." },
+    card: "Corrects dark or uneven lip tone for a smooth, balanced and natural-looking finish.", },
 ];
-
-// Left and right columns of the feature panel, in the old layout's order.
-const panelLeft = ["lip-blushing", "beauty-spot", "lip-neutralization"];
-const panelRight = ["microblading", "ombre-powder-brows", "combination-brows"];
-const byslug = (slug: string) => highlights.find((h) => h.slug === slug)!;
-
-function PanelItem({ slug, side }: { slug: string; side: "left" | "right" }) {
-  const h = byslug(slug);
-  return (
-    <li data-reveal={side}>
-      <Link
-        href={`/${h.slug}`}
-        className={`group flex flex-col items-center gap-4 text-center md:flex-row md:items-start md:gap-6 md:text-left ${side === "left" ? "lg:flex-row-reverse lg:text-right" : ""}`}
-      >
-        <span className="flex size-[60px] shrink-0 items-center justify-center rounded-full bg-white transition-colors duration-300 group-hover:bg-theme">
-          <Image src={`/assets/img/icon/${h.icon}.png`} alt="" width={30} height={30} className="transition duration-300 group-hover:brightness-0 group-hover:invert" />
-        </span>
-        <span className="block">
-          <span className="block font-title text-2xl text-title transition-colors group-hover:text-theme">{h.name}</span>
-          <span className="mt-2 block">{h.panel}</span>
-        </span>
-      </Link>
-    </li>
-  );
-}
 
 export default function Home() {
   return (
@@ -98,23 +66,6 @@ export default function Home() {
             })}
           </ul>
           <p className="mt-2 flex items-center justify-center gap-2 text-sm text-theme sm:hidden" aria-hidden="true">Swipe to see all 6 <LuArrowRight /></p>
-        </div>
-      </section>
-
-      <section className="pb-20 lg:pb-28">
-        <div className="container-site">
-          <div data-reveal className="relative grid items-end gap-10 overflow-hidden bg-peach px-6 py-14 md:grid-cols-2 md:gap-8 lg:grid-cols-[1fr_minmax(0,440px)_1fr] lg:gap-10 lg:px-12 lg:pt-20 lg:pb-0">
-            <ul className="space-y-10 self-start lg:self-center lg:pb-20">
-              {panelLeft.map((slug) => <PanelItem key={slug} slug={slug} side="left" />)}
-            </ul>
-            <div data-wipe className="relative mx-auto hidden aspect-[950/980] w-full max-w-[460px] lg:block">
-              <div className="absolute inset-x-[10%] top-0 aspect-square rounded-full bg-white" aria-hidden="true" />
-              <Image src="/assets/img/hero/spa-girl-1.png" alt="Natural brows and lips after permanent makeup" fill sizes="460px" className="object-contain object-bottom" />
-            </div>
-            <ul className="space-y-10 self-start lg:self-center lg:pb-20">
-              {panelRight.map((slug) => <PanelItem key={slug} slug={slug} side="right" />)}
-            </ul>
-          </div>
         </div>
       </section>
 

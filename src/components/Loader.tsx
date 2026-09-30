@@ -38,7 +38,7 @@ export default function Loader() {
         <g transform="translate(260,50)">
           <g>
             <animateTransform attributeName="transform" type="translate" values="0 0; 0 0; 0 5; 0 -4; 0 0; 0 0"
-              keyTimes="0; 0.22; 0.44; 0.66; 0.86; 1" dur="1.3s" calcMode="spline"
+              keyTimes="0; 0.22; 0.44; 0.66; 0.86; 1" dur="0.8s" calcMode="spline"
               keySplines={Array(5).fill(spline).join("; ")} repeatCount="1" fill="freeze" />
             {brow}
           </g>
@@ -46,7 +46,7 @@ export default function Loader() {
         <g transform="translate(260,108)">
           <g>
             <animateTransform attributeName="transform" type="scale" values="1 1; 1 1; 1 0.05; 1 1; 1 1"
-              keyTimes="0; 0.24; 0.44; 0.74; 1" dur="1.3s" calcMode="spline"
+              keyTimes="0; 0.24; 0.44; 0.74; 1" dur="0.8s" calcMode="spline"
               keySplines={Array(4).fill(spline).join("; ")} repeatCount="1" fill="freeze" />
             {eye}
           </g>

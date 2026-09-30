@@ -74,7 +74,7 @@
 
 /* The eyes loader: shown once per visit, gone after its wink. */
 .loader {
-  animation: loader-out 0.45s ease 1.35s forwards;
+  animation: loader-out 0.35s ease 0.8s forwards;
 }
 html[data-seen] .loader {
   display: none;

@@ -58,7 +58,7 @@ export const galleryItems: { src: string; w: number; h: number; tag: string; alt
 ];
 
 export const heroSlides = [
-  { image: "/assets/img/hero/spa-girl-1.png", line1: "Beauty,", line2: "Redefined." },
-  { image: "/assets/img/hero/handsome-man.png", line1: "Brows & Lips,", line2: "Perfected." },
-  { image: "/assets/img/hero/spa-girl-4.png", line1: "Flawless,", line2: "Every Day." },
+  { image: "/assets/img/hero/spa-girl-1.webp", line1: "Beauty,", line2: "Redefined." },
+  { image: "/assets/img/hero/handsome-man.webp", line1: "Brows & Lips,", line2: "Perfected." },
+  { image: "/assets/img/hero/spa-girl-4.webp", line1: "Flawless,", line2: "Every Day." },
 ];

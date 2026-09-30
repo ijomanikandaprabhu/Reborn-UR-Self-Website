@@ -92,9 +92,13 @@ export default function Gallery({ limit, masonry = false, resultsOnly = false }:
                 <span className="absolute inset-0 flex items-center justify-center bg-title/0 text-3xl text-white opacity-0 transition group-hover:bg-title/40 group-hover:opacity-100">
                   <LuZoomIn aria-hidden="true" />
                 </span>
-                <span className="pointer-events-none absolute inset-x-3 bottom-3 flex flex-wrap items-center gap-1.5 text-left">
+                <span className="pointer-events-none absolute inset-x-3 bottom-3 flex flex-wrap items-center gap-1.5 text-left transition duration-300 group-hover:-translate-y-1">
                   <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-title backdrop-blur">{galleryCategories.find((c) => c.id === g.cat)?.label}</span>
                   {g.tag && <span className="rounded-full bg-theme/90 px-3 py-1 text-xs font-medium text-white backdrop-blur">{g.tag}</span>}
+                </span>
+                {/* Touch screens have no hover, so show a small enlarge hint. */}
+                <span aria-hidden="true" className="absolute top-3 right-3 hidden size-8 items-center justify-center rounded-full bg-white/85 text-sm text-title shadow [@media(hover:none)]:flex">
+                  <LuZoomIn />
                 </span>
                 <span className="sr-only">Enlarge: {g.alt}</span>
               </button>
