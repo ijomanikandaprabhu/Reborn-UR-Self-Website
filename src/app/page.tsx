@@ -75,11 +75,11 @@ export default function Home() {
                   {/* The whole card is the link. On hover it lifts, the icon circle turns brown,
                       the border turns solid and "Learn more" appears. */}
                   <Link href={servicePath(s)} className="group relative block h-full rounded-md bg-white p-3 shadow-[0_10px_30px_rgb(154_86_58/0.08)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_22px_45px_rgb(154_86_58/0.18)]">
-                    <div className="flex h-full flex-col items-center border border-dashed border-theme/35 px-8 pt-24 pb-8 text-center transition-colors duration-300 group-hover:border-solid group-hover:border-theme">
-                      <div className="absolute -top-12 left-1/2 flex size-[140px] -translate-x-1/2 items-center justify-center rounded-full border-[6px] border-white bg-peach transition-colors duration-300 group-hover:bg-theme">
-                        <Image src={iconPath(s)} alt="" width={67} height={67} className="transition duration-300 group-hover:scale-110 group-hover:brightness-0 group-hover:invert" />
+                    <div className="flex h-full flex-col items-center border border-dashed border-theme/35 px-6 pt-20 pb-8 text-center transition-colors sm:px-8 sm:pt-24 duration-300 group-hover:border-solid group-hover:border-theme">
+                      <div className="absolute -top-10 left-1/2 flex size-[110px] -translate-x-1/2 sm:-top-12 sm:size-[140px] items-center justify-center rounded-full border-[6px] border-white bg-peach transition-colors duration-300 group-hover:bg-theme">
+                        <Image src={iconPath(s)} alt="" width={67} height={67} className="w-[54px] sm:w-[67px] transition duration-300 group-hover:scale-110 group-hover:brightness-0 group-hover:invert" />
                       </div>
-                      <h2 className="text-[28px] transition-colors group-hover:text-theme">{h.name}</h2>
+                      <h2 className="text-2xl transition-colors group-hover:text-theme sm:text-[28px]">{h.name}</h2>
                       <span className="mt-4 mb-4 block h-0.5 w-10 rounded-full bg-theme/40 transition-all duration-300 group-hover:w-16 group-hover:bg-theme" aria-hidden="true" />
                       <p className="min-h-[5.25em]">{h.card}</p>
                       <span className="mt-4 inline-flex translate-y-2 items-center gap-1.5 text-sm font-semibold text-theme opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 [@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100">
@@ -91,6 +91,7 @@ export default function Home() {
               );
             })}
           </ul>
+          <p className="mt-2 flex items-center justify-center gap-2 text-sm text-theme sm:hidden" aria-hidden="true">Swipe to see all 6 <LuArrowRight /></p>
         </div>
       </section>
 
