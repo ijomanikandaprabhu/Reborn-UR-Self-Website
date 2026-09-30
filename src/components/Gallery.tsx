@@ -9,7 +9,8 @@ import { galleryCategories, galleryItems, type GalleryCategory } from "@/data/co
 import { whatsappLink } from "@/lib/site";
 import { setScrollLocked } from "./SmoothScroll";
 
-export default function Gallery({ limit, masonry = false }: { limit?: number; masonry?: boolean }) {
+/** resultsOnly: treatment photos only (no events), for the home page. */
+export default function Gallery({ limit, masonry = false, resultsOnly = false }: { limit?: number; masonry?: boolean; resultsOnly?: boolean }) {
   const [filter, setFilter] = useState<GalleryCategory>("all");
   const [open, setOpen] = useState<number | null>(null);
   const scope = useRef<HTMLDivElement>(null);
@@ -24,11 +25,15 @@ export default function Gallery({ limit, masonry = false }: { limit?: number; ma
     { scope, dependencies: [filter] },
   );
 
-  const items = galleryItems.filter((g) => filter === "all" || g.cat === filter).slice(0, limit);
+  const pool = galleryItems.filter((g) => !resultsOnly || g.cat !== "events");
+  // Only offer filters that have photos.
+  const categories = galleryCategories.filter((c) => c.id === "all" || pool.some((g) => g.cat === c.id));
+  const items = pool.filter((g) => filter === "all" || g.cat === filter).slice(0, limit);
 
+  const count = items.length;
   const step = useCallback(
-    (dir: number) => setOpen((i) => (i === null ? i : (i + dir + items.length) % items.length)),
-    [items.length],
+    (dir: number) => setOpen((i) => (i === null ? i : (i + dir + count) % count)),
+    [count],
   );
 
   useEffect(() => {
@@ -52,7 +57,7 @@ export default function Gallery({ limit, masonry = false }: { limit?: number; ma
     <div ref={scope}>
       {/* Phones scroll the filters sideways in one row; larger screens wrap them. */}
       <div className="-mx-4 mb-10 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0" role="group" aria-label="Filter photos">
-        {galleryCategories.map((c) => (
+        {categories.map((c) => (
           <button
             key={c.id}
             type="button"
@@ -82,6 +87,10 @@ export default function Gallery({ limit, masonry = false }: { limit?: number; ma
                 )}
                 <span className="absolute inset-0 flex items-center justify-center bg-title/0 text-3xl text-white opacity-0 transition group-hover:bg-title/40 group-hover:opacity-100">
                   <LuZoomIn aria-hidden="true" />
+                </span>
+                <span className="pointer-events-none absolute inset-x-3 bottom-3 flex flex-wrap items-center gap-1.5 text-left">
+                  <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-title backdrop-blur">{galleryCategories.find((c) => c.id === g.cat)?.label}</span>
+                  <span className="rounded-full bg-theme/90 px-3 py-1 text-xs font-medium text-white backdrop-blur">{g.tag}</span>
                 </span>
                 <span className="sr-only">Enlarge: {g.alt}</span>
               </button>

@@ -127,7 +127,7 @@ export default function Home() {
       <section className="section pt-0">
         <div className="container-site">
           <SectionTitle eyebrow="From the studio" title="Our Work" />
-          <Gallery limit={6} />
+          <Gallery limit={6} resultsOnly />
           <div data-reveal className="mt-10 flex flex-wrap justify-center gap-3">
             <Link href="/gallery" className="btn-theme">View More <LuArrowRight /></Link>
             <a href={site.social.instagram} target="_blank" rel="noopener" className="btn bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#c1358f] text-white hover:opacity-90">
