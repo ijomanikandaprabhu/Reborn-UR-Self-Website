@@ -136,7 +136,7 @@ export default function HeroSlider() {
                 fill
                 priority={i === 0}
                 sizes="(min-width: 1024px) 45vh, 84vw"
-                className={`object-contain object-bottom transition-opacity duration-1000 ${i === active ? "opacity-100" : "opacity-0"}`}
+                className={`object-contain object-bottom transition-opacity duration-1000 motion-reduce:transition-none ${i === active ? "opacity-100" : "opacity-0"}`}
               />
             ))}
           </div>
