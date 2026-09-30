@@ -46,14 +46,19 @@ const byslug = (slug: string) => highlights.find((h) => h.slug === slug)!;
 function PanelItem({ slug, side }: { slug: string; side: "left" | "right" }) {
   const h = byslug(slug);
   return (
-    <li className={`flex flex-col items-center gap-4 text-center md:flex-row md:items-start md:gap-6 md:text-left ${side === "left" ? "lg:flex-row-reverse lg:text-right" : ""}`}>
-      <span className="flex size-[60px] shrink-0 items-center justify-center rounded-full bg-white">
-        <Image src={`/assets/img/icon/${h.icon}.png`} alt="" width={30} height={30} />
-      </span>
-      <div>
-        <h3 className="text-2xl"><Link href={`/${h.slug}`} className="hover:text-theme">{h.name}</Link></h3>
-        <p className="mt-2">{h.panel}</p>
-      </div>
+    <li data-reveal={side}>
+      <Link
+        href={`/${h.slug}`}
+        className={`group flex flex-col items-center gap-4 text-center md:flex-row md:items-start md:gap-6 md:text-left ${side === "left" ? "lg:flex-row-reverse lg:text-right" : ""}`}
+      >
+        <span className="flex size-[60px] shrink-0 items-center justify-center rounded-full bg-white transition-colors duration-300 group-hover:bg-theme">
+          <Image src={`/assets/img/icon/${h.icon}.png`} alt="" width={30} height={30} className="transition duration-300 group-hover:brightness-0 group-hover:invert" />
+        </span>
+        <span className="block">
+          <span className="block font-title text-2xl text-title transition-colors group-hover:text-theme">{h.name}</span>
+          <span className="mt-2 block">{h.panel}</span>
+        </span>
+      </Link>
     </li>
   );
 }
@@ -97,15 +102,15 @@ export default function Home() {
 
       <section className="pb-20 lg:pb-28">
         <div className="container-site">
-          <div data-reveal className="relative grid items-end gap-10 overflow-hidden bg-peach px-6 py-14 md:grid-cols-2 md:gap-8 lg:grid-cols-[1fr_minmax(0,460px)_1fr] lg:px-2 lg:pt-28 lg:pb-0">
-            <ul data-reveal="left" className="space-y-10 self-start lg:pl-0">
+          <div data-reveal className="relative grid items-end gap-10 overflow-hidden bg-peach px-6 py-14 md:grid-cols-2 md:gap-8 lg:grid-cols-[1fr_minmax(0,440px)_1fr] lg:gap-10 lg:px-12 lg:pt-20 lg:pb-0">
+            <ul className="space-y-10 self-start lg:self-center lg:pb-20">
               {panelLeft.map((slug) => <PanelItem key={slug} slug={slug} side="left" />)}
             </ul>
             <div data-reveal="zoom" className="relative mx-auto hidden aspect-[950/980] w-full max-w-[460px] lg:block">
               <div className="absolute inset-x-[10%] top-0 aspect-square rounded-full bg-white" aria-hidden="true" />
               <Image src="/assets/img/hero/spa-girl-1.png" alt="Natural brows and lips after permanent makeup" fill sizes="460px" className="object-contain object-bottom" />
             </div>
-            <ul data-reveal="right" className="space-y-10 self-start">
+            <ul className="space-y-10 self-start lg:self-center lg:pb-20">
               {panelRight.map((slug) => <PanelItem key={slug} slug={slug} side="right" />)}
             </ul>
           </div>
