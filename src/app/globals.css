@@ -162,3 +162,14 @@ html[data-seen] .loader {
   .btn-pulse { animation: none; }
   .btn-shine::after { display: none; }
 }
+
+/* Footer links: an underline slides in from the left on hover. */
+.link-slide {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.35s ease, color 0.2s;
+}
+.link-slide:hover,
+.link-slide:focus-visible {
+  background-size: 100% 1px;
+}
