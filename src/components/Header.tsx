@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa6";
 import { LuChevronDown, LuMail, LuMenu, LuX } from "react-icons/lu";
 import { servicesFor, servicePath, type Gender } from "@/data/services";
 import { site, whatsappLink } from "@/lib/site";
@@ -81,7 +82,8 @@ export default function Header() {
 
   return (
     <header ref={headerRef} className="relative z-40">
-      <div>
+      {/* Top bar: tablets and up only; phones get these links inside the menu. */}
+      <div className="hidden md:block">
         <div className="container-site flex items-center justify-center gap-4 border-b border-line py-2.5 md:justify-between">
           <a href={`mailto:${site.email}`} className="hidden items-center gap-2 text-sm text-body hover:text-theme md:flex">
             <LuMail className="text-theme" /> {site.email}
@@ -168,7 +170,7 @@ export default function Header() {
         </div>
         <nav aria-label="Mobile" className="mt-8">
           <ul className="divide-y divide-line border-y border-line">
-            <li><Link href="/" className="block py-3.5 font-medium text-title">Home</Link></li>
+            <li><Link href="/" className={`block py-3.5 font-medium ${isActive("/") ? "text-theme" : "text-title"}`}>Home</Link></li>
             <li>
               <button type="button" onClick={() => setServicesOpen((v) => !v)} aria-expanded={servicesOpen} className="flex w-full items-center justify-between py-3.5 font-medium text-title">
                 Services <LuChevronDown className={`transition ${servicesOpen ? "rotate-180" : ""}`} />
@@ -189,11 +191,13 @@ export default function Header() {
               )}
             </li>
             {links.map((l) => (
-              <li key={l.href}><Link href={l.href} className="block py-3.5 font-medium text-title">{l.label}</Link></li>
+              <li key={l.href}><Link href={l.href} className={`block py-3.5 font-medium ${isActive(l.href) ? "text-theme" : "text-title"}`}>{l.label}</Link></li>
             ))}
           </ul>
         </nav>
-        <a href={`tel:${site.phone}`} className="btn-theme mt-8 w-full">Call {site.phoneDisplay}</a>
+        <a href={whatsappLink("Hi Rebornurself, I would like to book an appointment.")} target="_blank" rel="noopener" className="btn-wa mt-8 w-full"><FaWhatsapp className="text-lg" /> Book on WhatsApp</a>
+        <a href={`tel:${site.phone}`} className="btn mt-3 w-full border border-theme text-theme">Call {site.phoneDisplay}</a>
+        <SocialLinks whatsapp={false} className="mt-6 justify-center" itemClassName="border-line text-title" />
       </div>
     </header>
   );
