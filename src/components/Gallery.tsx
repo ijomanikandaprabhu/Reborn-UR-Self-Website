@@ -22,7 +22,7 @@ export default function Gallery({ limit, masonry = false, resultsOnly = false }:
       if (!filtered.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       // Photos still waiting for their scroll wipe would stay hidden after the layout changes; show them.
       gsap.killTweensOf("ul [data-wipe], ul [data-wipe] img");
-      gsap.set("ul [data-wipe]", { clipPath: "none" });
+      gsap.set("ul [data-wipe]", { opacity: 1, y: 0 });
       gsap.set("ul [data-wipe] img", { scale: 1 });
       gsap.fromTo("ul > li", { y: 40, scale: 0.95, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, ease: "power3.out", stagger: 0.07, clearProps: "transform,opacity" });
     },

@@ -74,12 +74,12 @@ export default function SmoothScroll() {
         onEnter: (batch) => gsap.to(batch, { y: 0, opacity: 1, stagger: 0.08, ...base }),
       });
 
-      // data-wipe: the photo is uncovered from left to right, with a slight zoom-out.
-      gsap.utils.toArray<HTMLElement>("[data-wipe]").forEach((el, i) => {
+      // data-wipe (photos): a soft fade up with a gentle zoom-out. No wipe.
+      gsap.utils.toArray<HTMLElement>("[data-wipe]").forEach((el) => {
         const trigger = { trigger: el, start: "top 92%", once: true };
-        gsap.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.2, delay: (i % 2) * 0.25, ease: "power3.inOut", scrollTrigger: trigger, clearProps: "clipPath" });
+        gsap.from(el, { opacity: 0, y: 30, duration: 0.9, ease: "power3.out", scrollTrigger: trigger, clearProps: "opacity,transform" });
         const img = el.querySelector("img");
-        if (img) gsap.fromTo(img, { scale: 1.2 }, { scale: 1, duration: 1.6, delay: (i % 2) * 0.25, ease: "power3.out", scrollTrigger: trigger, clearProps: "transform" });
+        if (img) gsap.fromTo(img, { scale: 1.08 }, { scale: 1, duration: 1.2, ease: "power3.out", scrollTrigger: trigger, clearProps: "transform" });
       });
 
       gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
