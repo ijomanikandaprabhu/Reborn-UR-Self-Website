@@ -105,3 +105,10 @@ html[data-seen] .loader {
 @utility hero-grid {
   grid-template-columns: 300px minmax(0, 1fr) 300px;
 }
+
+/* Hero "scroll" cue: the wheel of the mouse icon slides down and fades. */
+@keyframes cue {
+  0% { transform: translateY(0); opacity: 1; }
+  70% { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
