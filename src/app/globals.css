@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --color-theme: #9a563a;
+  --color-theme-dark: #7e4530;
+  --color-title: #121f38;
+  --color-body: #555555;
+  --color-peach: #fde5d8;
+  --color-cream: #fff6f1;
+  --color-smoke: #eff1f5;
+  --color-line: #e7e5e5;
+  --color-wa: #25d366;
+  --color-wa-dark: #1da851;
+
+  --font-title: var(--font-marcellus), "Marcellus", serif;
+  --font-body: var(--font-dm-sans), "DM Sans", sans-serif;
+
+  --shadow-card: 0 6px 24px rgb(18 31 56 / 0.05);
+  --shadow-card-hover: 0 14px 32px rgb(18 31 56 / 0.1);
+
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.6s ease both;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-body text-base leading-[1.75] text-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-title font-normal leading-tight text-title;
+  }
+  a {
+    @apply transition-colors;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-theme;
+  }
+}
+
+@utility container-site {
+  @apply mx-auto w-full max-w-[1200px] px-4 sm:px-6;
+}
+@utility section {
+  @apply py-20 lg:py-28;
+}
+@utility eyebrow {
+  @apply mb-2 block text-sm font-medium tracking-[0.18em] text-theme uppercase;
+}
+@utility card {
+  @apply rounded-lg border border-title/[0.07] bg-white shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-card-hover;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2.5 rounded-full px-7 py-3.5 text-[15px] font-medium transition duration-300 hover:-translate-y-0.5;
+}
+@utility btn-theme {
+  @apply btn bg-theme text-white hover:bg-title;
+}
+@utility btn-wa {
+  @apply btn bg-wa text-white hover:bg-wa-dark;
+}
+
+/* The eyes loader: shown once per visit, gone after its wink. */
+.loader {
+  animation: loader-out 0.45s ease 1.35s forwards;
+}
+html[data-seen] .loader {
+  display: none;
+}
+@keyframes loader-out {
+  to { opacity: 0; visibility: hidden; }
+}
+.loader path, .loader circle {
+  fill: none;
+  stroke: var(--color-theme);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.loader .brow-hair, .loader .eye-lash { stroke-width: 3.5; opacity: 0.75; }
+.loader .eye-iris { fill: rgb(154 86 58 / 0.18); stroke-width: 4; }
+.loader .eye-pupil { fill: var(--color-title); stroke: none; }
+.loader .eye-glint { fill: #fff; stroke: none; }
+.loader .eye-liner { fill: var(--color-theme); stroke: none; }
+.loader .eye-shadow { fill: rgb(154 86 58 / 0.13); stroke: none; }
+@media (prefers-reduced-motion: reduce) {
+  .loader { animation-delay: 0.2s; }
+  html { scroll-behavior: auto; }
+}

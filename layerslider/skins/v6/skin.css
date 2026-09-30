@@ -1,9 +1,0 @@
-/*
- * LayerSlider v6 skin placeholder.
- *
- * The bundled theme requests this file via skinsPath in assets/js/main.js.
- * The original vendor skin folder was never shipped with the template, so the
- * request 404'd on every page load. The hero slider itself does not depend on
- * it: navButtons, navStartStop and navPrevNext are all disabled, so no skinned
- * controls are rendered. This file exists to satisfy the request.
- */
