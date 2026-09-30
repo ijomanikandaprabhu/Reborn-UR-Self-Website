@@ -53,8 +53,8 @@ export default function Gallery({ limit, masonry = false }: { limit?: number; ma
 
       {items.length === 0 ? (
         <p className="text-center">
-          No photos in this category yet —{" "}
-          <a href={whatsappLink()} target="_blank" rel="noopener" className="text-theme underline">ask us on WhatsApp</a> and we will share our latest work.
+          No photos in this category yet.{" "}
+          <a href={whatsappLink()} target="_blank" rel="noopener" className="text-theme underline">Ask us on WhatsApp</a> and we will share our latest work.
         </p>
       ) : (
         <ul data-reveal="stagger" className={masonry ? "columns-1 gap-5 sm:columns-2 lg:columns-3" : "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"}>

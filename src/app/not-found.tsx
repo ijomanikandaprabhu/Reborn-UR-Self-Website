@@ -39,7 +39,7 @@ export default function NotFound() {
         </p>
         <h1 className="mt-4 text-4xl uppercase">This page went missing</h1>
         <p className="mt-4">
-          We looked twice — the page you are after is not here. It may have moved, or the link may be out of date. Let us
+          We looked twice: the page you are after is not here. It may have moved, or the link may be out of date. Let us
           point you somewhere better.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">

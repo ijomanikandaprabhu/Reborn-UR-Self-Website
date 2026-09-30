@@ -54,18 +54,18 @@ export default function AboutPage() {
                   a brand dedicated to helping people feel their most confident selves.
                 </p>
                 <p>
-                  Her journey began with a passion for empowering others through transformation—not just in how they look,
+                  Her journey began with a passion for empowering others through transformation, not just in how they look,
                   but in how they feel. With advanced training in microblading, lip blushing, and beauty mark creation,
                   Sandhiya blends technical expertise with a personalized approach for each client.
                 </p>
                 <p>
-                  She believes permanent makeup is more than a service—it’s an experience. Whether you’re enhancing your
+                  She believes permanent makeup is more than a service. It’s an experience. Whether you’re enhancing your
                   natural features or saving time in your beauty routine, Sandhiya is committed to providing results that
                   are subtle, seamless, and tailored to you.
                 </p>
                 <p>
                   Through Rebornurself, Sandhiya has created a welcoming space built on trust, comfort, and care. Her mission
-                  is to help you embrace your individuality and walk away not just looking renewed—but feeling reborn.
+                  is to help you embrace your individuality and walk away not just looking renewed, but feeling reborn.
                 </p>
               </div>
               <ul className="mt-6 divide-y divide-line border-b border-line">

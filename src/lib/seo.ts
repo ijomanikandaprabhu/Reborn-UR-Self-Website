@@ -10,7 +10,7 @@ export function pageMeta({
   description = site.description,
   path,
   image = site.ogImage,
-  imageAlt = "Rebornurself — permanent makeup studio in New Perungalathur, Chennai",
+  imageAlt = "Rebornurself, permanent makeup studio in New Perungalathur, Chennai",
 }: {
   title: string;
   description?: string;

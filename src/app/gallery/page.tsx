@@ -39,7 +39,7 @@ export default function GalleryPage() {
             </p>
             <p>
               Shape is drawn to suit your face rather than a template, and pigment is mixed to sit naturally against your own
-              skin and hair tone — which is why no two results in this gallery look quite the same. Colour also softens as it
+              skin and hair tone, which is why no two results in this gallery look quite the same. Colour also softens as it
               heals, so freshly finished work photographs bolder than the settled result you live with.
             </p>
           </div>

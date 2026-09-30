@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
     locale: "en_IN",
-    images: [{ url: site.ogImage, width: 1200, height: 630, alt: "Rebornurself — permanent makeup studio in New Perungalathur, Chennai" }],
+    images: [{ url: site.ogImage, width: 1200, height: 630, alt: "Rebornurself, permanent makeup studio in New Perungalathur, Chennai" }],
   },
   twitter: { card: "summary_large_image" },
   icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },

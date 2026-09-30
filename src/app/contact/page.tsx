@@ -47,7 +47,7 @@ export default function ContactPage() {
               <h2 className="text-4xl uppercase sm:text-5xl">Let’s Start <span className="text-theme">Here</span></h2>
               <p className="mt-5 mb-8">
                 Fill in your details and we will carry on over WhatsApp, where you can send a photo of your bare brows or
-                lips and we will tell you which procedure actually suits you — before you commit to anything. Prefer to talk?
+                lips and we will tell you which procedure actually suits you, before you commit to anything. Prefer to talk?
                 Call or email us instead.
               </p>
             </div>
@@ -112,7 +112,7 @@ export default function ContactPage() {
         <div className="container-site">
           <div data-reveal="stagger" className="grid overflow-hidden rounded-xl bg-peach md:grid-cols-2">
             {[
-              { Icon: LuLayers, title: "What we offer", text: "Microblading, ombre powder brows, combination brows, lip neutralization, lip blushing and beauty spot — each available for both women and men." },
+              { Icon: LuLayers, title: "What we offer", text: "Microblading, ombre powder brows, combination brows, lip neutralization, lip blushing and beauty spot, each available for both women and men." },
               { Icon: LuHeartHandshake, title: "Not sure what you need?", text: "That is normal, and it is exactly what the first consultation is for. Send us a photo and we will recommend the procedure that suits your features, your skin and the look you are after." },
             ].map(({ Icon, title, text }) => (
               <div key={title} className="p-8 sm:p-11 md:[&+&]:border-l [&+&]:border-t md:[&+&]:border-t-0 [&+&]:border-title/[0.08]">

@@ -69,7 +69,7 @@ export default function ContactForm() {
         <button type="submit" className="btn-theme w-full py-4 text-sm font-bold tracking-[0.15em] uppercase">
           Submit Details
         </button>
-        <p className="mt-3 text-[13px]">WhatsApp will open with your details ready — just press send.</p>
+        <p className="mt-3 text-[13px]">WhatsApp will open with your details ready. Just press send.</p>
       </div>
     </form>
   );

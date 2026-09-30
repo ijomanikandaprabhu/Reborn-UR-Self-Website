@@ -4,7 +4,7 @@ import { site, whatsappLink } from "@/lib/site";
 
 export default function CtaBand({
   title = "Let’s Talk",
-  text = "Send us a photo on WhatsApp and we will tell you honestly what will suit you — or call and talk it through first.",
+  text = "Send us a photo on WhatsApp and we will tell you honestly what will suit you, or call and talk it through first.",
   message = "Hi Rebornurself, I would like to get in touch.",
 }: {
   title?: string;
