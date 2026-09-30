@@ -233,8 +233,8 @@ export default function HeroSlider() {
           </div>
         </div>
 
-        {/* Badge: its top lines up with the headline's first line */}
-        <div data-depth="18" className="absolute top-[calc(50%-72px)] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
+        {/* Badge: lower right, overlapping the circle, as on the old site */}
+        <div data-depth="18" className="absolute top-[min(60%,calc(100%-300px))] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
           <div className="hero-badge relative bg-theme px-6 py-9 text-center text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
             <span className="absolute top-0 -left-[18px] size-[18px] bg-theme-dark [clip-path:polygon(0_0,100%_0,100%_100%)]" aria-hidden="true" />
             <Image src="/assets/img/hero/rose-1.png" alt="" width={93} height={60} className="hb-icon mx-auto w-[70px] brightness-0 invert" />
