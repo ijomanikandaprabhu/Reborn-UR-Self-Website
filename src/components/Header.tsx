@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LuChevronDown, LuMail, LuMenu, LuX } from "react-icons/lu";
 import { servicesFor, servicePath, type Gender } from "@/data/services";
 import { site, whatsappLink } from "@/lib/site";
@@ -31,6 +31,19 @@ export default function Header() {
     setOpen(false);
   }
 
+  // Share the header height so the home hero can fill the rest of the screen.
+  const headerRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const update = () => {
+      if (window.scrollY < 120) document.documentElement.style.setProperty("--header-h", `${el.offsetHeight}px`);
+    };
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 120);
     onScroll();
@@ -51,7 +64,7 @@ export default function Header() {
     `relative py-9 text-[15px] font-semibold uppercase ${active ? "text-theme" : "text-title hover:text-theme"}`;
 
   return (
-    <header className="relative z-40">
+    <header ref={headerRef} className="relative z-40">
       <div>
         <div className="container-site flex items-center justify-center gap-4 border-b border-line py-2.5 md:justify-between">
           <a href={`mailto:${site.email}`} className="hidden items-center gap-2 text-sm text-body hover:text-theme md:flex">

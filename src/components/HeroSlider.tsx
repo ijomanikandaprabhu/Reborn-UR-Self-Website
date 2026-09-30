@@ -51,7 +51,7 @@ export default function HeroSlider() {
       <Image src="/assets/img/hero/leaf-1-8.png" alt="" width={258} height={271} className="absolute bottom-24 left-8 z-10 hidden w-[90px] animate-float md:block" />
       <Image src="/assets/img/hero/leaf-1-5.png" alt="" width={193} height={206} className="absolute top-52 -right-4 z-10 hidden w-[80px] animate-float [animation-delay:1.5s] md:block" />
 
-      <div className="container-site relative grid items-end lg:min-h-[705px] lg:grid-cols-[300px_1fr_300px]">
+      <div className="container-site relative grid min-h-[calc(100svh-var(--header-h,161px))] items-end lg:grid-cols-[300px_1fr_300px]">
         <div className="relative z-10 pt-14 text-center lg:self-center lg:pt-0 lg:pl-16 lg:text-left">
           <p className="text-[15px] text-title">Permanent Beauty</p>
           {/* Every headline stays in the page; only the active one shows. */}
@@ -74,7 +74,7 @@ export default function HeroSlider() {
           </Link>
         </div>
 
-        <div className="hero-art relative mx-auto mt-6 aspect-[950/980] w-full max-w-[560px] lg:mt-0 lg:max-w-[620px] lg:-translate-x-8">
+        <div className="hero-art relative mx-auto mt-6 aspect-[950/980] w-full max-w-[min(560px,84vw)] lg:mt-0 lg:max-w-[min(680px,calc((100svh-var(--header-h,161px))*0.95))] lg:-translate-x-8">
           <div className="absolute inset-x-[2%] top-[2%] flex aspect-square items-center justify-center" aria-hidden="true">
             {[0, 1, 2].map((i) => (
               <span key={i} className="hero-ring absolute size-[66%] rounded-full bg-theme opacity-0" />
