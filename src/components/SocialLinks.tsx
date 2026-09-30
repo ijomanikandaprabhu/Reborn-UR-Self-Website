@@ -31,7 +31,7 @@ export default function SocialLinks({
           target="_blank"
           rel="noopener"
           aria-label={`Rebornurself on ${label}`}
-          className={`flex size-9 items-center justify-center rounded-full border text-[13px] ${itemClassName}`}
+          className={`flex size-11 items-center sm:size-9 justify-center rounded-full border text-[13px] ${itemClassName}`}
         >
           <Icon />
         </a>

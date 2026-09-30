@@ -34,7 +34,7 @@ export default function PageBanner({
               <li key={c.path} className="inline">
                 {i > 0 && <LuChevronsRight className="mx-2.5 inline align-[-2px] text-body" aria-hidden="true" />}
                 {i < trail.length - 1 ? (
-                  <Link href={c.path} className="text-body hover:text-theme">{c.name}</Link>
+                  <Link href={c.path} className="inline-block py-2 text-body hover:text-theme">{c.name}</Link>
                 ) : (
                   <span className="text-title" aria-current="page">{current ?? c.name}</span>
                 )}

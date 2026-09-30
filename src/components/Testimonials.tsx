@@ -95,16 +95,16 @@ export default function Testimonials() {
                 </div>
                 <blockquote className="mt-3">{t.text}</blockquote>
                 <p className="mt-4 font-title text-2xl text-title">{t.name}</p>
-                <p className="text-xs font-medium tracking-wide text-theme uppercase">{t.role}</p>
+                <p className="text-[13px] font-medium tracking-wide text-theme uppercase">{t.role}</p>
               </li>
             );
           })}
         </ul>
         <div className="mt-8 flex items-center justify-center gap-4">
-          <button type="button" onClick={() => go(-1)} aria-label="Previous review" className="flex size-10 items-center justify-center rounded-full border border-line text-title transition hover:border-theme hover:bg-theme hover:text-white">
+          <button type="button" onClick={() => go(-1)} aria-label="Previous review" className="flex  size-11 items-center justify-center rounded-full border border-line text-title transition hover:border-theme hover:bg-theme hover:text-white">
             <LuChevronLeft />
           </button>
-          <div className="flex gap-2">
+          <div className="flex">
             {testimonials.map((t, i) => (
               <button
                 key={t.name}
@@ -117,11 +117,13 @@ export default function Testimonials() {
                   setStart(target);
                 }}
                 aria-label={`Show review from ${t.name}`}
-                className={`h-2 rounded-full transition-all ${(start + 1) % n === i ? "w-8 bg-theme" : "w-2 bg-theme/30"}`}
-              />
+                className="flex h-11 items-center px-1"
+              >
+                <span className={`block h-2 rounded-full transition-all ${(start + 1) % n === i ? "w-8 bg-theme" : "w-2 bg-theme/30"}`} />
+              </button>
             ))}
           </div>
-          <button type="button" onClick={() => go(1)} aria-label="Next review" className="flex size-10 items-center justify-center rounded-full border border-line text-title transition hover:border-theme hover:bg-theme hover:text-white">
+          <button type="button" onClick={() => go(1)} aria-label="Next review" className="flex  size-11 items-center justify-center rounded-full border border-line text-title transition hover:border-theme hover:bg-theme hover:text-white">
             <LuChevronRight />
           </button>
         </div>
