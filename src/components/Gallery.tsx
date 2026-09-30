@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { LuChevronLeft, LuChevronRight, LuX, LuZoomIn } from "react-icons/lu";
 import { galleryCategories, galleryItems, type GalleryCategory } from "@/data/content";
 import { whatsappLink } from "@/lib/site";
@@ -10,6 +12,17 @@ import { setScrollLocked } from "./SmoothScroll";
 export default function Gallery({ limit, masonry = false }: { limit?: number; masonry?: boolean }) {
   const [filter, setFilter] = useState<GalleryCategory>("all");
   const [open, setOpen] = useState<number | null>(null);
+  const scope = useRef<HTMLDivElement>(null);
+  const filtered = useRef(false);
+
+  // After a filter is picked, the matching photos rise and fade in one by one.
+  useGSAP(
+    () => {
+      if (!filtered.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      gsap.fromTo("ul > li", { y: 40, scale: 0.95, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, ease: "power3.out", stagger: 0.07, clearProps: "transform,opacity" });
+    },
+    { scope, dependencies: [filter] },
+  );
 
   const items = galleryItems.filter((g) => filter === "all" || g.cat === filter).slice(0, limit);
 
@@ -36,15 +49,16 @@ export default function Gallery({ limit, masonry = false }: { limit?: number; ma
   const current = open === null ? null : items[open];
 
   return (
-    <>
-      <div className="mb-10 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter photos">
+    <div ref={scope}>
+      {/* Phones scroll the filters sideways in one row; larger screens wrap them. */}
+      <div className="-mx-4 mb-10 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0" role="group" aria-label="Filter photos">
         {galleryCategories.map((c) => (
           <button
             key={c.id}
             type="button"
-            onClick={() => setFilter(c.id)}
+            onClick={() => { filtered.current = true; setFilter(c.id); }}
             aria-pressed={filter === c.id}
-            className={`rounded-full border px-5 py-2 text-sm transition ${filter === c.id ? "border-theme bg-theme text-white" : "border-line text-title hover:border-theme hover:text-theme"}`}
+            className={`shrink-0 whitespace-nowrap rounded-full border px-5 py-2 text-sm transition ${filter === c.id ? "border-theme bg-theme text-white" : "border-line text-title hover:border-theme hover:text-theme"}`}
           >
             {c.label}
           </button>
@@ -57,7 +71,7 @@ export default function Gallery({ limit, masonry = false }: { limit?: number; ma
           <a href={whatsappLink()} target="_blank" rel="noopener" className="text-theme underline">Ask us on WhatsApp</a> and we will share our latest work.
         </p>
       ) : (
-        <ul data-reveal="stagger" className={masonry ? "columns-1 gap-5 sm:columns-2 lg:columns-3" : "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
+        <ul data-reveal="stagger" className={masonry ? "columns-1 gap-5 sm:columns-2 lg:columns-3" : "flex flex-wrap justify-center gap-5 [&>li]:w-full sm:[&>li]:w-[calc(50%-10px)] lg:[&>li]:w-[calc(33.333%-14px)]"}>
           {items.map((g, i) => (
             <li key={g.src} className={masonry ? "mb-5 break-inside-avoid" : ""}>
               <button type="button" onClick={() => setOpen(i)} className={`group relative block w-full overflow-hidden rounded-lg bg-smoke ${masonry ? "" : "aspect-[4/5]"}`}>
@@ -91,6 +105,6 @@ export default function Gallery({ limit, masonry = false }: { limit?: number; ma
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }
