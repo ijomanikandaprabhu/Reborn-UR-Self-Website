@@ -22,6 +22,21 @@ export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  // Desktop Services menu: opens on hover, and also on click/tap (touch laptops, tablets in landscape).
+  const [ddOpen, setDdOpen] = useState(false);
+  const ddRef = useRef<HTMLLIElement>(null);
+  useEffect(() => {
+    if (!ddOpen) return;
+    const close = (e: Event) => {
+      if (e instanceof KeyboardEvent ? e.key === "Escape" : !ddRef.current?.contains(e.target as Node)) setDdOpen(false);
+    };
+    document.addEventListener("pointerdown", close);
+    document.addEventListener("keydown", close);
+    return () => {
+      document.removeEventListener("pointerdown", close);
+      document.removeEventListener("keydown", close);
+    };
+  }, [ddOpen]);
   const [scrolled, setScrolled] = useState(false);
 
   // Close the mobile menu whenever the page changes.
@@ -29,6 +44,7 @@ export default function Header() {
   if (pathname !== lastPath) {
     setLastPath(pathname);
     setOpen(false);
+    setDdOpen(false);
   }
 
   // Share the header height so the home hero can fill the rest of the screen.
@@ -83,11 +99,11 @@ export default function Header() {
           <nav aria-label="Main" className="hidden lg:block">
             <ul className="flex items-center gap-8">
               <li><Link href="/" className={navLink(isActive("/"))}>Home</Link></li>
-              <li className="group relative">
-                <button type="button" className={`${navLink(onServicePage)} flex items-center gap-1`} aria-haspopup="true">
-                  Service <LuChevronDown className="transition group-hover:rotate-180 group-focus-within:rotate-180" />
+              <li ref={ddRef} className="group relative" onMouseLeave={() => setDdOpen(false)}>
+                <button type="button" className={`${navLink(onServicePage)} flex items-center gap-1`} aria-haspopup="true" aria-expanded={ddOpen} onClick={() => setDdOpen((v) => !v)}>
+                  Service <LuChevronDown className={`transition group-hover:rotate-180 ${ddOpen ? "rotate-180" : ""}`} />
                 </button>
-                <div className="invisible absolute top-full left-1/2 grid w-[440px] -translate-x-1/2 translate-y-3 grid-cols-2 gap-6 rounded-lg border-t-2 border-theme bg-white p-6 opacity-0 shadow-card-hover transition duration-300 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <div className={`invisible absolute top-full left-1/2 grid w-[440px] -translate-x-1/2 translate-y-3 grid-cols-2 gap-6 rounded-lg border-t-2 border-theme bg-white p-6 opacity-0 shadow-card-hover transition duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 ${ddOpen ? "!visible !translate-y-0 !opacity-100" : ""}`}>
                   {groups.map((g) => (
                     <div key={g}>
                       <p className="mb-2 font-title text-lg text-title">For {g === "women" ? "Women" : "Men"}</p>
