@@ -20,9 +20,22 @@ export function setScrollLocked(locked: boolean) {
 
 const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Starting point of each reveal style; elements animate from here to their place.
+const from: Record<string, gsap.TweenVars> = {
+  up: { y: 50, opacity: 0 },
+  left: { x: -80, opacity: 0 },
+  right: { x: 80, opacity: 0 },
+  zoom: { scale: 0.85, opacity: 0 },
+  fade: { opacity: 0 },
+};
+
 /**
  * Lenis smooth scrolling, driven by GSAP's ticker so ScrollTrigger stays in
- * sync, plus fade-up reveals for anything marked with data-reveal.
+ * sync, plus the scroll animations:
+ *   data-reveal="up|left|right|zoom|fade"  animate the element in
+ *   data-reveal="stagger"                  animate its children in one by one
+ *   data-parallax="0.2"                    move at a different speed while scrolling
+ *   data-parallax-bg                       slide the background image while scrolling
  */
 export default function SmoothScroll() {
   const pathname = usePathname();
@@ -41,25 +54,44 @@ export default function SmoothScroll() {
     };
   }, []);
 
-  // New page: start at the top and wire up that page's reveals.
+  // New page: start at the top and wire up that page's animations.
   useGSAP(
     () => {
       lenis?.scrollTo(0, { immediate: true });
       if (reducedMotion()) return;
+
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
-        const children = el.dataset.reveal === "stagger" ? Array.from(el.children) : [el];
-        gsap.from(children, {
-          y: 40,
-          opacity: 0,
-          duration: 0.9,
+        const kind = el.dataset.reveal || "up";
+        const stagger = kind === "stagger";
+        gsap.from(stagger ? Array.from(el.children) : el, {
+          ...(from[stagger ? "up" : kind] ?? from.up),
+          duration: 1,
           ease: "power3.out",
-          stagger: 0.12,
+          stagger: stagger ? 0.12 : 0,
           // Cards have CSS hover transitions; keep them out of GSAP's way.
           transition: "none",
           clearProps: "transition,transform,opacity",
           scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
+
+      gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
+        const speed = Number(el.dataset.parallax) || 0.15;
+        gsap.fromTo(
+          el,
+          { yPercent: speed * 50 },
+          { yPercent: speed * -50, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>("[data-parallax-bg]").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { backgroundPositionY: "0%" },
+          { backgroundPositionY: "100%", ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } },
+        );
+      });
+
       ScrollTrigger.refresh();
     },
     { dependencies: [pathname], revertOnUpdate: true },

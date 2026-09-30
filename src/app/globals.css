@@ -32,6 +32,10 @@
 }
 
 @layer base {
+  /* Elements sliding in from the sides must never cause sideways scrolling. */
+  html, body {
+    overflow-x: clip;
+  }
   body {
     @apply bg-white font-body text-base leading-[1.75] text-body antialiased;
   }

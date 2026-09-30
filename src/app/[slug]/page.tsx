@@ -76,10 +76,10 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
       <section className="section">
         <div className="container-site grid gap-12 lg:grid-cols-[300px_1fr] xl:gap-14">
           <article className="lg:col-start-2 lg:row-start-1">
-            <Image src={s.heroImage} alt={`${name} at Rebornurself, New Perungalathur, Chennai`} width={895} height={499} priority sizes="(min-width: 1200px) 800px, 100vw" className="mb-10 w-full rounded-lg" />
+            <Image data-reveal="zoom" src={s.heroImage} alt={`${name} at Rebornurself, New Perungalathur, Chennai`} width={895} height={499} priority sizes="(min-width: 1200px) 800px, 100vw" className="mb-10 w-full rounded-lg" />
             <Blocks blocks={s.intro} />
             {s.pairImages.length > 0 && (
-              <div className="my-10 grid grid-cols-2 gap-4">
+              <div data-reveal="stagger" className="my-10 grid grid-cols-2 gap-4">
                 {s.pairImages.map((src, i) => (
                   <Image key={src} src={src} alt={`${name} ${i === 0 ? "procedure" : "result"} at Rebornurself`} width={437} height={419} sizes="(min-width: 1200px) 400px, 50vw" className="w-full rounded-lg" />
                 ))}
@@ -88,9 +88,9 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
             <Blocks blocks={s.body} />
           </article>
 
-          <aside className="space-y-6 lg:col-start-1 lg:row-start-1">
+          <aside data-reveal="left" className="space-y-6 lg:col-start-1 lg:row-start-1">
             <div className="relative mx-auto hidden max-w-[260px] lg:block">
-              <Image src="/assets/img/shape/leaf-1-7.png" alt="" width={265} height={186} className="absolute -top-10 -right-16 w-32 animate-float" />
+              <Image src="/assets/img/shape/leaf-1-7.png" alt="" width={265} height={186} data-parallax="0.8" className="absolute -top-10 -right-16 w-32" />
               <div className="flex justify-center rounded-full bg-peach px-10 py-24">
                 <Image src="/assets/img/about/price-2-1-1.png" alt="" width={187} height={349} className="w-[120px]" />
               </div>

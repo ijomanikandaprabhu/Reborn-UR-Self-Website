@@ -15,7 +15,7 @@ const menu = [
 export default function Footer() {
   return (
     <footer className="bg-[#1d2429] pt-16 pb-24 text-center md:pb-9">
-      <div className="container-site">
+      <div data-reveal="fade" className="container-site">
         <Link href="/" className="inline-block" aria-label="Rebornurself home">
           <Image src="/assets/img/footlogo.svg" alt="Rebornurself" width={261} height={80} className="h-[76px] w-auto" />
         </Link>

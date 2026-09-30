@@ -75,14 +75,14 @@ export default function Home() {
       <section className="pb-20 lg:pb-28">
         <div className="container-site">
           <div data-reveal className="relative grid items-end gap-10 overflow-hidden bg-peach px-6 pt-14 lg:grid-cols-[1fr_minmax(0,460px)_1fr] lg:gap-8 lg:px-2 lg:pt-28">
-            <ul className="space-y-10 self-start lg:pl-0">
+            <ul data-reveal="left" className="space-y-10 self-start lg:pl-0">
               {panelLeft.map((slug) => <PanelItem key={slug} slug={slug} side="left" />)}
             </ul>
-            <div className="relative order-last mx-auto aspect-[950/980] w-full max-w-[460px] lg:order-none">
+            <div data-reveal="zoom" className="relative order-last mx-auto aspect-[950/980] w-full max-w-[460px] lg:order-none">
               <div className="absolute inset-x-[10%] top-0 aspect-square rounded-full bg-white" aria-hidden="true" />
               <Image src="/assets/img/hero/spa-girl-1.png" alt="Natural brows and lips after permanent makeup" fill sizes="460px" className="object-contain object-bottom" />
             </div>
-            <ul className="space-y-10 self-start">
+            <ul data-reveal="right" className="space-y-10 self-start">
               {panelRight.map((slug) => <PanelItem key={slug} slug={slug} side="right" />)}
             </ul>
           </div>
@@ -100,7 +100,7 @@ export default function Home() {
         <div className="container-site">
           <SectionTitle eyebrow="From the studio" title="Our Work" />
           <Gallery limit={6} />
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <div data-reveal className="mt-10 flex flex-wrap justify-center gap-3">
             <Link href="/gallery" className="btn-theme">View More <LuArrowRight /></Link>
             <a href={site.social.instagram} target="_blank" rel="noopener" className="btn bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#c1358f] text-white hover:opacity-90">
               <FaInstagram className="text-lg" /> Follow on Instagram
@@ -113,11 +113,11 @@ export default function Home() {
 
       <section className="section">
         <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div data-reveal className="relative w-full max-w-[560px] pb-28">
+          <div data-reveal="left" className="relative w-full max-w-[560px] pb-28">
             <Image src="/assets/img/about/about-9-1.jpg" alt="Brow treatment in progress at the Rebornurself studio in Chennai" width={450} height={480} className="w-[80%]" sizes="(min-width: 1024px) 450px, 80vw" />
-            <Image src="/assets/img/about/about-9-2.jpg" alt="Close-up of finished permanent makeup brows" width={380} height={380} className="absolute right-0 bottom-0 w-[62%] border-[10px] border-white shadow-card-hover" sizes="(min-width: 1024px) 350px, 62vw" />
+            <Image src="/assets/img/about/about-9-2.jpg" alt="Close-up of finished permanent makeup brows" width={380} height={380} data-parallax="0.35" className="absolute right-0 bottom-0 w-[62%] border-[10px] border-white shadow-card-hover" sizes="(min-width: 1024px) 350px, 62vw" />
           </div>
-          <div>
+          <div data-reveal="right">
             <span className="eyebrow">Why Choose Us?</span>
             <h2 className="text-4xl lg:text-5xl">The Ultimate Beauty Experience</h2>
             <p className="mt-6">

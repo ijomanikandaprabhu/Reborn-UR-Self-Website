@@ -41,7 +41,7 @@ export default function ContactPage() {
 
       <section className="section">
         <div className="container-site grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
+          <div data-reveal="left">
             <span className="eyebrow">Book your visit</span>
             <h2 className="text-5xl uppercase">Let’s Start <span className="text-theme">Here</span></h2>
             <p className="mt-5 mb-8">
@@ -51,13 +51,13 @@ export default function ContactPage() {
             </p>
             <ContactForm />
           </div>
-          <Image src="/assets/img/about/about-9-2.jpg" alt="Permanent makeup being applied at Rebornurself, Chennai" width={380} height={380} sizes="(min-width: 1024px) 560px, 100vw" className="h-full max-h-[480px] w-full object-cover lg:max-h-none" />
+          <Image data-reveal="right" src="/assets/img/about/about-9-2.jpg" alt="Permanent makeup being applied at Rebornurself, Chennai" width={380} height={380} sizes="(min-width: 1024px) 560px, 100vw" className="h-full max-h-[480px] w-full object-cover lg:max-h-none" />
         </div>
       </section>
 
       <section className="pb-20 lg:pb-28">
         <div className="container-site">
-          <div className="flex flex-col overflow-hidden rounded-xl border border-title/[0.08] bg-white shadow-[0_10px_40px_rgb(18_31_56/0.07)] lg:flex-row">
+          <div data-reveal="zoom" className="flex flex-col overflow-hidden rounded-xl border border-title/[0.08] bg-white shadow-[0_10px_40px_rgb(18_31_56/0.07)] lg:flex-row">
             <iframe
               src={mapsEmbedUrl}
               title="Map showing Rebornurself in New Perungalathur, Chennai"
@@ -108,7 +108,7 @@ export default function ContactPage() {
 
       <section className="section">
         <div className="container-site">
-          <div className="grid overflow-hidden rounded-xl bg-peach md:grid-cols-2">
+          <div data-reveal="stagger" className="grid overflow-hidden rounded-xl bg-peach md:grid-cols-2">
             {[
               { Icon: LuLayers, title: "What we offer", text: "Microblading, ombre powder brows, combination brows, lip neutralization, lip blushing and beauty spot — each available for both women and men." },
               { Icon: LuHeartHandshake, title: "Not sure what you need?", text: "That is normal, and it is exactly what the first consultation is for. Send us a photo and we will recommend the procedure that suits your features, your skin and the look you are after." },

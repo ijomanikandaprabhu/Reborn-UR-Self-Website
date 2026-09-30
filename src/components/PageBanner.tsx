@@ -22,9 +22,9 @@ export default function PageBanner({
 }) {
   const trail = [{ name: "Home", path: "/" }, ...crumbs];
   return (
-    <div className="bg-peach bg-cover bg-center py-24 lg:py-32" style={{ backgroundImage: `url(${image})` }}>
+    <div data-parallax-bg className="bg-peach bg-cover bg-center py-24 lg:py-32" style={{ backgroundImage: `url(${image})` }}>
       <JsonLd data={breadcrumbSchema(trail)} />
-      <div className="container-site">
+      <div data-reveal="left" className="container-site">
         <h1 className="text-4xl uppercase sm:text-5xl lg:text-[56px]">
           {title} {highlight && <span className="text-theme">{highlight}</span>}
         </h1>

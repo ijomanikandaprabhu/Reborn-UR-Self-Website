@@ -12,8 +12,8 @@ export default function CtaBand({
   message?: string;
 }) {
   return (
-    <section className="relative bg-theme bg-cover bg-center py-20 text-center lg:py-24" style={{ backgroundImage: "url(/assets/img/bg/cta-bg-1-1.jpg)" }}>
-      <div className="container-site max-w-2xl">
+    <section data-parallax-bg className="relative bg-theme bg-cover bg-center py-20 text-center lg:py-24" style={{ backgroundImage: "url(/assets/img/bg/cta-bg-1-1.jpg)" }}>
+      <div data-reveal="zoom" className="container-site max-w-2xl">
         <span className="eyebrow">Ready when you are</span>
         <h2 className="text-4xl lg:text-5xl">{title}</h2>
         <p className="mt-4 text-title/80">{text}</p>

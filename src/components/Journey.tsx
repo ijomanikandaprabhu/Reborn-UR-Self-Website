@@ -23,12 +23,12 @@ export default function Journey({ steps, whatsappHref }: { steps: JourneyStep[];
     <section className="section">
       <div className="container-site">
         <SectionTitle eyebrow="What to expect" title="Your Journey With Us" />
-        <ol data-reveal="stagger" className="relative mx-auto max-w-[1080px] before:absolute before:inset-y-0 before:left-[19px] before:w-0.5 before:bg-theme/20 lg:before:left-1/2 lg:before:-ml-px">
+        <ol className="relative mx-auto max-w-[1080px] before:absolute before:inset-y-0 before:left-[19px] before:w-0.5 before:bg-theme/20 lg:before:left-1/2 lg:before:-ml-px">
           {steps.map((step, i) => {
             const Icon = icons[step.icon] ?? LuStar;
             const right = i % 2 === 1;
             return (
-              <li key={step.title} className={`relative mb-7 pl-14 last:mb-0 lg:w-1/2 ${right ? "lg:ml-[50%] lg:pl-14" : "lg:pr-14 lg:pl-0"}`}>
+              <li key={step.title} data-reveal={right ? "right" : "left"} className={`relative mb-7 pl-14 last:mb-0 lg:w-1/2 ${right ? "lg:ml-[50%] lg:pl-14" : "lg:pr-14 lg:pl-0"}`}>
                 <span className={`absolute top-8 left-0 flex size-10 items-center justify-center rounded-full bg-theme font-bold text-white ring-5 ring-white ${right ? "lg:-left-5" : "lg:right-[-20px] lg:left-auto"}`}>
                   {i + 1}
                 </span>

@@ -57,7 +57,7 @@ export default function Gallery({ limit, masonry = false }: { limit?: number; ma
           <a href={whatsappLink()} target="_blank" rel="noopener" className="text-theme underline">ask us on WhatsApp</a> and we will share our latest work.
         </p>
       ) : (
-        <ul className={masonry ? "columns-2 gap-3 sm:gap-5 md:columns-3" : "grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3"}>
+        <ul data-reveal="stagger" className={masonry ? "columns-2 gap-3 sm:gap-5 md:columns-3" : "grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3"}>
           {items.map((g, i) => (
             <li key={g.src} className={masonry ? "mb-3 break-inside-avoid sm:mb-5" : ""}>
               <button type="button" onClick={() => setOpen(i)} className={`group relative block w-full overflow-hidden rounded-lg bg-smoke ${masonry ? "" : "aspect-[4/5]"}`}>
