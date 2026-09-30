@@ -28,7 +28,7 @@ export default function Journey({ steps, whatsappHref }: { steps: JourneyStep[];
             const Icon = icons[step.icon] ?? LuStar;
             const right = i % 2 === 1;
             return (
-              <li key={step.title} data-reveal={right ? "right" : "left"} className={`relative mb-7 pl-14 last:mb-0 lg:w-1/2 ${right ? "lg:ml-[50%] lg:pl-14" : "lg:pr-14 lg:pl-0"}`}>
+              <li key={step.title} data-reveal={right ? "right" : "left"} className={`relative mb-7 pl-14 last:mb-0 lg:mb-0 lg:w-1/2 ${i > 0 ? "lg:-mt-24" : ""} ${right ? "lg:ml-[50%] lg:pl-14" : "lg:pr-14 lg:pl-0"}`}>
                 <span className={`absolute top-8 left-0 flex size-10 items-center justify-center rounded-full bg-theme font-bold text-white ring-5 ring-white ${right ? "lg:-left-5" : "lg:right-[-20px] lg:left-auto"}`}>
                   {i + 1}
                 </span>

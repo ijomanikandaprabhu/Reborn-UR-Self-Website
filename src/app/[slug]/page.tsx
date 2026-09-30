@@ -88,7 +88,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
             <Blocks blocks={s.body} />
           </article>
 
-          <aside data-reveal="left" className="space-y-6 lg:col-start-1 lg:row-start-1">
+          <aside data-reveal="left" className="space-y-6 lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
             <div className="relative mx-auto hidden max-w-[215px] lg:block">
               {/* Leaf tucked behind the pill, floating up and down as on the old site. */}
               <div className="absolute top-[34%] -left-[82px] w-[130px] animate-float">
