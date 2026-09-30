@@ -18,14 +18,16 @@ const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)"
 
 /**
  * Desktop geometry, all derived from CSS variables on the stage:
- *   --d   circle diameter (two-thirds of the hero height, capped by width)
+ *   --d   circle diameter: two-thirds of the hero height, but small enough that the
+ *         headline (--t) keeps its gap (--g) to the circle and a margin (--m) from the edge
  *   --t   headline width, --g gap to the circle, --b how far the badge sticks out
  *   --cx  circle centre: the middle of the page
  */
 const stageVars = {
-  "--d": "min(calc(max(600px, 100svh - var(--header-h, 161px)) * 0.66), calc(57vw - 140px))",
-  "--t": "min(360px, 21.5vw)",
+  "--t": "min(360px, 23vw)",
   "--g": "24px",
+  "--m": "max(64px, 6vw)",
+  "--d": "min(calc(max(600px, 100svh - var(--header-h, 161px)) * 0.66), calc(100vw - 2 * (var(--g) + var(--t) + var(--m))))",
   "--bw": "clamp(250px, 16vw, 290px)",
   "--b": "calc(var(--bw) - 60px)",
   "--cx": "50%",
@@ -235,8 +237,8 @@ export default function HeroSlider() {
           </div>
         </div>
 
-        {/* Badge: overlapping the circle, centred on the same line as the headline block. */}
-        <div data-depth="18" className="absolute top-[clamp(24px,calc(50%-175px),calc(100%-440px))] [@media(max-height:820px)]:top-[clamp(20px,calc(50%-140px),calc(100%-350px))] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
+        {/* Badge: lower right, overlapping the circle, with space below it. */}
+        <div data-depth="18" className="absolute bottom-[max(32px,7%)] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
           <div className="hero-badge relative bg-theme px-6 pt-7 pb-6 [@media(max-height:820px)]:px-5 [@media(max-height:820px)]:pt-5 [@media(max-height:820px)]:pb-4 text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
             <Image src="/assets/img/wordmark-white.svg" alt="Rebornurself" width={156} height={44} className="hb-icon mx-auto h-auto w-[78%] [@media(max-height:820px)]:w-[64%]" />
             <span className="hb-txt mx-auto mt-4 block h-px w-16 [@media(max-height:820px)]:mt-3 bg-white/40" aria-hidden="true" />
