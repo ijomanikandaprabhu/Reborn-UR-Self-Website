@@ -236,9 +236,7 @@ export default function HeroSlider() {
         {/* Badge: lower right, overlapping the circle, as on the old site */}
         <div data-depth="18" className="absolute top-[min(60%,calc(100%-300px))] left-[calc(var(--cx)+var(--d)/2-60px)] z-10 hidden w-[var(--bw)] lg:block">
           <div className="hero-badge relative bg-theme px-6 py-9 text-center text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
-            <span className="absolute top-0 -left-[18px] size-[18px] bg-theme-dark [clip-path:polygon(0_0,100%_0,100%_100%)]" aria-hidden="true" />
-            <Image src="/assets/img/hero/rose-1.png" alt="" width={93} height={60} className="hb-icon mx-auto w-[70px] brightness-0 invert" />
-            <p className="hb-txt mt-3 font-title text-xl">Rebornurself</p>
+            <Image src="/assets/img/footlogo.svg" alt="Rebornurself" width={261} height={80} className="hb-icon mx-auto h-auto w-[86%]" />
             <ul className="mt-4 space-y-1.5 text-xs font-bold">
               <li className="hb-txt">Flexible Services</li>
               <li className="hb-txt">Expert Treatments</li>
