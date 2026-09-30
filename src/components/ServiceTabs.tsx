@@ -26,7 +26,12 @@ export default function ServiceTabs() {
 
   return (
     <div ref={scope}>
-      <div className="mx-auto mb-12 flex w-fit rounded-full bg-peach p-1.5" role="tablist" aria-label="Services for">
+      <div className="relative mx-auto mb-12 grid w-fit grid-cols-2 rounded-full bg-peach p-1.5" role="tablist" aria-label="Services for">
+        {/* Brown pill that slides under the selected option. */}
+        <span
+          aria-hidden="true"
+          className={`absolute inset-y-1.5 left-1.5 w-[calc(50%-6px)] rounded-full bg-theme shadow transition-transform duration-500 ease-[cubic-bezier(.65,0,.35,1)] motion-reduce:transition-none ${gender === "men" ? "translate-x-full" : "translate-x-0"}`}
+        />
         {(["women", "men"] as const).map((g) => (
           <button
             key={g}
@@ -36,7 +41,7 @@ export default function ServiceTabs() {
             aria-selected={gender === g}
             aria-controls={`panel-${g}`}
             onClick={() => { switched.current = true; setGender(g); }}
-            className={`rounded-full px-9 py-2.5 text-sm font-medium transition ${gender === g ? "bg-theme text-white shadow" : "text-title hover:text-theme"}`}
+            className={`relative z-10 rounded-full px-9 py-2.5 text-sm font-medium transition-colors duration-500 ${gender === g ? "text-white" : "text-title hover:text-theme"}`}
           >
             {genderLabel(g)}
           </button>
