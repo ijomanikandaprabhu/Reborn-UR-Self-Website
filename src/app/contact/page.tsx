@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa6";
-import { LuClock, LuHeartHandshake, LuLayers, LuMail, LuMapPin, LuNavigation, LuPhone } from "react-icons/lu";
+import { LuClock, LuHeartHandshake, LuLayers, LuMail, LuMapPin, LuNavigation, LuPenLine, LuPhone, LuRotateCw, LuShieldCheck } from "react-icons/lu";
 import ContactForm from "@/components/ContactForm";
 import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
@@ -19,12 +19,12 @@ export const metadata: Metadata = pageMeta({
 });
 
 const bookingSteps = [
-  { title: "1. Send us a photo first", text: "Before you book, message us on WhatsApp with a photo of your bare brows or lips taken in natural light, with no makeup on. We use it to tell you which procedure will actually suit you, rather than guessing on the day." },
-  { title: "2. Reserve your slot", text: "Once we have agreed on the right procedure, pick a time that works for you. A booking deposit is required to hold the slot, and it is deducted from your total procedure cost on the day of your visit." },
-  { title: "3. Set aside enough time", text: "On the day we start with an in-person consultation, then a topical numbing cream that sits for around 20 minutes before any work begins. Plan for a relaxed appointment rather than a rushed one." },
-  { title: "Nothing is permanent until you approve it", text: "Your brow or lip shape is mapped by hand and shown to you first. We only begin the actual procedure once you are completely happy with the outline." },
-  { title: "Aftercare matters", text: "Healed results depend heavily on aftercare. Before you leave, we brief you on exactly what to do and what to avoid while your skin settles and the pigment retains." },
-  { title: "Your touch-up session", text: "Skin needs about a month to heal fully. A follow-up touch-up can be taken any time between 30 and 90 days, where definition and depth can be adjusted to suit how your skin healed." },
+  { badge: "1", title: "Send us a photo first", text: "Before you book, message us on WhatsApp with a photo of your bare brows or lips taken in natural light, with no makeup on. We use it to tell you which procedure will actually suit you, rather than guessing on the day." },
+  { badge: "2", title: "Reserve your slot", text: "Once we have agreed on the right procedure, pick a time that works for you. A booking deposit is required to hold the slot, and it is deducted from your total procedure cost on the day of your visit." },
+  { badge: "3", title: "Set aside enough time", text: "On the day we start with an in-person consultation, then a topical numbing cream that sits for around 20 minutes before any work begins. Plan for a relaxed appointment rather than a rushed one." },
+  { Icon: LuPenLine, title: "Nothing is permanent until you approve it", text: "Your brow or lip shape is mapped by hand and shown to you first. We only begin the actual procedure once you are completely happy with the outline." },
+  { Icon: LuShieldCheck, title: "Aftercare matters", text: "Healed results depend heavily on aftercare. Before you leave, we brief you on exactly what to do and what to avoid while your skin settles and the pigment retains." },
+  { Icon: LuRotateCw, title: "Your touch-up session", text: "Skin needs about a month to heal fully. A follow-up touch-up can be taken any time between 30 and 90 days, where definition and depth can be adjusted to suit how your skin healed." },
 ];
 
 export default function ContactPage() {
@@ -96,6 +96,9 @@ export default function ContactPage() {
           <ul data-reveal="stagger" className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {bookingSteps.map((b) => (
               <li key={b.title} className="card p-7">
+                <span className="mb-4 flex size-11 items-center justify-center rounded-full bg-peach font-title text-xl text-theme">
+                  {"badge" in b ? b.badge : b.Icon && <b.Icon aria-hidden="true" />}
+                </span>
                 <h3 className="mb-3 text-xl">{b.title}</h3>
                 <p className="text-[15px]">{b.text}</p>
               </li>
@@ -108,7 +111,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="pb-20 lg:pb-28">
         <div className="container-site">
           <div data-reveal="stagger" className="grid overflow-hidden rounded-xl bg-peach md:grid-cols-2">
             {[

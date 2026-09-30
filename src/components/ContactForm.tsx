@@ -14,7 +14,7 @@ const serviceOptions = [
 ];
 
 const field =
-  "h-[55px] w-full rounded-none border border-line bg-white px-7 text-title placeholder:text-body transition hover:border-theme/40 focus:border-theme focus:outline-none";
+  "h-[55px] w-full rounded-none border border-line bg-white px-7 text-title placeholder:text-body transition hover:border-theme/40 focus:border-theme focus:shadow-[0_0_0_4px_rgb(154_86_58/0.12)] focus:outline-none";
 
 /** Turns the enquiry into a WhatsApp message the visitor just has to send. */
 export default function ContactForm() {
