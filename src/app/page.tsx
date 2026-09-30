@@ -32,7 +32,7 @@ const byslug = (slug: string) => highlights.find((h) => h.slug === slug)!;
 function PanelItem({ slug, side }: { slug: string; side: "left" | "right" }) {
   const h = byslug(slug);
   return (
-    <li className={`flex items-start gap-6 ${side === "left" ? "lg:flex-row-reverse lg:text-right" : ""}`}>
+    <li className={`flex flex-col items-center gap-4 text-center md:flex-row md:items-start md:gap-6 md:text-left ${side === "left" ? "lg:flex-row-reverse lg:text-right" : ""}`}>
       <span className="flex size-[60px] shrink-0 items-center justify-center rounded-full bg-white">
         <Image src={`/assets/img/icon/${h.icon}.png`} alt="" width={30} height={30} />
       </span>
@@ -52,11 +52,12 @@ export default function Home() {
       <section className="section bg-gradient-to-b from-[#fbf3ef] to-white">
         <div className="container-site">
           <SectionTitle as="h1" eyebrow="Enhance, Empower, Elevate" title="Flawless Brow & Lip Solutions" />
-          <ul data-reveal="stagger" className="grid gap-x-6 gap-y-20 pt-10 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Phones swipe through the cards; larger screens show a grid. */}
+          <ul data-reveal="stagger" className="-mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pt-16 pb-6 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-20 sm:overflow-visible sm:px-0 sm:pt-10 sm:pb-0 lg:grid-cols-3">
             {highlights.map((h) => {
               const s = getService(h.slug)!;
               return (
-                <li key={h.slug} className="relative rounded-md bg-white p-3 shadow-[0_10px_30px_rgb(154_86_58/0.08)]">
+                <li key={h.slug} className="relative w-[85%] shrink-0 snap-center rounded-md bg-white p-3 sm:w-auto shadow-[0_10px_30px_rgb(154_86_58/0.08)]">
                   <div className="flex h-full flex-col items-center border border-dashed border-theme/35 px-8 pt-24 pb-10 text-center">
                     <div className="absolute -top-12 left-1/2 flex size-[140px] -translate-x-1/2 items-center justify-center rounded-full border-[6px] border-white bg-peach">
                       <Image src={iconPath(s)} alt="" width={67} height={67} />
@@ -74,11 +75,11 @@ export default function Home() {
 
       <section className="pb-20 lg:pb-28">
         <div className="container-site">
-          <div data-reveal className="relative grid items-end gap-10 overflow-hidden bg-peach px-6 pt-14 lg:grid-cols-[1fr_minmax(0,460px)_1fr] lg:gap-8 lg:px-2 lg:pt-28">
+          <div data-reveal className="relative grid items-end gap-10 overflow-hidden bg-peach px-6 py-14 md:grid-cols-2 md:gap-8 lg:grid-cols-[1fr_minmax(0,460px)_1fr] lg:px-2 lg:pt-28 lg:pb-0">
             <ul data-reveal="left" className="space-y-10 self-start lg:pl-0">
               {panelLeft.map((slug) => <PanelItem key={slug} slug={slug} side="left" />)}
             </ul>
-            <div data-reveal="zoom" className="relative order-last mx-auto aspect-[950/980] w-full max-w-[460px] lg:order-none">
+            <div data-reveal="zoom" className="relative mx-auto hidden aspect-[950/980] w-full max-w-[460px] lg:block">
               <div className="absolute inset-x-[10%] top-0 aspect-square rounded-full bg-white" aria-hidden="true" />
               <Image src="/assets/img/hero/spa-girl-1.png" alt="Natural brows and lips after permanent makeup" fill sizes="460px" className="object-contain object-bottom" />
             </div>

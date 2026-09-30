@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LuCopyright, LuMail, LuMapPin, LuPhone } from "react-icons/lu";
+import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 import { servicesFor, servicePath } from "@/data/services";
 import { fullAddress, mapsDirectionsUrl, site } from "@/lib/site";
 import SocialLinks from "./SocialLinks";
@@ -35,7 +35,7 @@ export default function Footer() {
         <SocialLinks className="mt-6 justify-center" itemClassName="size-10 border-white/25 text-white hover:border-theme hover:bg-theme" />
 
         <nav aria-label="Footer" className="mt-8">
-          <ul className="flex flex-wrap justify-center gap-x-16 gap-y-2 text-[15px] font-semibold tracking-widest text-white uppercase">
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px] font-semibold tracking-widest sm:gap-x-16 text-white uppercase">
             {menu.map((m) => (
               <li key={m.href}><Link href={m.href} className="hover:text-theme">{m.label}</Link></li>
             ))}
@@ -47,8 +47,8 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <p className="mx-auto mt-10 flex max-w-lg flex-wrap items-center justify-center gap-1 border-t border-white/10 pt-7 text-[15px] text-white/50">
-          Copyright <LuCopyright aria-hidden="true" /> {new Date().getFullYear()}{" "}
+        <p className="mx-auto mt-10 max-w-lg border-t border-white/10 pt-7 text-[15px] text-white/50">
+          Copyright © {new Date().getFullYear()}{" "}
           <Link href="/" className="hover:text-theme">Rebornurself</Link>. All Rights Reserved By{" "}
           <a href="https://ijocreations.com/" target="_blank" rel="noopener" className="hover:text-theme">Ijocreations</a>
         </p>

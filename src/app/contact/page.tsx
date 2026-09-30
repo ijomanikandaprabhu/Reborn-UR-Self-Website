@@ -42,13 +42,15 @@ export default function ContactPage() {
       <section className="section">
         <div className="container-site grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div data-reveal="left">
-            <span className="eyebrow">Book your visit</span>
-            <h2 className="text-5xl uppercase">Let’s Start <span className="text-theme">Here</span></h2>
-            <p className="mt-5 mb-8">
-              Fill in your details and we will carry on over WhatsApp, where you can send a photo of your bare brows or lips
-              and we will tell you which procedure actually suits you — before you commit to anything. Prefer to talk? Call or
-              email us instead.
-            </p>
+            <div className="text-center lg:text-left">
+              <span className="eyebrow">Book your visit</span>
+              <h2 className="text-4xl uppercase sm:text-5xl">Let’s Start <span className="text-theme">Here</span></h2>
+              <p className="mt-5 mb-8">
+                Fill in your details and we will carry on over WhatsApp, where you can send a photo of your bare brows or
+                lips and we will tell you which procedure actually suits you — before you commit to anything. Prefer to talk?
+                Call or email us instead.
+              </p>
+            </div>
             <ContactForm />
           </div>
           <Image data-reveal="right" src="/assets/img/about/about-9-2.jpg" alt="Permanent makeup being applied at Rebornurself, Chennai" width={380} height={380} sizes="(min-width: 1024px) 560px, 100vw" className="h-full max-h-[480px] w-full object-cover lg:max-h-none" />

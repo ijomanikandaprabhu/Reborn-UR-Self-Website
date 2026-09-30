@@ -98,12 +98,12 @@ export default function HeroSlider() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative flex min-h-[calc(100svh-var(--header-h,161px))] flex-col items-center lg:block lg:h-[calc(100svh-var(--header-h,161px))] lg:min-h-[600px] lg:portrait:h-[760px]">
+      <div className="relative flex min-h-[calc(100svh-var(--header-h,161px))] flex-col items-center md:max-lg:min-h-0 md:flex-row md:items-end md:justify-between md:px-10 lg:block lg:px-0 lg:h-[calc(100svh-var(--header-h,161px))] lg:min-h-[600px] lg:portrait:h-[760px]">
         <Image src="/assets/img/hero/leaf-1-5.png" alt="" width={193} height={206} className="absolute top-[38%] left-[83.5%] z-10 hidden w-[6.5%] max-w-[130px] animate-float [animation-delay:1.5s] md:block" />
         <Image src="/assets/img/hero/leaf-1-8.png" alt="" width={258} height={271} className="absolute top-[73%] left-[14.5%] z-10 hidden w-[5%] max-w-[100px] animate-float md:block" />
 
         {/* Words: one block per slide, stacked; only the active one shows. */}
-        <div className="relative z-10 grid px-4 pt-12 text-center lg:absolute lg:top-1/2 lg:left-[19%] lg:-translate-y-[40%] lg:p-0 lg:text-left">
+        <div className="relative z-10 grid px-4 pt-12 text-center md:self-center md:px-0 md:pt-0 md:pb-10 md:text-left lg:absolute lg:pb-0 lg:top-1/2 lg:left-[19%] lg:-translate-y-[40%] lg:p-0 lg:text-left">
           {heroSlides.map((s, i) => (
             <div key={s.line1} className={`hero-slide col-start-1 row-start-1 ${i === 0 ? "" : "invisible"}`} aria-hidden={i !== active}>
               <p className="hl text-[15px] text-title">Permanent Beauty</p>
@@ -120,7 +120,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Circle and photo, centred */}
-        <div className="hero-art relative mt-8 aspect-square w-[min(520px,84vw)] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto lg:w-auto">
+        <div className="hero-art relative mt-8 aspect-square w-[min(520px,84vw)] md:mt-10 md:w-[48%] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto lg:w-auto">
           <div className="absolute inset-[4%] flex items-center justify-center lg:inset-auto lg:top-[17%] lg:left-1/2 lg:h-[66%] lg:-translate-x-1/2 lg:aspect-square" aria-hidden="true">
             {[0, 1, 2].map((i) => (
               <span key={i} className="hero-ring absolute size-[66%] rounded-full bg-theme opacity-0" />
@@ -154,7 +154,7 @@ export default function HeroSlider() {
           </ul>
         </div>
 
-        <div className="relative z-10 mt-auto flex justify-center gap-2 py-5 lg:absolute lg:bottom-8 lg:left-[19%] lg:mt-0 lg:py-0">
+        <div className="relative z-10 mt-auto flex justify-center gap-2 py-5 md:absolute md:bottom-6 md:left-10 md:py-0 lg:bottom-8 lg:left-[19%] lg:mt-0 lg:py-0">
           {heroSlides.map((s, i) => (
             <button
               key={s.line1}

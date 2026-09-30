@@ -46,7 +46,7 @@ export default function AboutPage() {
             </div>
             <div data-reveal="right">
               <span className="eyebrow text-base">Founder & CEO</span>
-              <h2 className="text-5xl">{site.founder.name}</h2>
+              <h2 className="text-4xl sm:text-5xl">{site.founder.name}</h2>
               <div className="mt-4 space-y-5">
                 <p>
                   Meet Sandhiya Srinivasan, the heart and hands behind Rebornurself. As a certified artist with a Master’s
