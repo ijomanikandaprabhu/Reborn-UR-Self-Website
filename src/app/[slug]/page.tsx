@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaWhatsapp } from "react-icons/fa6";
-import { LuArrowRight, LuClock, LuMapPin, LuPhone } from "react-icons/lu";
+import { LuArrowRight } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
 import Faq from "@/components/Faq";
 import JsonLd from "@/components/JsonLd";
@@ -79,8 +79,8 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
           <article className="lg:col-start-2 lg:row-start-1">
             <Image data-reveal="zoom" src={s.heroImage} alt={`${name} at Rebornurself, New Perungalathur, Chennai`} width={895} height={499} priority sizes="(min-width: 1200px) 800px, 100vw" className="mb-10 w-full rounded-lg" />
             <Blocks blocks={s.intro.slice(0, firstP + 1)} />
-            {/* Phones and tablets: the booking box sits after the article, so offer WhatsApp early too. */}
-            <a href={enquire} target="_blank" rel="noopener" className="btn-wa mt-2 mb-6 w-full sm:w-auto lg:hidden">
+            {/* WhatsApp enquiry, early in the article. */}
+            <a href={enquire} target="_blank" rel="noopener" className="btn-wa mt-2 mb-6 w-full sm:w-auto">
               <FaWhatsapp className="text-lg" /> Enquire on WhatsApp
             </a>
             <Blocks blocks={s.intro.slice(firstP + 1)} />
@@ -94,7 +94,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
             <Blocks blocks={s.body} />
           </article>
 
-          <aside data-reveal="left" className="space-y-6 md:grid md:grid-cols-2 md:items-start md:gap-6 md:space-y-0 lg:block lg:space-y-6 lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
+          <aside data-reveal="left" className="space-y-6 md:max-w-md lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
             <div className="relative mx-auto hidden max-w-[215px] lg:block">
               {/* Leaf tucked behind the pill, floating up and down as on the old site. */}
               <div className="absolute top-[34%] -left-[82px] w-[130px] animate-float">
@@ -105,15 +105,6 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
                   <Image src="/assets/img/about/price-2-1-1.png" alt="" width={187} height={349} className="w-[105px]" />
                 </div>
               </div>
-            </div>
-            <div className="rounded-lg bg-peach p-7">
-              <p className="font-title text-2xl text-title">Book {s.name}</p>
-              <ul className="mt-5 space-y-3 text-[15px]">
-                <li className="flex gap-3"><LuMapPin className="mt-1 shrink-0 text-theme" /><Link href="/contact" className="hover:text-theme">Studio location &amp; directions</Link></li>
-                <li className="flex gap-3"><LuClock className="mt-1 shrink-0 text-theme" />Open daily, {site.hours.display}</li>
-                <li className="flex gap-3"><LuPhone className="mt-1 shrink-0 text-theme" /><a href={`tel:${site.phone}`} className="hover:text-theme">{site.phoneDisplay}</a></li>
-              </ul>
-              <a href={enquire} target="_blank" rel="noopener" className="btn-wa mt-6 w-full"><FaWhatsapp className="text-lg" /> Enquire on WhatsApp</a>
             </div>
 
             <nav aria-label={`Other treatments for ${genderLabel(s.gender).toLowerCase()}`} className="card p-7 hover:translate-y-0">
