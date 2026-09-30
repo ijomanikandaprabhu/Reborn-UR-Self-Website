@@ -60,24 +60,23 @@ export default function SmoothScroll() {
       lenis?.scrollTo(0, { immediate: true });
       if (reducedMotion()) return;
 
-      gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
-        const kind = el.dataset.reveal || "up";
-        const stagger = kind === "stagger";
-        gsap.from(stagger ? Array.from(el.children) : el, {
-          ...(from[stagger ? "up" : kind] ?? from.up),
-          duration: 1,
-          ease: "power3.out",
-          stagger: stagger ? 0.12 : 0,
-          // Cards have CSS hover transitions; keep them out of GSAP's way.
-          transition: "none",
-          clearProps: "transition,transform,opacity",
-          scrollTrigger: { trigger: el, start: "top 88%", once: true },
-        });
+      // Each element (or each child of a stagger list) animates when it itself
+      // reaches the screen, so long lists never leave items waiting.
+      const base = { duration: 0.8, ease: "power3.out", transition: "none", clearProps: "transition,transform,opacity" };
+      gsap.utils.toArray<HTMLElement>("[data-reveal]:not([data-reveal=stagger])").forEach((el) => {
+        gsap.from(el, { ...(from[el.dataset.reveal || "up"] ?? from.up), ...base, scrollTrigger: { trigger: el, start: "top 92%", once: true } });
+      });
+      const items = gsap.utils.toArray<HTMLElement>("[data-reveal=stagger] > *");
+      gsap.set(items, from.up);
+      ScrollTrigger.batch(items, {
+        start: "top 92%",
+        once: true,
+        onEnter: (batch) => gsap.to(batch, { y: 0, opacity: 1, stagger: 0.08, ...base }),
       });
 
       // data-wipe: the photo is uncovered from left to right, with a slight zoom-out.
       gsap.utils.toArray<HTMLElement>("[data-wipe]").forEach((el, i) => {
-        const trigger = { trigger: el, start: "top 85%", once: true };
+        const trigger = { trigger: el, start: "top 92%", once: true };
         gsap.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.2, delay: (i % 2) * 0.25, ease: "power3.inOut", scrollTrigger: trigger, clearProps: "clipPath" });
         const img = el.querySelector("img");
         if (img) gsap.fromTo(img, { scale: 1.2 }, { scale: 1, duration: 1.6, delay: (i % 2) * 0.25, ease: "power3.out", scrollTrigger: trigger, clearProps: "transform" });
@@ -101,6 +100,11 @@ export default function SmoothScroll() {
       });
 
       ScrollTrigger.refresh();
+      // Images and fonts that finish loading later shift the layout; keep trigger positions in sync.
+      let t: ReturnType<typeof setTimeout>;
+      const ro = new ResizeObserver(() => { clearTimeout(t); t = setTimeout(() => ScrollTrigger.refresh(), 150); });
+      ro.observe(document.body);
+      return () => { ro.disconnect(); clearTimeout(t); };
     },
     { dependencies: [pathname], revertOnUpdate: true },
   );
