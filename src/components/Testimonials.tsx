@@ -90,7 +90,7 @@ export default function Testimonials() {
               >
                 <Image src={t.image} alt="" width={66} height={66} className="absolute -top-8 left-7 size-[66px] rounded-full border-4 border-white shadow" />
                 <FaQuoteRight className={`absolute -top-6 right-7 text-6xl ${active ? "text-theme" : "text-theme/20"}`} aria-hidden="true" />
-                <div className="flex gap-1 text-theme" aria-label="5 out of 5 stars">
+                <div className="flex gap-1 text-theme" role="img" aria-label="5 out of 5 stars">
                   {Array.from({ length: 5 }, (_, i) => <FaStar key={i} aria-hidden="true" />)}
                 </div>
                 <blockquote className="mt-3">{t.text}</blockquote>
@@ -117,7 +117,7 @@ export default function Testimonials() {
                   setStart(target);
                 }}
                 aria-label={`Show review from ${t.name}`}
-                className="flex h-11 items-center px-1"
+                className="flex h-11 min-w-6 items-center justify-center px-1"
               >
                 <span className={`block h-2 rounded-full transition-all ${(start + 1) % n === i ? "w-8 bg-theme" : "w-2 bg-theme/30"}`} />
               </button>

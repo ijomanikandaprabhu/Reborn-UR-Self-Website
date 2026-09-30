@@ -114,8 +114,7 @@ html[data-seen] .loader {
   html.js .hero-slide .hl,
   html.js .hero-slide .hl-btn,
   html.js .hero-badge,
-  html.js .hero-disc,
-  html.js .hero-photo {
+  html.js .hero-disc {
     opacity: 0;
   }
   html.js .hero-slide .hc {

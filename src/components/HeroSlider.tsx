@@ -72,7 +72,7 @@ export default function HeroSlider() {
         .fromTo(".hero-draw circle", { strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut" })
         .to(".hero-draw", { opacity: 0, duration: 0.8 }, "-=0.2")
         .fromTo(".hero-disc", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4, ease: "expo.out" }, 0.3)
-        .fromTo(".hero-photo", { yPercent: 12, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.4, ease: "expo.out" }, 0.9)
+        .fromTo(".hero-photo", { yPercent: 8 }, { yPercent: 0, duration: 1.4, ease: "expo.out" }, 0.2)
         // Then the rings start growing out from behind the circle, as on the old site.
         .fromTo(".hero-ring", { scale: 1, opacity: 0.2 }, { scale: 2, opacity: 0, duration: 5, ease: "none", immediateRender: false, stagger: { each: 1.5, repeat: -1 } }, 1.6);
 
@@ -249,7 +249,7 @@ export default function HeroSlider() {
               ))}
             </ul>
 
-            <p className="hb-txt mt-5 [@media(max-height:820px)]:mt-3 text-[11px] font-bold tracking-[0.2em] text-white/70 uppercase">How to book</p>
+            <p className="hb-txt mt-5 [@media(max-height:820px)]:mt-3 text-[11px] font-bold tracking-[0.2em] text-white uppercase">How to book</p>
             <ol className="mt-2 space-y-1.5 text-[13px] [@media(max-height:820px)]:space-y-1 [@media(max-height:820px)]:text-xs">
               {["Send a photo on WhatsApp", "Get honest advice", "Book your slot"].map((step, i) => (
                 <li key={step} className="hb-txt flex items-center gap-2.5">
@@ -273,8 +273,10 @@ export default function HeroSlider() {
               onClick={() => setActive(i)}
               aria-label={`Show slide ${i + 1}`}
               aria-current={i === active}
-              className={`h-2 rounded-full transition-all ${i === active ? "w-8 bg-theme" : "w-2 bg-theme/30"}`}
-            />
+              className="flex h-11 min-w-6 items-center justify-center px-1"
+            >
+              <span className={`block h-2 rounded-full transition-all ${i === active ? "w-8 bg-theme" : "w-2 bg-theme/30"}`} />
+            </button>
           ))}
         </div>
 

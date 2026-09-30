@@ -19,7 +19,7 @@ export default function ServiceTabs() {
   useGSAP(
     () => {
       if (!switched.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      const cards = `#panel-${gender} > li`;
+      const cards = `#panel-${gender} li`;
       // transition:none stops the cards' CSS hover transition fighting the tween.
       gsap.set(cards, { transition: "none" });
       gsap.fromTo(cards, { y: 50, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.7, ease: "power3.out", stagger: 0.09, clearProps: "transform,opacity,transition" });
@@ -54,7 +54,8 @@ export default function ServiceTabs() {
 
       {(["women", "men"] as const).map((g) => (
         // Both panels stay in the HTML so Google can follow every service link.
-        <ul key={g} id={`panel-${g}`} role="tabpanel" aria-labelledby={`tab-${g}`} hidden={gender !== g} data-reveal="stagger" className="flex flex-wrap justify-center gap-x-6 gap-y-14 pt-8 [&>li]:w-full md:[&>li]:w-[calc(50%-12px)] xl:[&>li]:w-[calc(33.333%-16px)]">
+        <div key={g} id={`panel-${g}`} role="tabpanel" aria-labelledby={`tab-${g}`} hidden={gender !== g}>
+        <ul data-reveal="stagger" className="flex flex-wrap justify-center gap-x-6 gap-y-14 pt-8 [&>li]:w-full md:[&>li]:w-[calc(50%-12px)] xl:[&>li]:w-[calc(33.333%-16px)]">
           {services.filter((s) => s.gender === g).map((s) => (
             <li key={s.slug} className="card group relative flex flex-col items-center px-7 pt-16 pb-8 text-center hover:border-theme/30">
               <div className="absolute -top-11 flex size-[88px] items-center justify-center rounded-full border-[5px] border-white bg-peach shadow-card transition-colors duration-300 group-hover:bg-theme">
@@ -78,6 +79,7 @@ export default function ServiceTabs() {
             </li>
           ))}
         </ul>
+        </div>
       ))}
     </div>
   );
