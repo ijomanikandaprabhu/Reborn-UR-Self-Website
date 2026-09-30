@@ -18,7 +18,7 @@ const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)"
  * Desktop geometry, all derived from CSS variables on the stage:
  *   --d   circle diameter (two-thirds of the hero height, capped by width)
  *   --t   headline width, --g gap to the circle, --b how far the badge sticks out
- *   --cx  circle centre, chosen so text + circle + badge sit centred as a group
+ *   --cx  circle centre: the middle of the page
  */
 const stageVars = {
   "--d": "min(calc(max(600px, 100svh - var(--header-h, 161px)) * 0.66), calc(57vw - 140px))",
@@ -26,7 +26,7 @@ const stageVars = {
   "--g": "24px",
   "--bw": "clamp(220px, 14vw, 280px)",
   "--b": "calc(var(--bw) - 60px)",
-  "--cx": "calc(50% + (var(--t) + var(--g) - var(--b)) / 2)",
+  "--cx": "50%",
   "--ctop": "calc(100% - var(--d) * 1.25)",
 } as React.CSSProperties;
 
