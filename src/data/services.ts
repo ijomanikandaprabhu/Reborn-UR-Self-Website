@@ -89,7 +89,7 @@ export function faqsFor(s: Service): { q: string; a: string }[] {
     },
     {
       q: `Where is the studio?`,
-      a: `Rebornurself is at ${site.address.street}, ${areaText}. We are open ${site.hours.display}, by appointment.`,
+      a: `Our studio is in ${areaText}. We are open ${site.hours.display}, by appointment. You will find the address, a map and directions on our Contact page.`,
     },
   );
   return faqs;

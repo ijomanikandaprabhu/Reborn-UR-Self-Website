@@ -15,7 +15,7 @@ import {
   serviceFullName, type ContentBlock,
 } from "@/data/services";
 import { serviceSchema } from "@/lib/schema";
-import { enquiryMessage, mapsDirectionsUrl, site, whatsappLink } from "@/lib/site";
+import { enquiryMessage, site, whatsappLink } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -103,7 +103,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
             <div className="rounded-lg bg-peach p-7">
               <p className="font-title text-2xl text-title">Book {s.name}</p>
               <ul className="mt-5 space-y-3 text-[15px]">
-                <li className="flex gap-3"><LuMapPin className="mt-1 shrink-0 text-theme" /><a href={mapsDirectionsUrl} target="_blank" rel="noopener" className="hover:text-theme">{site.address.street}, {site.address.locality}, Chennai</a></li>
+                <li className="flex gap-3"><LuMapPin className="mt-1 shrink-0 text-theme" /><Link href="/contact" className="hover:text-theme">Studio location &amp; directions</Link></li>
                 <li className="flex gap-3"><LuClock className="mt-1 shrink-0 text-theme" />Open daily, {site.hours.display}</li>
                 <li className="flex gap-3"><LuPhone className="mt-1 shrink-0 text-theme" /><a href={`tel:${site.phone}`} className="hover:text-theme">{site.phoneDisplay}</a></li>
               </ul>

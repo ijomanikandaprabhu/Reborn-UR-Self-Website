@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
+import { LuMail, LuPhone } from "react-icons/lu";
 import { servicesFor, servicePath } from "@/data/services";
-import { fullAddress, mapsDirectionsUrl, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import SocialLinks from "./SocialLinks";
 
 const menu = [
@@ -26,9 +26,6 @@ export default function Footer() {
           </a>
           <a href={`tel:${site.phone}`} className="flex items-center gap-2 hover:text-theme">
             <LuPhone className="text-theme" /> {site.phoneDisplay}
-          </a>
-          <a href={mapsDirectionsUrl} target="_blank" rel="noopener" className="flex items-center gap-2 hover:text-theme">
-            <LuMapPin className="shrink-0 text-theme" /> {fullAddress}
           </a>
         </address>
 
