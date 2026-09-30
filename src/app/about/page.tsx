@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import { LuAward, LuClock, LuMapPin, LuSparkles, LuUserRound, LuUsers } from "react-icons/lu";
+import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
 import PageBanner from "@/components/PageBanner";
 import SocialLinks from "@/components/SocialLinks";
@@ -39,7 +40,7 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-[1140px] bg-white px-4 py-20 sm:px-4 lg:py-28">
           <Image src="/assets/img/hero/hero-leaf-5.png" alt="" width={246} height={251} data-parallax="0.6" className="absolute top-4 right-[15%] hidden w-40 xl:block" />
           <div className="grid items-center gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
-            <div data-reveal="left" className="mx-auto w-full max-w-[450px] rounded-[50%] border border-theme/30 p-1.5">
+            <div data-wipe className="mx-auto w-full max-w-[300px] rounded-[50%] border border-theme/30 p-1.5 sm:max-w-[380px] lg:max-w-[450px]">
               <div className="flex aspect-[450/620] items-end justify-center overflow-hidden rounded-[50%] bg-[#e7d3cc] px-4 pt-16">
                 <Image src={site.founder.image} alt="Sandhiya Srinivasan, permanent makeup artist and founder of Rebornurself" width={296} height={421} priority sizes="420px" className="h-auto w-[92%]" />
               </div>
@@ -72,13 +73,13 @@ export default function AboutPage() {
                 <li className="py-3"><span className="mr-4 text-sm font-semibold tracking-[0.15em] text-title uppercase">Phone:</span><a href={`tel:${site.phone}`} className="hover:text-theme">{site.phoneDisplay}</a></li>
                 <li className="py-3"><span className="mr-4 text-sm font-semibold tracking-[0.15em] text-title uppercase">Email:</span><a href={`mailto:${site.founder.email}`} className="break-all hover:text-theme">{site.founder.email}</a></li>
               </ul>
-              <SocialLinks links={site.founder.social} className="mt-10 justify-center" itemClassName="border-line text-title hover:border-theme hover:bg-theme hover:text-white" />
+              <SocialLinks links={site.founder.social} className="mt-8 justify-center lg:justify-start" itemClassName="border-line text-title transition hover:-translate-y-1 hover:border-theme hover:bg-theme hover:text-white" />
             </div>
           </div>
 
           <div data-reveal className="mt-16 rounded-lg border border-theme/25 bg-gradient-to-br from-cream to-peach/70 p-7 sm:p-10">
             <h3 className="mb-6 text-2xl">At a glance</h3>
-            <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            <dl data-reveal="stagger" className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
               {facts.map(({ Icon, label, value }) => (
                 <div key={label}>
                   <dt className="flex items-center gap-2 text-sm tracking-[0.12em] text-theme uppercase"><Icon aria-hidden="true" /> {label}</dt>
@@ -91,6 +92,7 @@ export default function AboutPage() {
       </section>
 
       <Testimonials />
+      <CtaBand title="Meet Sandhiya" text="Send a photo of your brows or lips on WhatsApp and Sandhiya will tell you honestly what will suit you, or call and talk it through first." message="Hi Rebornurself, I would like to book a consultation with Sandhiya." />
     </>
   );
 }
