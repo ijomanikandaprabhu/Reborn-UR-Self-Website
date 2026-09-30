@@ -32,7 +32,7 @@ export default function Footer() {
         <SocialLinks className="mt-6 justify-center" itemClassName="size-10 border-white/25 text-white transition hover:-translate-y-1 hover:border-theme hover:bg-theme" />
 
         <nav aria-label="Footer" className="mt-8">
-          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px] font-semibold tracking-widest sm:gap-x-16 text-white uppercase">
+          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-semibold tracking-wider sm:gap-x-16 sm:text-[15px] sm:tracking-widest text-white uppercase">
             {menu.map((m) => (
               <li key={m.href}><Link href={m.href} className="link-slide inline-block py-2 hover:text-theme sm:py-0">{m.label}</Link></li>
             ))}
@@ -44,10 +44,10 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <p className="mx-auto mt-10 max-w-lg border-t border-white/10 pt-7 text-[15px] text-white/50">
+        <p className="mx-auto mt-10 max-w-lg border-t border-white/10 pt-7 text-sm text-white/50 sm:text-[15px]">
           Copyright © {new Date().getFullYear()}{" "}
-          <Link href="/" className="link-slide inline-block py-2 hover:text-theme sm:py-0">Rebornurself</Link>. All Rights Reserved By{" "}
-          <a href="https://ijocreations.com/" target="_blank" rel="noopener" className="link-slide inline-block py-2 hover:text-theme sm:py-0">Ijocreations</a>
+          <Link href="/" className="link-slide hover:text-theme">Rebornurself</Link>. All Rights Reserved By{" "}
+          <a href="https://ijocreations.com/" target="_blank" rel="noopener" className="link-slide hover:text-theme">Ijocreations</a>
         </p>
       </div>
     </footer>
