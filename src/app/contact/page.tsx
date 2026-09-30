@@ -37,13 +37,13 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageBanner title="Contact Us" crumbs={[{ name: "Contact Us", path: "/contact" }]} />
+      <PageBanner title="Contact" highlight="Us" crumbs={[{ name: "Contact Us", path: "/contact" }]} />
 
       <section className="section">
         <div className="container-site grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <span className="eyebrow">Book your visit</span>
-            <h2 className="text-5xl uppercase">Let’s Start Here</h2>
+            <h2 className="text-5xl uppercase">Let’s Start <span className="text-theme">Here</span></h2>
             <p className="mt-5 mb-8">
               Fill in your details and we will carry on over WhatsApp, where you can send a photo of your bare brows or lips
               and we will tell you which procedure actually suits you — before you commit to anything. Prefer to talk? Call or
@@ -51,7 +51,7 @@ export default function ContactPage() {
             </p>
             <ContactForm />
           </div>
-          <Image src="/assets/img/about/about-9-2.jpg" alt="Permanent makeup being applied at Rebornurself, Chennai" width={380} height={380} sizes="(min-width: 1024px) 560px, 100vw" className="h-full max-h-[560px] w-full rounded-lg object-cover" />
+          <Image src="/assets/img/about/about-9-2.jpg" alt="Permanent makeup being applied at Rebornurself, Chennai" width={380} height={380} sizes="(min-width: 1024px) 560px, 100vw" className="h-full max-h-[480px] w-full object-cover lg:max-h-none" />
         </div>
       </section>
 
@@ -88,7 +88,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section bg-cream">
+      <section className="section pt-0">
         <div className="container-site">
           <SectionTitle eyebrow="Good to know" title="How Booking Works" />
           <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -99,7 +99,7 @@ export default function ContactPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-10 rounded-lg bg-white p-6 text-center">
+          <div className="mt-10 rounded-lg bg-smoke p-6 text-center">
             <p>Studio hours: {site.hours.display} | Call: <a href={`tel:${site.phone}`} className="font-medium text-theme">{site.phoneDisplay}</a> | Email: <a href={`mailto:${site.email}`} className="font-medium text-theme">{site.email}</a></p>
             <p className="mt-1">Prefer to ask first? <a href={whatsappLink()} target="_blank" rel="noopener" className="font-medium text-theme">Send us an enquiry on WhatsApp</a> and we will guide you to the right procedure.</p>
           </div>

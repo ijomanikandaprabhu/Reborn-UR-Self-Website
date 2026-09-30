@@ -40,21 +40,21 @@ export type GalleryCategory = (typeof galleryCategories)[number]["id"];
 
 const g = (file: string) => `/assets/img/gallery/${file}`;
 
-export const galleryItems: { src: string; alt: string; cat: GalleryCategory }[] = [
-  { src: g("combination-1.jpg"), alt: "Combination brows before, during and healed result", cat: "combination" },
-  { src: g("combination-2.jpg"), alt: "Combination brows before and after", cat: "combination" },
-  { src: g("ombre-1.jpg"), alt: "Ombre powder brows result with before inset", cat: "ombre" },
-  { src: g("ombre-2.jpg"), alt: "Soft ombre powder brows before and after", cat: "ombre" },
-  { src: g("neutralization-1.jpg"), alt: "Lip neutralization for men, before and after", cat: "neutralization" },
-  { src: g("beauty-spot-1.jpg"), alt: "Beauty spot placed beside the lips, before and after", cat: "beauty-spot" },
-  { src: g("event-1.jpg"), alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
-  { src: g("event-2.jpg"), alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
-  { src: g("event-3.jpg"), alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
-  { src: g("client-at-studio.jpg"), alt: "Client at the Rebornurself studio", cat: "events" },
-  { src: g("certificate-presentation-1.jpg"), alt: "Certificate presentation at Rebornurself", cat: "events" },
-  { src: g("microblading-training-group.jpg"), alt: "Microblading training session group photo", cat: "events" },
-  { src: g("certificate-presentation-2.jpg"), alt: "Certificate presentation at Rebornurself", cat: "events" },
-  { src: g("rebornurself-training-group.jpg"), alt: "Rebornurself training group", cat: "events" },
+export const galleryItems: { src: string; w: number; h: number; alt: string; cat: GalleryCategory }[] = [
+  { src: g("combination-1.jpg"), w: 720, h: 1280, alt: "Combination brows before, during and healed result", cat: "combination" },
+  { src: g("combination-2.jpg"), w: 760, h: 1351, alt: "Combination brows before and after", cat: "combination" },
+  { src: g("ombre-1.jpg"), w: 720, h: 1280, alt: "Ombre powder brows result with before inset", cat: "ombre" },
+  { src: g("ombre-2.jpg"), w: 760, h: 760, alt: "Soft ombre powder brows before and after", cat: "ombre" },
+  { src: g("neutralization-1.jpg"), w: 720, h: 1280, alt: "Lip neutralization for men, before and after", cat: "neutralization" },
+  { src: g("beauty-spot-1.jpg"), w: 760, h: 760, alt: "Beauty spot placed beside the lips, before and after", cat: "beauty-spot" },
+  { src: g("event-1.jpg"), w: 719, h: 1280, alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
+  { src: g("event-2.jpg"), w: 760, h: 1013, alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
+  { src: g("event-3.jpg"), w: 760, h: 1013, alt: "Sandhiya Srinivasan at a beauty industry event", cat: "events" },
+  { src: g("client-at-studio.jpg"), w: 1600, h: 1280, alt: "Client at the Rebornurself studio", cat: "events" },
+  { src: g("certificate-presentation-1.jpg"), w: 1600, h: 1280, alt: "Certificate presentation at Rebornurself", cat: "events" },
+  { src: g("microblading-training-group.jpg"), w: 1600, h: 1280, alt: "Microblading training session group photo", cat: "events" },
+  { src: g("certificate-presentation-2.jpg"), w: 1600, h: 1280, alt: "Certificate presentation at Rebornurself", cat: "events" },
+  { src: g("rebornurself-training-group.jpg"), w: 1600, h: 900, alt: "Rebornurself training group", cat: "events" },
 ];
 
 export const heroSlides = [

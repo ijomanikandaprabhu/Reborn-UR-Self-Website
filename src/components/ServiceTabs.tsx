@@ -34,9 +34,9 @@ export default function ServiceTabs() {
         // Both panels stay in the HTML so Google can follow every service link.
         <ul key={g} id={`panel-${g}`} role="tabpanel" aria-labelledby={`tab-${g}`} hidden={gender !== g} className="grid gap-x-6 gap-y-14 pt-8 md:grid-cols-2 xl:grid-cols-3">
           {services.filter((s) => s.gender === g).map((s) => (
-            <li key={s.slug} className="card relative flex flex-col items-center px-7 pt-14 pb-8 text-center">
-              <div className="absolute -top-9 flex size-[72px] items-center justify-center rounded-full border-4 border-white bg-peach shadow-card">
-                <Image src={iconPath(s)} alt="" width={40} height={40} />
+            <li key={s.slug} className="card relative flex flex-col items-center px-7 pt-16 pb-8 text-center">
+              <div className="absolute -top-11 flex size-[88px] items-center justify-center rounded-full border-[5px] border-white bg-peach shadow-card">
+                <Image src={iconPath(s)} alt="" width={46} height={46} />
               </div>
               <h3 className="text-2xl">
                 <Link href={servicePath(s)} className="hover:text-theme">{s.name}</Link>

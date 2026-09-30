@@ -47,12 +47,12 @@ export default function Header() {
   const isActive = (href: string) => pathname === href;
   const onServicePage = groups.some((g) => servicesFor(g).some((s) => pathname === servicePath(s)));
   const navLink = (active: boolean) =>
-    `relative py-7 text-[13px] font-bold tracking-wider uppercase ${active ? "text-theme" : "text-title hover:text-theme"}`;
+    `relative py-9 text-[15px] font-semibold uppercase ${active ? "text-theme" : "text-title hover:text-theme"}`;
 
   return (
     <header className="relative z-40">
-      <div className="border-b border-line">
-        <div className="container-site flex items-center justify-center gap-4 py-2.5 md:justify-between">
+      <div>
+        <div className="container-site flex items-center justify-center gap-4 border-b border-line py-2.5 md:justify-between">
           <a href={`mailto:${site.email}`} className="hidden items-center gap-2 text-sm text-body hover:text-theme md:flex">
             <LuMail className="text-theme" /> {site.email}
           </a>
@@ -63,15 +63,15 @@ export default function Header() {
       <div className={`${scrolled ? "fixed inset-x-0 top-0 animate-fade-in shadow-md" : "relative"} bg-white`}>
         <div className="container-site flex items-center justify-between gap-6">
           <Link href="/" className="shrink-0 py-3" aria-label="Rebornurself home">
-            <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} priority className="h-14 w-auto" />
+            <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} priority className="h-16 w-auto xl:h-20" />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">
-            <ul className="flex items-center gap-9">
+            <ul className="flex items-center gap-8">
               <li><Link href="/" className={navLink(isActive("/"))}>Home</Link></li>
               <li className="group relative">
                 <button type="button" className={`${navLink(onServicePage)} flex items-center gap-1`} aria-haspopup="true">
-                  Services <LuChevronDown className="transition group-hover:rotate-180 group-focus-within:rotate-180" />
+                  Service <LuChevronDown className="transition group-hover:rotate-180 group-focus-within:rotate-180" />
                 </button>
                 <div className="invisible absolute top-full left-1/2 grid w-[440px] -translate-x-1/2 translate-y-3 grid-cols-2 gap-6 rounded-lg border-t-2 border-theme bg-white p-6 opacity-0 shadow-card-hover transition duration-300 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   {groups.map((g) => (
@@ -101,7 +101,7 @@ export default function Header() {
               href={whatsappLink("Hi Rebornurself, I would like to book an appointment.")}
               target="_blank"
               rel="noopener"
-              className="btn-theme hidden px-8 py-3 xl:inline-flex"
+              className="btn hidden bg-title px-9 py-3.5 font-semibold tracking-wider text-white uppercase hover:bg-theme xl:inline-flex"
             >
               Book
             </a>
@@ -117,7 +117,7 @@ export default function Header() {
           </div>
         </div>
       </div>
-      {scrolled && <div className="h-20" aria-hidden="true" />}
+      {scrolled && <div className="h-[88px] xl:h-[104px]" aria-hidden="true" />}
 
       {/* Mobile menu */}
       <div

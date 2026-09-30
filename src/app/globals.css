@@ -50,7 +50,7 @@
 }
 
 @utility container-site {
-  @apply mx-auto w-full max-w-[1200px] px-4 sm:px-6;
+  @apply mx-auto w-full max-w-[1302px] px-4;
 }
 @utility section {
   @apply py-20 lg:py-28;

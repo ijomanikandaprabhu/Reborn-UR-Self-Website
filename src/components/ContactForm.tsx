@@ -1,6 +1,5 @@
 "use client";
 
-import { FaWhatsapp } from "react-icons/fa6";
 import { LuChevronDown } from "react-icons/lu";
 import { whatsappLink } from "@/lib/site";
 
@@ -15,7 +14,7 @@ const serviceOptions = [
 ];
 
 const field =
-  "h-14 w-full rounded-md border border-line bg-white px-5 text-title placeholder:text-body transition hover:border-theme/40 focus:border-theme focus:outline-none";
+  "h-[55px] w-full rounded-none border border-line bg-white px-7 text-title placeholder:text-body transition hover:border-theme/40 focus:border-theme focus:outline-none";
 
 /** Turns the enquiry into a WhatsApp message the visitor just has to send. */
 export default function ContactForm() {
@@ -32,18 +31,18 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
-      <label className="sm:col-span-2">
+    <form onSubmit={onSubmit} className="grid gap-4">
+      <label>
         <span className="sr-only">Your name</span>
         <input name="name" required autoComplete="name" placeholder="Your Name*" className={field} />
       </label>
       <label>
-        <span className="sr-only">Phone number</span>
-        <input name="phone" type="tel" required autoComplete="tel" placeholder="Phone Number*" className={field} />
-      </label>
-      <label>
         <span className="sr-only">Email</span>
         <input name="email" type="email" autoComplete="email" placeholder="Your Email" className={field} />
+      </label>
+      <label>
+        <span className="sr-only">Phone number</span>
+        <input name="phone" type="tel" required autoComplete="tel" placeholder="Phone Number*" className={field} />
       </label>
       <label className="relative">
         <span className="sr-only">Gender</span>
@@ -62,13 +61,13 @@ export default function ContactForm() {
         </select>
         <LuChevronDown className="pointer-events-none absolute top-1/2 right-5 -translate-y-1/2 text-theme" aria-hidden="true" />
       </label>
-      <label className="sm:col-span-2">
+      <label>
         <span className="sr-only">Message</span>
         <textarea name="message" rows={5} placeholder="Message" className={`${field} h-auto py-4`} />
       </label>
-      <div className="sm:col-span-2">
-        <button type="submit" className="btn-wa w-full sm:w-auto">
-          <FaWhatsapp className="text-lg" /> Send on WhatsApp
+      <div>
+        <button type="submit" className="btn-theme w-full py-4 text-sm font-bold tracking-[0.15em] uppercase">
+          Submit Details
         </button>
         <p className="mt-3 text-[13px]">WhatsApp will open with your details ready — just press send.</p>
       </div>

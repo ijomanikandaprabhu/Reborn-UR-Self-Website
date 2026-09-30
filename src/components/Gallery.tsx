@@ -6,7 +6,7 @@ import { LuChevronLeft, LuChevronRight, LuX, LuZoomIn } from "react-icons/lu";
 import { galleryCategories, galleryItems, type GalleryCategory } from "@/data/content";
 import { whatsappLink } from "@/lib/site";
 
-export default function Gallery({ limit }: { limit?: number }) {
+export default function Gallery({ limit, masonry = false }: { limit?: number; masonry?: boolean }) {
   const [filter, setFilter] = useState<GalleryCategory>("all");
   const [open, setOpen] = useState<number | null>(null);
 
@@ -56,11 +56,15 @@ export default function Gallery({ limit }: { limit?: number }) {
           <a href={whatsappLink()} target="_blank" rel="noopener" className="text-theme underline">ask us on WhatsApp</a> and we will share our latest work.
         </p>
       ) : (
-        <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+        <ul className={masonry ? "columns-2 gap-3 sm:gap-5 md:columns-3" : "grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3"}>
           {items.map((g, i) => (
-            <li key={g.src}>
-              <button type="button" onClick={() => setOpen(i)} className="group relative block aspect-[4/5] w-full overflow-hidden rounded-lg bg-smoke">
-                <Image src={g.src} alt={g.alt} fill sizes="(min-width: 1024px) 280px, (min-width: 768px) 33vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+            <li key={g.src} className={masonry ? "mb-3 break-inside-avoid sm:mb-5" : ""}>
+              <button type="button" onClick={() => setOpen(i)} className={`group relative block w-full overflow-hidden rounded-lg bg-smoke ${masonry ? "" : "aspect-[4/5]"}`}>
+                {masonry ? (
+                  <Image src={g.src} alt={g.alt} width={g.w} height={g.h} sizes="(min-width: 768px) 420px, 50vw" className="h-auto w-full transition duration-500 group-hover:scale-105" />
+                ) : (
+                  <Image src={g.src} alt={g.alt} fill sizes="(min-width: 768px) 420px, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+                )}
                 <span className="absolute inset-0 flex items-center justify-center bg-title/0 text-3xl text-white opacity-0 transition group-hover:bg-title/40 group-hover:opacity-100">
                   <LuZoomIn aria-hidden="true" />
                 </span>

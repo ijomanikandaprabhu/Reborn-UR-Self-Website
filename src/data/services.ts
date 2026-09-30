@@ -8,6 +8,7 @@ export type Gender = "women" | "men";
 
 export type ContentBlock =
   | { type: "h2"; text: string }
+  | { type: "h3"; text: string }
   | { type: "p"; text: string }
   | { type: "list"; items: { label: string; text: string }[] };
 

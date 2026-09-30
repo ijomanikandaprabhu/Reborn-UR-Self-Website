@@ -37,7 +37,8 @@ export async function generateMetadata({ params }: PageProps<"/[slug]">): Promis
 
 function Blocks({ blocks }: { blocks: ContentBlock[] }) {
   return blocks.map((b, i) => {
-    if (b.type === "h2") return <h2 key={i} className="mt-10 mb-4 text-3xl first:mt-0">{b.text}</h2>;
+    if (b.type === "h2") return <h2 key={i} className="mt-12 mb-4 text-[32px] uppercase first:mt-0">{b.text}</h2>;
+    if (b.type === "h3") return <h3 key={i} className="mt-8 mb-3 text-2xl">{b.text}</h3>;
     if (b.type === "p") return <p key={i} className="mb-4">{b.text}</p>;
     return (
       <ul key={i} className="my-5 space-y-3">
@@ -69,11 +70,12 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
         title={titleStart}
         highlight={titleEnd}
         crumbs={[{ name, path: servicePath(s) }]}
+        current={`${name} Service Details`}
       />
 
       <section className="section">
-        <div className="container-site grid gap-12 lg:grid-cols-[1fr_340px]">
-          <article>
+        <div className="container-site grid gap-12 lg:grid-cols-[300px_1fr] xl:gap-14">
+          <article className="lg:col-start-2 lg:row-start-1">
             <Image src={s.heroImage} alt={`${name} at Rebornurself, New Perungalathur, Chennai`} width={895} height={499} priority sizes="(min-width: 1200px) 800px, 100vw" className="mb-10 w-full rounded-lg" />
             <Blocks blocks={s.intro} />
             {s.pairImages.length > 0 && (
@@ -86,7 +88,13 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
             <Blocks blocks={s.body} />
           </article>
 
-          <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+          <aside className="space-y-6 lg:col-start-1 lg:row-start-1">
+            <div className="relative mx-auto hidden max-w-[260px] lg:block">
+              <Image src="/assets/img/shape/leaf-1-7.png" alt="" width={265} height={186} className="absolute -top-10 -right-16 w-32 animate-float" />
+              <div className="flex justify-center rounded-full bg-peach px-10 py-24">
+                <Image src="/assets/img/about/price-2-1-1.png" alt="" width={187} height={349} className="w-[120px]" />
+              </div>
+            </div>
             <div className="rounded-lg bg-peach p-7">
               <p className="font-title text-2xl text-title">Book {s.name}</p>
               <ul className="mt-5 space-y-3 text-[15px]">

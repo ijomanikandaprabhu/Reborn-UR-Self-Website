@@ -12,31 +12,31 @@ export default function HeroSlider() {
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => setActive((i) => (i + 1) % heroSlides.length), 6000);
+    const id = setInterval(() => setActive((i) => (i + 1) % heroSlides.length), 7000);
     return () => clearInterval(id);
   }, [paused]);
 
   return (
     <section
-      className="relative overflow-hidden bg-gradient-to-b from-cream to-peach/60"
+      className="relative overflow-hidden bg-gradient-to-b from-[#fdf0e8] to-[#fdeee6]"
       aria-roledescription="carousel"
       aria-label="Highlights"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <Image src="/assets/img/hero/leaf-1-8.png" alt="" width={258} height={271} className="absolute bottom-10 left-4 hidden w-24 animate-float md:block" />
-      <Image src="/assets/img/hero/leaf-1-5.png" alt="" width={193} height={206} className="absolute top-24 right-0 hidden w-24 animate-float [animation-delay:1s] md:block" />
+      <Image src="/assets/img/hero/leaf-1-8.png" alt="" width={258} height={271} className="absolute bottom-24 left-8 z-10 hidden w-[90px] animate-float md:block" />
+      <Image src="/assets/img/hero/leaf-1-5.png" alt="" width={193} height={206} className="absolute top-52 -right-4 z-10 hidden w-[80px] animate-float [animation-delay:1.5s] md:block" />
 
-      <div className="container-site grid items-center gap-8 pt-12 lg:min-h-[640px] lg:grid-cols-2 lg:pt-0">
-        <div className="relative z-10 text-center lg:text-left">
-          <p className="text-lg text-title">Permanent Beauty in Chennai</p>
-          {/* Every slide's headline is in the page; only the active one shows. */}
+      <div className="container-site relative grid items-end lg:min-h-[705px] lg:grid-cols-[300px_1fr_300px]">
+        <div className="relative z-10 pt-14 text-center lg:self-center lg:pt-0 lg:pl-16 lg:text-left">
+          <p className="text-[15px] text-title">Permanent Beauty</p>
+          {/* Every headline stays in the page; only the active one shows. */}
           <div className="grid">
             {heroSlides.map((s, i) => (
               <p
                 key={s.line1}
                 aria-hidden={i !== active}
-                className={`col-start-1 row-start-1 mt-3 font-title text-5xl leading-[1.1] text-title transition-all duration-700 sm:text-6xl xl:text-7xl ${i === active ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+                className={`col-start-1 row-start-1 mt-2 font-title text-5xl leading-[1.15] whitespace-nowrap text-title transition-opacity sm:text-[56px] ${i === active ? "opacity-100 delay-300 duration-700" : "opacity-0 duration-300"}`}
               >
                 {s.line1}
                 <br />
@@ -44,26 +44,14 @@ export default function HeroSlider() {
               </p>
             ))}
           </div>
-          <Link href="/contact" className="mt-8 inline-flex items-center gap-4 rounded-full bg-white py-2 pr-2 pl-6 text-sm font-medium text-title shadow-card hover:text-theme">
+          <Link href="/contact" className="mt-8 inline-flex items-center gap-4 whitespace-nowrap rounded-full bg-white py-2 pr-2 pl-6 text-base text-theme shadow-sm hover:text-title">
             Make Appointment
-            <span className="flex size-9 items-center justify-center rounded-full bg-theme text-white"><LuArrowRight /></span>
+            <span className="flex size-[50px] items-center justify-center rounded-full bg-theme text-xl text-white"><LuArrowRight /></span>
           </Link>
-          <div className="mt-8 flex justify-center gap-2 lg:justify-start">
-            {heroSlides.map((s, i) => (
-              <button
-                key={s.line1}
-                type="button"
-                onClick={() => setActive(i)}
-                aria-label={`Show slide ${i + 1}`}
-                aria-current={i === active}
-                className={`h-2 rounded-full transition-all ${i === active ? "w-8 bg-theme" : "w-2 bg-theme/30"}`}
-              />
-            ))}
-          </div>
         </div>
 
-        <div className="relative mx-auto aspect-[950/980] w-full max-w-[520px] self-end">
-          <div className="absolute inset-x-[6%] top-[4%] aspect-square rounded-full bg-white" aria-hidden="true" />
+        <div className="relative mx-auto mt-6 aspect-[950/980] w-full max-w-[560px] lg:mt-0 lg:max-w-[620px] lg:-translate-x-8">
+          <div className="absolute inset-x-[2%] top-[2%] aspect-square rounded-full border-[14px] border-[#f7e6dc] bg-white shadow-[0_0_0_70px_rgb(255_255_255/0.35)]" aria-hidden="true" />
           {heroSlides.map((s, i) => (
             <Image
               key={s.image}
@@ -71,8 +59,34 @@ export default function HeroSlider() {
               alt=""
               fill
               priority={i === 0}
-              sizes="(min-width: 1024px) 520px, 90vw"
+              sizes="(min-width: 1024px) 620px, 90vw"
               className={`object-contain object-bottom transition-opacity duration-1000 ${i === active ? "opacity-100" : "opacity-0"}`}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 hidden self-center lg:block">
+          <div className="relative ml-auto w-[245px] bg-theme px-6 py-9 text-center text-white shadow-[0_20px_40px_rgb(154_86_58/0.35)]">
+            <span className="absolute top-0 -left-[18px] size-[18px] bg-theme-dark [clip-path:polygon(0_0,100%_0,100%_100%)]" aria-hidden="true" />
+            <Image src="/assets/img/hero/rose-1.png" alt="" width={93} height={60} className="mx-auto w-[70px] brightness-0 invert" />
+            <p className="mt-3 font-title text-xl">Rebornurself</p>
+            <ul className="mt-4 space-y-1.5 text-xs font-bold">
+              <li>Flexible Services</li>
+              <li>Expert Treatments</li>
+              <li>Virtual Consults</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="relative z-10 flex justify-center gap-2 pb-6 lg:absolute lg:bottom-8 lg:left-[76px] lg:pb-0">
+          {heroSlides.map((s, i) => (
+            <button
+              key={s.line1}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-label={`Show slide ${i + 1}`}
+              aria-current={i === active}
+              className={`h-2 rounded-full transition-all ${i === active ? "w-8 bg-theme" : "w-2 bg-theme/30"}`}
             />
           ))}
         </div>
