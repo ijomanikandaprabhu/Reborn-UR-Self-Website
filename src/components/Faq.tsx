@@ -9,7 +9,7 @@ export default function Faq({ faqs, title = "Frequently Asked Questions" }: { fa
       <JsonLd data={faqSchema(faqs)} />
       <div className="container-site max-w-3xl">
         <SectionTitle eyebrow="Good to know" title={title} />
-        <div className="space-y-3">
+        <div data-reveal="stagger" className="space-y-3">
           {faqs.map((f, i) => (
             <details key={f.q} className="group card hover:translate-y-0" open={i === 0}>
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-title text-lg text-title sm:px-7 [&::-webkit-details-marker]:hidden">

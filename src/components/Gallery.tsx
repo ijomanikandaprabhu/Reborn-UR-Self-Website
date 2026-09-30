@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { LuChevronLeft, LuChevronRight, LuX, LuZoomIn } from "react-icons/lu";
 import { galleryCategories, galleryItems, type GalleryCategory } from "@/data/content";
 import { whatsappLink } from "@/lib/site";
+import { setScrollLocked } from "./SmoothScroll";
 
 export default function Gallery({ limit, masonry = false }: { limit?: number; masonry?: boolean }) {
   const [filter, setFilter] = useState<GalleryCategory>("all");
@@ -24,10 +25,10 @@ export default function Gallery({ limit, masonry = false }: { limit?: number; ma
       if (e.key === "ArrowRight") step(1);
       if (e.key === "ArrowLeft") step(-1);
     };
-    document.body.style.overflow = "hidden";
+    setScrollLocked(true);
     window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = "";
+      setScrollLocked(false);
       window.removeEventListener("keydown", onKey);
     };
   }, [open, step]);

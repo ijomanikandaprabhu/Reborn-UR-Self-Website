@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { LuChevronDown, LuMail, LuMenu, LuX } from "react-icons/lu";
 import { servicesFor, servicePath, type Gender } from "@/data/services";
 import { site, whatsappLink } from "@/lib/site";
+import { setScrollLocked } from "./SmoothScroll";
 import SocialLinks from "./SocialLinks";
 
 const links = [
@@ -38,7 +39,7 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    setScrollLocked(open);
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -128,6 +129,7 @@ export default function Header() {
         className={`fixed inset-y-0 left-0 z-50 w-[310px] max-w-[85vw] overflow-y-auto bg-white px-6 pt-5 pb-10 transition-transform duration-300 lg:hidden ${open ? "translate-x-0" : "-translate-x-full"}`}
         aria-hidden={!open}
         inert={!open}
+        data-lenis-prevent
       >
         <div className="flex items-center justify-between">
           <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} className="h-12 w-auto" />

@@ -91,7 +91,7 @@ export default function ContactPage() {
       <section className="section pt-0">
         <div className="container-site">
           <SectionTitle eyebrow="Good to know" title="How Booking Works" />
-          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul data-reveal="stagger" className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {bookingSteps.map((b) => (
               <li key={b.title} className="card p-7">
                 <h3 className="mb-3 text-xl">{b.title}</h3>

@@ -52,7 +52,7 @@ export default function Home() {
       <section className="section bg-gradient-to-b from-[#fbf3ef] to-white">
         <div className="container-site">
           <SectionTitle as="h1" eyebrow="Enhance, Empower, Elevate" title="Flawless Brow & Lip Solutions" />
-          <ul className="grid gap-x-6 gap-y-20 pt-10 sm:grid-cols-2 lg:grid-cols-3">
+          <ul data-reveal="stagger" className="grid gap-x-6 gap-y-20 pt-10 sm:grid-cols-2 lg:grid-cols-3">
             {highlights.map((h) => {
               const s = getService(h.slug)!;
               return (
@@ -74,7 +74,7 @@ export default function Home() {
 
       <section className="pb-20 lg:pb-28">
         <div className="container-site">
-          <div className="relative grid items-end gap-10 overflow-hidden bg-peach px-6 pt-14 lg:grid-cols-[1fr_minmax(0,460px)_1fr] lg:gap-8 lg:px-2 lg:pt-28">
+          <div data-reveal className="relative grid items-end gap-10 overflow-hidden bg-peach px-6 pt-14 lg:grid-cols-[1fr_minmax(0,460px)_1fr] lg:gap-8 lg:px-2 lg:pt-28">
             <ul className="space-y-10 self-start lg:pl-0">
               {panelLeft.map((slug) => <PanelItem key={slug} slug={slug} side="left" />)}
             </ul>
@@ -113,7 +113,7 @@ export default function Home() {
 
       <section className="section">
         <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="relative w-full max-w-[560px] pb-28">
+          <div data-reveal className="relative w-full max-w-[560px] pb-28">
             <Image src="/assets/img/about/about-9-1.jpg" alt="Brow treatment in progress at the Rebornurself studio in Chennai" width={450} height={480} className="w-[80%]" sizes="(min-width: 1024px) 450px, 80vw" />
             <Image src="/assets/img/about/about-9-2.jpg" alt="Close-up of finished permanent makeup brows" width={380} height={380} className="absolute right-0 bottom-0 w-[62%] border-[10px] border-white shadow-card-hover" sizes="(min-width: 1024px) 350px, 62vw" />
           </div>

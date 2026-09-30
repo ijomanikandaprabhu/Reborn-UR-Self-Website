@@ -76,7 +76,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="mt-16 rounded-lg border border-theme/25 bg-gradient-to-br from-cream to-peach/70 p-7 sm:p-10">
+          <div data-reveal className="mt-16 rounded-lg border border-theme/25 bg-gradient-to-br from-cream to-peach/70 p-7 sm:p-10">
             <h3 className="mb-6 text-2xl">At a glance</h3>
             <dl className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
               {facts.map(({ Icon, label, value }) => (

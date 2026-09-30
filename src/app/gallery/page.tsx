@@ -47,7 +47,7 @@ export default function GalleryPage() {
 
           <div className="mt-16 border-t border-line pt-14">
             <h2 className="mb-8 text-center text-3xl">About the treatments in this gallery</h2>
-            <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <dl data-reveal="stagger" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {treatments.map((t) => {
                 const s = getService(t.slug)!;
                 return (

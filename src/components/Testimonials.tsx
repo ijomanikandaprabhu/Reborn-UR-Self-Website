@@ -28,7 +28,7 @@ export default function Testimonials() {
             treatments. Our goal is to enhance your natural beauty and boost your confidence, one service at a time.
           </p>
         </div>
-        <ul className="grid gap-6 lg:grid-cols-3" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        <ul data-reveal className="grid gap-6 lg:grid-cols-3" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
           {visible.map((t, k) => {
             const active = k === 1;
             return (

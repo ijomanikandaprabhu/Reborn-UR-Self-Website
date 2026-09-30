@@ -23,7 +23,7 @@ export default function Journey({ steps, whatsappHref }: { steps: JourneyStep[];
     <section className="section">
       <div className="container-site">
         <SectionTitle eyebrow="What to expect" title="Your Journey With Us" />
-        <ol className="relative mx-auto max-w-[1080px] before:absolute before:inset-y-0 before:left-[19px] before:w-0.5 before:bg-theme/20 lg:before:left-1/2 lg:before:-ml-px">
+        <ol data-reveal="stagger" className="relative mx-auto max-w-[1080px] before:absolute before:inset-y-0 before:left-[19px] before:w-0.5 before:bg-theme/20 lg:before:left-1/2 lg:before:-ml-px">
           {steps.map((step, i) => {
             const Icon = icons[step.icon] ?? LuStar;
             const right = i % 2 === 1;

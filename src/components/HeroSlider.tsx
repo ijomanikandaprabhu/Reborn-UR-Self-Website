@@ -2,13 +2,36 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
 import { LuArrowRight } from "react-icons/lu";
 import { heroSlides } from "@/data/content";
 
 export default function HeroSlider() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const scope = useRef<HTMLElement>(null);
+
+  // Rings that grow out from behind the photo and fade (as on the old site),
+  // and a gentle sideways drift of the photo that follows the mouse.
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      gsap.fromTo(
+        ".hero-ring",
+        { scale: 1, opacity: 0.2 },
+        { scale: 2, opacity: 0, duration: 5, ease: "none", stagger: { each: 1.5, repeat: -1 } },
+      );
+      const art = scope.current?.querySelector(".hero-art");
+      if (!art || !window.matchMedia("(pointer: fine)").matches) return;
+      const moveX = gsap.quickTo(art, "x", { duration: 1.2, ease: "power3.out" });
+      const onMove = (e: MouseEvent) => moveX(((e.clientX / window.innerWidth) - 0.5) * -30);
+      window.addEventListener("mousemove", onMove);
+      return () => window.removeEventListener("mousemove", onMove);
+    },
+    { scope },
+  );
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -18,6 +41,7 @@ export default function HeroSlider() {
 
   return (
     <section
+      ref={scope}
       className="relative overflow-hidden bg-gradient-to-b from-[#fdf0e8] to-[#fdeee6]"
       aria-roledescription="carousel"
       aria-label="Highlights"
@@ -50,8 +74,13 @@ export default function HeroSlider() {
           </Link>
         </div>
 
-        <div className="relative mx-auto mt-6 aspect-[950/980] w-full max-w-[560px] lg:mt-0 lg:max-w-[620px] lg:-translate-x-8">
-          <div className="absolute inset-x-[2%] top-[2%] aspect-square rounded-full border-[14px] border-[#f7e6dc] bg-white shadow-[0_0_0_70px_rgb(255_255_255/0.35)]" aria-hidden="true" />
+        <div className="hero-art relative mx-auto mt-6 aspect-[950/980] w-full max-w-[560px] lg:mt-0 lg:max-w-[620px] lg:-translate-x-8">
+          <div className="absolute inset-x-[2%] top-[2%] flex aspect-square items-center justify-center" aria-hidden="true">
+            {[0, 1, 2].map((i) => (
+              <span key={i} className="hero-ring absolute size-[66%] rounded-full bg-theme opacity-0" />
+            ))}
+            <div className="relative size-full rounded-full border-[14px] border-[#f7e6dc] bg-white shadow-[0_0_0_70px_rgb(255_255_255/0.35)]" />
+          </div>
           {heroSlides.map((s, i) => (
             <Image
               key={s.image}
