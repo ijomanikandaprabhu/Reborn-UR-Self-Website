@@ -107,7 +107,7 @@ export default function Home() {
             <ul className="space-y-10 self-start lg:self-center lg:pb-20">
               {panelLeft.map((slug) => <PanelItem key={slug} slug={slug} side="left" />)}
             </ul>
-            <div data-reveal="zoom" className="relative mx-auto hidden aspect-[950/980] w-full max-w-[460px] lg:block">
+            <div data-wipe className="relative mx-auto hidden aspect-[950/980] w-full max-w-[460px] lg:block">
               <div className="absolute inset-x-[10%] top-0 aspect-square rounded-full bg-white" aria-hidden="true" />
               <Image src="/assets/img/hero/spa-girl-1.png" alt="Natural brows and lips after permanent makeup" fill sizes="460px" className="object-contain object-bottom" />
             </div>
@@ -144,9 +144,9 @@ export default function Home() {
           <SectionTitle eyebrow="Beyond the studio" title="Training & Events">
             Sandhiya trains new artists and takes part in beauty industry events.
           </SectionTitle>
-          <ul data-reveal="stagger" className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {galleryItems.filter((g) => g.cat === "events").slice(0, 4).map((g) => (
-              <li key={g.src} className="group relative aspect-[4/5] overflow-hidden rounded-lg bg-smoke">
+              <li key={g.src} data-wipe className="group relative aspect-[4/5] overflow-hidden rounded-lg bg-smoke">
                 <Image src={g.src} alt={g.alt} fill sizes="(min-width: 1024px) 300px, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
               </li>
             ))}

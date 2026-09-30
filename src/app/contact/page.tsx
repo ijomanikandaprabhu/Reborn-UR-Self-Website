@@ -53,7 +53,7 @@ export default function ContactPage() {
             </div>
             <ContactForm />
           </div>
-          <Image data-reveal="right" src="/assets/img/about/about-9-2.jpg" alt="Permanent makeup being applied at Rebornurself, Chennai" width={380} height={380} sizes="(min-width: 1024px) 560px, 100vw" className="h-full max-h-[480px] w-full object-cover lg:max-h-none" />
+          <div data-wipe className="overflow-hidden"><Image src="/assets/img/about/about-9-2.jpg" alt="Permanent makeup being applied at Rebornurself, Chennai" width={380} height={380} sizes="(min-width: 1024px) 560px, 100vw" className="h-full max-h-[480px] w-full object-cover lg:max-h-none" /></div>
         </div>
       </section>
 

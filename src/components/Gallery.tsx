@@ -20,6 +20,10 @@ export default function Gallery({ limit, masonry = false, resultsOnly = false }:
   useGSAP(
     () => {
       if (!filtered.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      // Photos still waiting for their scroll wipe would stay hidden after the layout changes; show them.
+      gsap.killTweensOf("ul [data-wipe], ul [data-wipe] img");
+      gsap.set("ul [data-wipe]", { clipPath: "none" });
+      gsap.set("ul [data-wipe] img", { scale: 1 });
       gsap.fromTo("ul > li", { y: 40, scale: 0.95, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, ease: "power3.out", stagger: 0.07, clearProps: "transform,opacity" });
     },
     { scope, dependencies: [filter] },
@@ -76,10 +80,10 @@ export default function Gallery({ limit, masonry = false, resultsOnly = false }:
           <a href={whatsappLink()} target="_blank" rel="noopener" className="text-theme underline">Ask us on WhatsApp</a> and we will share our latest work.
         </p>
       ) : (
-        <ul data-reveal="stagger" className={masonry ? "columns-2 gap-3 sm:gap-5 lg:columns-3" : "flex flex-wrap justify-center gap-5 [&>li]:w-full sm:[&>li]:w-[calc(50%-10px)] lg:[&>li]:w-[calc(33.333%-14px)]"}>
+        <ul className={masonry ? "columns-2 gap-3 sm:gap-5 lg:columns-3" : "flex flex-wrap justify-center gap-5 [&>li]:w-full sm:[&>li]:w-[calc(50%-10px)] lg:[&>li]:w-[calc(33.333%-14px)]"}>
           {items.map((g, i) => (
             <li key={g.src} className={masonry ? "mb-3 break-inside-avoid sm:mb-5" : ""}>
-              <button type="button" onClick={() => setOpen(i)} className={`group relative block w-full overflow-hidden rounded-lg bg-smoke ${masonry ? "" : "aspect-[4/5]"}`}>
+              <button type="button" data-wipe onClick={() => setOpen(i)} className={`group relative block w-full overflow-hidden rounded-lg bg-smoke ${masonry ? "" : "aspect-[4/5]"}`}>
                 {masonry ? (
                   <Image src={g.src} alt={g.alt} width={g.w} height={g.h} sizes="(min-width: 768px) 420px, 50vw" className="h-auto w-full transition duration-500 group-hover:scale-105" />
                 ) : (
