@@ -77,7 +77,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
       <section className="section">
         <div className="container-site grid gap-12 lg:grid-cols-[300px_1fr] xl:gap-14">
           <article className="lg:col-start-2 lg:row-start-1">
-            <Image data-reveal="zoom" src={s.heroImage} alt={`${name} at Rebornurself, New Perungalathur, Chennai`} width={895} height={499} priority sizes="(min-width: 1200px) 800px, 100vw" className="mb-10 w-full rounded-lg" />
+            <div data-reveal="zoom" className="mega-hover mb-10 rounded-lg"><Image src={s.heroImage} alt={`${name} at Rebornurself, New Perungalathur, Chennai`} width={895} height={499} priority sizes="(min-width: 1200px) 800px, 100vw" className="w-full" /></div>
             <Blocks blocks={s.intro.slice(0, firstP + 1)} />
             {/* WhatsApp enquiry, early in the article. */}
             <a href={enquire} target="_blank" rel="noopener" className="btn-wa mt-2 mb-6 w-full sm:w-auto">
@@ -87,7 +87,9 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
             {s.pairImages.length > 0 && (
               <div data-reveal="stagger" className="my-10 grid grid-cols-2 gap-4">
                 {s.pairImages.map((src, i) => (
-                  <Image key={src} src={src} alt={`${name} ${i === 0 ? "procedure" : "result"} at Rebornurself`} width={437} height={419} sizes="(min-width: 1200px) 400px, 50vw" className="w-full rounded-lg" />
+                  <div key={src} className="mega-hover rounded-lg">
+                    <Image src={src} alt={`${name} ${i === 0 ? "procedure" : "result"} at Rebornurself`} width={437} height={419} sizes="(min-width: 1200px) 400px, 50vw" className="w-full" />
+                  </div>
                 ))}
               </div>
             )}

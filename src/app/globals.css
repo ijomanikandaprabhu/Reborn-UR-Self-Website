@@ -173,3 +173,44 @@ html[data-seen] .loader {
 .link-slide:focus-visible {
   background-size: 100% 1px;
 }
+
+/* Photo hover from the original site: two light bands flash out from the
+   centre (one across, one down) while the photo slowly zooms. */
+.mega-hover {
+  position: relative;
+  overflow: hidden;
+}
+.mega-hover img {
+  transition: transform 2s ease;
+}
+.mega-hover::before,
+.mega-hover::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  transform: rotate(5deg);
+}
+.mega-hover::before {
+  inset: -10% 51% -10% 50%;
+  background: rgb(255 255 255 / 0.3);
+}
+.mega-hover::after {
+  inset: 50% -10% 50% -10%;
+  background: rgb(255 255 255 / 0.6);
+}
+.mega-hover:hover::before {
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 900ms linear;
+}
+.mega-hover:hover::after {
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: all 900ms linear;
+}
+.mega-hover:hover img {
+  transform: scale(1.05);
+}
