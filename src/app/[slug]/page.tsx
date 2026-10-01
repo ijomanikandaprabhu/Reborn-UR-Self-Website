@@ -85,9 +85,9 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
               <div className="mb-5 inline-grid grid-cols-2 rounded-full bg-peach p-1 text-sm font-medium" role="group" aria-label="Treatment for">
                 {[s, other].sort((a, b) => (a.gender === b.gender ? 0 : a.gender === "women" ? -1 : 1)).map((v) =>
                   v.slug === s.slug ? (
-                    <span key={v.slug} aria-current="page" className="rounded-full bg-theme px-6 py-2 text-center text-white shadow">{genderLabel(v.gender)}</span>
+                    <span key={v.slug} aria-current="page" className="rounded-full bg-theme px-6 py-2.5 text-center text-white shadow">{genderLabel(v.gender)}</span>
                   ) : (
-                    <Link key={v.slug} href={servicePath(v)} className="rounded-full px-6 py-2 text-center text-title hover:text-theme">{genderLabel(v.gender)}</Link>
+                    <Link key={v.slug} href={servicePath(v)} className="rounded-full px-6 py-2.5 text-center text-title hover:text-theme">{genderLabel(v.gender)}</Link>
                   ),
                 )}
               </div>
