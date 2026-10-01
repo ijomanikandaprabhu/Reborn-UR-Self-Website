@@ -29,7 +29,13 @@ export const metadata: Metadata = {
     images: [{ url: site.ogImage, width: 1200, height: 630, alt: "Rebornurself, permanent makeup studio in New Perungalathur, Chennai" }],
   },
   twitter: { card: "summary_large_image" },
-  icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   // Paste the Google Search Console code into NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION (in Vercel) to verify the site.
   verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
     ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
