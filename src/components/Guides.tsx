@@ -92,7 +92,7 @@ export function Aftercare({ service }: { service: Service }) {
             Healing is where great results are made. Follow these simple steps for soft, even colour that lasts.
             We also give you written aftercare on the day.
           </p>
-          <div className="relative mt-8 hidden max-w-[300px] overflow-hidden rounded-t-full sm:block">
+          <div className="relative mt-8 hidden max-w-[300px] overflow-hidden rounded-t-full lg:block">
             <Image src={service.pairImages[1] ?? service.heroImage} alt={`${service.name} at Rebornurself, Chennai`} width={437} height={419} sizes="300px" className="aspect-[3/4] w-full object-cover" />
           </div>
           <a
