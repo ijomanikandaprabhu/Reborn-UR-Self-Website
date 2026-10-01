@@ -49,10 +49,9 @@ export default function WhatsAppFloat() {
       aria-label="Enquire on WhatsApp"
       aria-hidden={hidden}
       tabIndex={hidden ? -1 : 0}
-      className={`fixed bottom-5 left-4 z-30 ${service ? "max-md:hidden" : ""} flex h-[54px] w-[54px] items-center justify-center gap-2.5 rounded-full bg-wa text-[15px] font-medium text-white shadow-[0_8px_24px_rgb(17_128_63/0.35)] transition duration-500 hover:bg-wa-dark md:bottom-8 md:left-6 md:w-auto md:px-5 ${hidden ? "pointer-events-none translate-y-24 opacity-0" : "translate-y-0 opacity-100 hover:-translate-y-0.5"}`}
+      className={`fixed bottom-5 left-4 z-30 ${service ? "max-md:hidden" : ""} flex size-[54px] items-center justify-center rounded-full bg-wa text-white shadow-[0_8px_24px_rgb(17_128_63/0.35)] transition duration-500 hover:bg-wa-dark md:bottom-8 md:left-6 md:size-14 ${hidden ? "pointer-events-none translate-y-24 opacity-0" : "translate-y-0 opacity-100 hover:-translate-y-0.5"}`}
     >
       <FaWhatsapp className="text-[26px]" />
-      <span className="hidden md:inline">Enquire on WhatsApp</span>
     </a>
   );
 }
