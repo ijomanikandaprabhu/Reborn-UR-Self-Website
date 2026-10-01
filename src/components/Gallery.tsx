@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
-import { LuChevronLeft, LuChevronRight, LuX, LuZoomIn } from "react-icons/lu";
+import { LuChevronDown, LuChevronLeft, LuChevronRight, LuX, LuZoomIn } from "react-icons/lu";
 import { galleryCategories, galleryItems, type GalleryCategory } from "@/data/content";
 import { enquiryMessage, whatsappLink } from "@/lib/site";
 import { setScrollLocked } from "./SmoothScroll";
@@ -143,8 +143,25 @@ export default function Gallery({
 
   return (
     <div ref={scope}>
-      {/* Phones scroll the filters sideways in one row; larger screens wrap them. */}
-      <div className="-mx-4 mb-10 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0" role="group" aria-label="Filter photos">
+      {/* Phones: one dropdown (the phone's own picker). Larger screens: a row of filter buttons. */}
+      <div className="mb-8 flex items-center justify-center gap-3 sm:hidden">
+        <label htmlFor="gallery-filter" className="text-sm font-medium text-title">Show</label>
+        <div className="relative">
+          <select
+            id="gallery-filter"
+            value={filter}
+            onChange={(e) => choose(e.target.value as GalleryCategory)}
+            className="h-11 cursor-pointer appearance-none rounded-full border border-theme bg-white pr-11 pl-5 text-[15px] font-medium text-theme"
+          >
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>{c.label} ({c.count})</option>
+            ))}
+          </select>
+          <LuChevronDown className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-theme" aria-hidden="true" />
+        </div>
+      </div>
+      <div className="mb-10 hidden flex-wrap justify-center gap-2 sm:flex" role="group" aria-label="Filter photos">
+
         {categories.map((c) => (
           <button
             key={c.id}
