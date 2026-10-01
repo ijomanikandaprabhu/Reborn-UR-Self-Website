@@ -39,6 +39,7 @@ export default function Header() {
     };
   }, [ddOpen]);
   const [scrolled, setScrolled] = useState(false);
+  const [compact, setCompact] = useState(false);
 
   // Close the mobile menu whenever the page changes.
   const [lastPath, setLastPath] = useState(pathname);
@@ -69,12 +70,22 @@ export default function Header() {
   // Scrolling down hides the sticky header; scrolling up brings it back.
   const [hidden, setHidden] = useState(false);
   const lastY = useRef(0);
+  const pinned = useRef(false);
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 120);
+      // Pin once the whole header has scrolled out of view, so the switch is never seen; unpin only when
+      // the normal bar would sit exactly where the pinned one is (just below the top bar), so there is no jump.
+      const el = headerRef.current;
+      const topBar = (el?.children[0] as HTMLElement | undefined)?.offsetHeight ?? 0;
+      const full = el?.offsetHeight ?? 150;
+      const past = pinned.current ? y > topBar : y > full;
+      // Slim down only well clear of the top; near the top the pinned bar grows back first, so content never moves.
+      setCompact(y > full);
+      pinned.current = past;
+      setScrolled(past);
       if (Math.abs(y - lastY.current) > 6) {
-        setHidden(y > 400 && y > lastY.current);
+        setHidden(past && y > lastY.current);
         lastY.current = y;
       }
     };
@@ -82,6 +93,13 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Slide animations start a frame after pinning, so the bar never visibly slides away as it pins.
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setAnimate(scrolled));
+    return () => cancelAnimationFrame(id);
+  }, [scrolled]);
 
   useEffect(() => {
     setScrollLocked(open);
@@ -93,7 +111,7 @@ export default function Header() {
   const isActive = (href: string) => pathname === href;
   const onServicePage = groups.some((g) => servicesFor(g).some((s) => pathname === servicePath(s)));
   const navLink = (active: boolean) =>
-    `relative ${scrolled ? "py-6" : "py-9"} text-[14px] font-semibold uppercase transition-[padding] duration-300 xl:text-[15px] ${active ? "text-theme" : "text-title hover:text-theme"}`;
+    `relative ${compact ? "py-6" : "py-9"} text-[14px] font-semibold uppercase transition-[padding] duration-300 xl:text-[15px] ${active ? "text-theme" : "text-title hover:text-theme"}`;
 
   return (
     <header ref={headerRef} className="relative z-40">
@@ -110,11 +128,11 @@ export default function Header() {
       </div>
 
       <div
-        className={`${scrolled ? "fixed inset-x-0 top-0 animate-fade-in shadow-md" : "relative"} bg-white transition-transform duration-300 ${scrolled && hidden && !open && !ddOpen ? "-translate-y-full" : "translate-y-0"}`}
+        className={`${scrolled ? "fixed inset-x-0 top-0 shadow-md" : "relative"} bg-white ${animate ? "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" : ""} ${scrolled && hidden && !open && !ddOpen ? "-translate-y-full" : "translate-y-0"}`}
       >
         <div className="container-site flex items-center justify-between gap-6">
           <Link href="/" className="shrink-0 py-3" aria-label="Rebornurself home">
-            <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} priority className={`w-auto transition-[height] duration-300 ${scrolled ? "h-12" : "h-16 xl:h-20"}`} />
+            <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} priority className={`w-auto transition-[height] duration-300 ${compact ? "h-12" : "h-16 xl:h-20"}`} />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">
