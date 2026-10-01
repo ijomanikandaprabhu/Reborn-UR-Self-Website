@@ -3,10 +3,10 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import {
-  LuCalendarCheck, LuCircleCheck, LuClipboardList, LuFlower2, LuMessagesSquare,
+  LuCalendarCheck, LuChevronDown, LuCircleCheck, LuClipboardList, LuFlower2, LuMessagesSquare,
   LuPencilRuler, LuRotateCw, LuStar, LuUsers,
 } from "react-icons/lu";
 import type { JourneyStep } from "@/data/services";
@@ -28,6 +28,8 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function Journey({ steps, whatsappHref }: { steps: JourneyStep[]; whatsappHref: string }) {
   const list = useRef<HTMLOListElement>(null);
+  // Phones show the first three steps until the visitor asks for the rest.
+  const [all, setAll] = useState(false);
 
   // As you scroll, a brown line fills down the timeline and each number
   // lights up (with a small pop) when the line reaches it.
@@ -58,7 +60,7 @@ export default function Journey({ steps, whatsappHref }: { steps: JourneyStep[];
             const Icon = icons[step.icon] ?? LuStar;
             const right = i % 2 === 1;
             return (
-              <li key={step.title} data-reveal={right ? "right" : "left"} className={`relative mb-7 pl-14 last:mb-0 md:mb-0 md:w-1/2 ${i > 0 ? "md:-mt-24" : ""} ${right ? "md:ml-[50%] md:pl-14" : "md:pr-14 md:pl-0"}`}>
+              <li key={step.title} data-reveal={right ? "right" : "left"} className={`relative mb-7 pl-14 last:mb-0 ${!all && i >= 3 ? "max-md:hidden" : ""} md:mb-0 md:w-1/2 ${i > 0 ? "md:-mt-24" : ""} ${right ? "md:ml-[50%] md:pl-14" : "md:pr-14 md:pl-0"}`}>
                 <span className={`jr-num absolute top-8 left-0 z-[2] flex size-10 items-center justify-center rounded-full bg-theme font-bold text-white ring-5 ring-white ${right ? "md:-left-5" : "md:right-[-20px] md:left-auto"}`}>
                   {i + 1}
                 </span>
@@ -73,6 +75,17 @@ export default function Journey({ steps, whatsappHref }: { steps: JourneyStep[];
             );
           })}
         </ol>
+        {!all && steps.length > 3 && (
+          <div className="mt-6 text-center md:hidden">
+            <button
+              type="button"
+              onClick={() => { setAll(true); requestAnimationFrame(() => ScrollTrigger.refresh()); }}
+              className="btn border border-theme text-theme"
+            >
+              Show all {steps.length} steps <LuChevronDown />
+            </button>
+          </div>
+        )}
         <div className="mt-12 text-center">
           <a href={whatsappHref} target="_blank" rel="noopener" className="btn-wa px-9 py-4 text-base">
             <FaWhatsapp className="text-xl" /> Start Your Journey on WhatsApp

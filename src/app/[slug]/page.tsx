@@ -4,10 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaWhatsapp } from "react-icons/fa6";
-import { LuArrowRight } from "react-icons/lu";
+import { LuArrowRight, LuHourglass, LuRotateCw, LuSyringe, LuUsers } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
 import Faq from "@/components/Faq";
 import { galleryCategoryFor, galleryItems } from "@/data/content";
+import StickyBookBar from "@/components/StickyBookBar";
 import JsonLd from "@/components/JsonLd";
 import Journey from "@/components/Journey";
 import PageBanner from "@/components/PageBanner";
@@ -79,6 +80,33 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
       <section className="section">
         <div className="container-site grid gap-12 lg:grid-cols-[300px_1fr] xl:gap-14">
           <article className="lg:col-start-2 lg:row-start-1">
+            {/* Women / Men switch, when the treatment is offered for both. */}
+            {other && (
+              <div className="mb-5 inline-grid grid-cols-2 rounded-full bg-peach p-1 text-sm font-medium" role="group" aria-label="Treatment for">
+                {[s, other].sort((a, b) => (a.gender === b.gender ? 0 : a.gender === "women" ? -1 : 1)).map((v) =>
+                  v.slug === s.slug ? (
+                    <span key={v.slug} aria-current="page" className="rounded-full bg-theme px-6 py-2 text-center text-white shadow">{genderLabel(v.gender)}</span>
+                  ) : (
+                    <Link key={v.slug} href={servicePath(v)} className="rounded-full px-6 py-2 text-center text-title hover:text-theme">{genderLabel(v.gender)}</Link>
+                  ),
+                )}
+              </div>
+            )}
+            {/* Quick facts, all taken from what the page already says. */}
+            <ul className="mb-8 grid grid-cols-2 gap-2 text-[13px] sm:flex sm:flex-wrap sm:text-sm">
+              {[
+                s.lasts && { Icon: LuHourglass, text: `Lasts ${s.lasts}` },
+                { Icon: LuSyringe, text: "20-min numbing first" },
+                { Icon: LuRotateCw, text: "Touch-up in 30–90 days" },
+                { Icon: LuUsers, text: other ? "For women & men" : `For ${genderLabel(s.gender).toLowerCase()}` },
+              ]
+                .filter((x): x is { Icon: typeof LuHourglass; text: string } => Boolean(x))
+                .map(({ Icon, text }) => (
+                  <li key={text} className="flex items-center gap-2 rounded-2xl border border-theme/20 bg-cream px-3 py-2 leading-tight text-title sm:rounded-full sm:px-4">
+                    <Icon className="text-theme" aria-hidden="true" /> {text}
+                  </li>
+                ))}
+            </ul>
             <div data-wipe className="mega-hover mb-10 rounded-lg"><Image src={s.heroImage} alt={`${name} at Rebornurself, New Perungalathur, Chennai`} width={895} height={499} priority sizes="(min-width: 1200px) 800px, 100vw" className="w-full" /></div>
             <Blocks blocks={s.intro.slice(0, firstP + 1)} />
             {/* WhatsApp enquiry, early in the article. */}
@@ -103,7 +131,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
             )}
           </article>
 
-          <aside data-reveal="left" className="space-y-6 md:max-w-md lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
+          <aside data-reveal="left" className="hidden space-y-6 lg:block lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
             <div className="relative mx-auto hidden max-w-[270px] lg:block">
               {/* Leaf tucked behind the pill, floating up and down as on the old site. */}
               <div className="absolute top-[34%] -left-[92px] w-[150px] animate-float">
@@ -116,7 +144,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
               </div>
             </div>
 
-            <nav aria-label={`Other treatments for ${genderLabel(s.gender).toLowerCase()}`} className="card p-7 hover:translate-y-0">
+            <nav aria-label={`Other treatments for ${genderLabel(s.gender).toLowerCase()}`} className="card hidden p-7 hover:translate-y-0 lg:block">
               <p className="mb-4 font-title text-xl text-title">More for {genderLabel(s.gender)}</p>
               <ul className="divide-y divide-line">
                 {related.map((o) => (
@@ -139,9 +167,29 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
         </div>
       </section>
 
+      {/* Phones and tablets: other treatments as swipeable cards. */}
+      <section className="pb-16 lg:hidden" aria-label="You may also like">
+        <div className="container-site">
+          <h2 className="mb-5 text-3xl">You may also like</h2>
+          <ul className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none]">
+            {related.map((o) => (
+              <li key={o.slug} className="w-[70%] shrink-0 snap-start sm:w-[40%]">
+                <Link href={servicePath(o)} className="card flex h-full flex-col items-center p-6 text-center hover:translate-y-0">
+                  <span className="mb-3 flex size-16 items-center justify-center rounded-full bg-peach"><Image src={iconPath(o)} alt="" width={34} height={34} /></span>
+                  <span className="font-title text-xl text-title">{o.name}</span>
+                  <span className="mt-2 flex-1 text-sm">{o.card}</span>
+                  <span className="mt-3 flex items-center gap-1 text-sm font-semibold text-theme">Learn more <LuArrowRight /></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <Journey steps={s.journey} whatsappHref={enquire} />
       <Faq faqs={faqsFor(s)} title={`${s.name}: Your Questions`} />
       <CtaBand title={s.cta.title} text={s.cta.text} message={enquiryMessage(name)} />
+      <StickyBookBar whatsappHref={enquire} />
     </>
   );
 }
