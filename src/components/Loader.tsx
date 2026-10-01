@@ -29,9 +29,9 @@ const spline = ".4 0 .6 1";
 
 export const loaderScript = `try{var d=document.documentElement;d.classList.add('js');if(location.pathname!=='/')d.setAttribute('data-seen','')}catch(e){}`;
 
-export default function Loader() {
+export default function Loader({ replay = false }: { replay?: boolean }) {
   return (
-    <div className="loader pointer-events-none fixed inset-0 z-[999] flex items-center justify-center bg-white" aria-hidden="true">
+    <div className={`loader ${replay ? "loader-replay" : ""} pointer-events-none fixed inset-0 z-[999] flex items-center justify-center bg-white`} aria-hidden="true">
       <svg className="h-[86px] w-[188px] overflow-visible sm:h-[108px] sm:w-[236px]" viewBox="0 0 360 165">
         <g transform="translate(100,50) scale(-1,1)">{brow}</g>
         <g transform="translate(100,108) scale(-1,1)">{eye}</g>

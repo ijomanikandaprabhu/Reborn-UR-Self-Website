@@ -93,12 +93,19 @@
   @apply btn bg-wa text-white hover:bg-wa-dark;
 }
 
-/* The eyes loader: shown once per visit, gone after its wink. */
+/* The eyes intro on the home page, gone after its wink. */
 .loader {
-  animation: loader-out 0.35s ease 0.8s forwards;
+  animation: loader-out 0.45s ease-in-out 0.8s forwards;
 }
 html[data-seen] .loader {
   display: none;
+}
+/* Coming back to Home from another page: fade the eyes in over the page instead of popping in. */
+.loader-replay {
+  animation: loader-in 0.3s ease-out both, loader-out 0.45s ease-in-out 0.9s forwards;
+}
+@keyframes loader-in {
+  from { opacity: 0; }
 }
 @keyframes loader-out {
   to { opacity: 0; visibility: hidden; }

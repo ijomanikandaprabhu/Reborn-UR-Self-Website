@@ -14,6 +14,12 @@ import { site, whatsappLink } from "@/lib/site";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const SLIDE_MS = 9000;
+// One motion language for the whole hero.
+const EASE_IN = "power3.out"; // arriving
+const EASE_OUT = "power2.inOut"; // leaving
+const IN = 1.1; // seconds to arrive
+const OUT = 0.7; // seconds to leave
+const INTRO_DELAY = 0.9; // the eyes intro plays every time Home opens
 const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /**
@@ -66,11 +72,8 @@ export default function HeroSlider() {
   useGSAP(
     () => {
       if (reducedMotion()) return;
-      const firstVisit = !document.documentElement.hasAttribute("data-seen");
-
-
       // The circle's border draws itself in, then the photo rises into it.
-      const intro = gsap.timeline({ delay: firstVisit ? 0.8 : 0.1 });
+      const intro = gsap.timeline({ delay: INTRO_DELAY });
       intro
         .fromTo(".hero-draw circle", { strokeDashoffset: 1, opacity: 1 }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut" })
         .to(".hero-draw", { opacity: 0, duration: 0.8 }, "-=0.2")
@@ -113,8 +116,8 @@ export default function HeroSlider() {
     { scope },
   );
 
-  // Slide change: the old site's layer timings, with the headline now
-  // rising letter by letter and a slow zoom on the photo.
+  // Slide change: the old slide eases out while the new one eases in, every layer
+  // using the same easing and durations so the whole hero moves as one.
   const prev = useRef<number | null>(null);
   useGSAP(
     () => {
@@ -133,19 +136,20 @@ export default function HeroSlider() {
         return;
       }
 
-      const ease = "expo.out";
       const tl = gsap.timeline();
       let start = 0;
       if (from !== null && from !== active) {
+        // Exit: everything leaves together, gently, the way it came in.
         const out = slides[from];
-        tl.to(out.querySelectorAll(".hc"), { yPercent: -110, duration: 0.45, ease: "power2.in", stagger: 0.012 }, 0)
-          .to(out.querySelectorAll(".hl"), { x: -100, autoAlpha: 0, duration: 0.5, ease: "power2.in" }, 0)
-          .to(out.querySelector(".hl-btn"), { y: 150, autoAlpha: 0, duration: 0.6, ease: "power2.in" }, 0)
-          .to(badge, { x: 300, autoAlpha: 0, duration: 0.6, ease: "power2.in" }, 0)
+        const leave = { duration: OUT, ease: EASE_OUT };
+        tl.to(out.querySelectorAll(".hc"), { yPercent: -110, opacity: 0, ...leave, stagger: 0.012 }, 0)
+          .to(out.querySelectorAll(".hl"), { x: -40, autoAlpha: 0, ...leave }, 0)
+          .to(out.querySelector(".hl-btn"), { y: 40, autoAlpha: 0, ...leave }, 0)
+          .to(badge, { x: 60, autoAlpha: 0, ...leave }, 0)
           .set(out, { autoAlpha: 0 });
-        start = 0.65;
-      } else if (!document.documentElement.hasAttribute("data-seen")) {
-        start = 0.9; // wait for the eyes loader on a first visit
+        start = OUT * 0.65; // the new slide starts arriving before the old one has quite gone
+      } else {
+        start = INTRO_DELAY; // first show: wait for the eyes intro
       }
 
       // Slow zoom (Ken Burns) on the photo for as long as the slide shows.
@@ -154,14 +158,16 @@ export default function HeroSlider() {
         if (i === active) gsap.fromTo(p, { scale: 1 }, { scale: 1.06, duration: SLIDE_MS / 1000 + 1, ease: "none", transformOrigin: "50% 100%" });
       });
 
+      // Entry: one easing and duration for every layer, staggered a little.
+      const arrive = { duration: IN, ease: EASE_IN };
       const inn = slides[active];
       tl.set(inn, { autoAlpha: 1 }, start)
-        .fromTo(inn.querySelectorAll(".hl"), { x: -60, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1.2, ease }, start)
-        .fromTo(inn.querySelectorAll(".hc"), { yPercent: 110, opacity: 1 }, { yPercent: 0, duration: 1, ease, stagger: 0.035 }, start + 0.2)
-        .fromTo(inn.querySelector(".hl-btn"), { y: 150, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.5, ease }, start + 0.8)
-        .fromTo(badge, { x: 100, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1.5, ease }, start + 0.5)
-        .fromTo(`${badge} .hb-icon`, { y: -50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.5, ease }, start + 1)
-        .fromTo(`${badge} .hb-txt`, { y: 100, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.5, ease, stagger: 0.1 }, start + 1);
+        .fromTo(inn.querySelectorAll(".hl"), { x: -40, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ...arrive }, start)
+        .fromTo(inn.querySelectorAll(".hc"), { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, ...arrive, stagger: 0.03 }, start + 0.1)
+        .fromTo(inn.querySelector(".hl-btn"), { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ...arrive }, start + 0.3)
+        .fromTo(badge, { x: 60, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ...arrive }, start + 0.2)
+        .fromTo(`${badge} .hb-icon`, { y: -24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ...arrive }, start + 0.4)
+        .fromTo(`${badge} .hb-txt`, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ...arrive, stagger: 0.06 }, start + 0.45);
     },
     { scope, dependencies: [active] },
   );
@@ -243,7 +249,7 @@ export default function HeroSlider() {
                 fill
                 priority={i === 0}
                 sizes="(min-width: 1024px) 45vh, 84vw"
-                className={`object-contain object-bottom transition-opacity duration-1000 motion-reduce:transition-none ${i === active ? "opacity-100" : "opacity-0"}`}
+                className={`object-contain object-bottom transition-opacity duration-[1100ms] ease-in-out motion-reduce:transition-none ${i === active ? "opacity-100" : "opacity-0"}`}
               />
             ))}
           </div>
