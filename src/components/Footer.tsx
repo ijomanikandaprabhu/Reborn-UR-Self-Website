@@ -31,9 +31,9 @@ export default function Footer() {
             <p className="mt-5 max-w-xs text-[15px] leading-relaxed">
               Permanent makeup studio in New Perungalathur, Chennai, for natural brows and lips, for women and men.
             </p>
-            <ul className="mt-5 space-y-1 text-sm lg:space-y-2">
-              <li className="flex items-center justify-center gap-2 lg:justify-start"><LuMapPin className="text-theme" aria-hidden="true" /> New Perungalathur, Chennai</li>
-              <li className="flex items-center justify-center gap-2 lg:justify-start"><LuClock className="text-theme" aria-hidden="true" /> Open daily, {site.hours.display}</li>
+            <ul className="mt-5 text-sm lg:space-y-1">
+              <li className="flex items-center justify-center gap-2 py-2.5 lg:justify-start lg:py-1"><LuMapPin className="text-theme" aria-hidden="true" /> New Perungalathur, Chennai</li>
+              <li className="flex items-center justify-center gap-2 py-2.5 lg:justify-start lg:py-1"><LuClock className="text-theme" aria-hidden="true" /> Open daily, {site.hours.display}</li>
               <li>
                 <a href={`tel:${site.phone}`} className="inline-flex items-center gap-2 py-2.5 text-white hover:text-theme lg:py-1">
                   <LuPhone className="text-theme" aria-hidden="true" /> {site.phoneDisplay}
@@ -73,7 +73,7 @@ export default function Footer() {
           {/* Studio pages */}
           <nav aria-label="Footer" className="col-span-2 sm:col-span-1">
             <p className="mb-4 font-title text-xl text-white">Studio</p>
-            <ul className="flex flex-wrap gap-x-6 text-[15px] sm:block sm:space-y-1">
+            <ul className="flex flex-wrap gap-x-6 text-[15px] sm:block lg:space-y-1">
               {menu.map((m) => (
                 <li key={m.href}><Link href={m.href} className="link-slide inline-block py-2.5 hover:text-theme lg:py-1.5">{m.label}</Link></li>
               ))}
@@ -84,9 +84,9 @@ export default function Footer() {
 
         <p className="mt-12 flex flex-col items-center gap-1 border-t border-white/10 pt-7 text-center text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} Rebornurself. All rights reserved.</span>
-          <span>
-            Website by{" "}
-            <a href="https://ijocreations.com/" target="_blank" rel="noopener" className="link-slide inline-block py-2.5 text-white/80 hover:text-theme sm:py-0">Ijocreations</a>
+          <span className="flex items-center gap-1">
+            Website by
+            <a href="https://ijocreations.com/" target="_blank" rel="noopener" className="link-slide inline-flex min-h-11 items-center text-white/80 hover:text-theme">Ijocreations</a>
           </span>
         </p>
       </div>
