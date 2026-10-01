@@ -27,7 +27,7 @@ export const site = {
   areasServed: ["Chennai"],
   founder: {
     name: "Sandhiya Srinivasan",
-    role: "Founder & lead artist",
+    role: "Founder & Lead Artist",
     email: "sandhiyasrinivasan@rebornurself.com",
     image: "/assets/img/profile1.png",
     social: {

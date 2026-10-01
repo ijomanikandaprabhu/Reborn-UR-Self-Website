@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
-import { LuArrowRight, LuAward, LuMapPin, LuSparkles, LuUserRound, LuUsers } from "react-icons/lu";
+import { FaWhatsapp } from "react-icons/fa6";
+import { LuArrowRight, LuAward, LuSparkles, LuUsers } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
 import PageBanner from "@/components/PageBanner";
@@ -10,9 +11,9 @@ import SectionTitle from "@/components/SectionTitle";
 import SocialLinks from "@/components/SocialLinks";
 import Testimonials from "@/components/Testimonials";
 import { galleryItems } from "@/data/content";
-import { servicePath, servicesFor } from "@/data/services";
+import { servicesFor } from "@/data/services";
 import { founderSchema } from "@/lib/schema";
-import { site } from "@/lib/site";
+import { site, whatsappLink } from "@/lib/site";
 
 const description =
   "Meet Sandhiya Srinivasan, the permanent makeup artist behind Rebornurself in Chennai. Brow and lip artistry built on trust, comfort, hygiene and care.";
@@ -29,25 +30,11 @@ const training = ["certificate-presentation-1", "microblading-training-group", "
   (n) => galleryItems.find((g) => g.src.endsWith(`/${n}.jpg`))!,
 );
 
-const facts = [
-  { Icon: LuAward, label: "Qualification", value: "Certified artist, Master’s Advanced Level in Permanent Makeup" },
-  { Icon: LuUserRound, label: "Role", value: "Founder & lead artist at Rebornurself" },
-  {
-    Icon: LuSparkles,
-    label: "Specialisms",
-    value: (
-      <>
-        {servicesFor("women").map((s, i, all) => (
-          <span key={s.slug}>
-            <Link href={servicePath(s)} className="text-theme underline-offset-2 hover:underline">{s.name}</Link>
-            {i < all.length - 2 ? ", " : i === all.length - 2 ? " and " : ""}
-          </span>
-        ))}
-      </>
-    ),
-  },
-  { Icon: LuUsers, label: "Works with", value: "Women and men" },
-  { Icon: LuMapPin, label: "Studio", value: "New Perungalathur, Chennai" },
+// Quick facts shown as pills under her name.
+const quickFacts = [
+  { Icon: LuAward, text: "Certified Master Artist" },
+  { Icon: LuUsers, text: "Women & Men" },
+  { Icon: LuSparkles, text: `${servicesFor("women").length} Treatments` },
 ];
 
 export default function AboutPage() {
@@ -57,62 +44,72 @@ export default function AboutPage() {
       <PageBanner title="Meet the" highlight="Artist" crumbs={[{ name: "About Us", path: "/about" }]} image="/assets/img/breadcumb/breadcumb-bg-2.webp" />
 
       <section className="bg-cream bg-cover bg-center" style={{ backgroundImage: "url(/assets/img/bg/body-bg-1.webp)" }}>
-        <div className="relative mx-auto max-w-[1140px] bg-white px-4 py-20 sm:px-4 lg:py-28">
+        <div className="relative mx-auto max-w-[1140px] bg-white px-4 py-16 lg:py-28">
           <Image src="/assets/img/hero/hero-leaf-5.png" alt="" width={246} height={251} data-parallax="0.6" className="absolute top-4 right-[15%] hidden w-40 xl:block" />
-          <div className="grid items-center gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
-            <div data-wipe className="mx-auto w-full max-w-[280px] rounded-full border border-theme/30 p-1.5 sm:max-w-[380px] lg:max-w-[400px]">
-              <div className="flex aspect-[385/540] items-end justify-center overflow-hidden rounded-full bg-[#e7d3cc] px-4 pt-8">
-                <Image src={site.founder.image} alt="Sandhiya Srinivasan, permanent makeup artist and founder of Rebornurself" width={296} height={421} priority sizes="420px" className="h-auto w-[92%]" />
-              </div>
-            </div>
-            <div data-reveal="right">
-              <span className="eyebrow text-base">Founder & CEO</span>
-              <h2 className="text-4xl sm:text-5xl">{site.founder.name}</h2>
-              <div className="mt-4 space-y-5">
-                <p>
-                  Meet Sandhiya Srinivasan, the heart and hands behind Rebornurself. As a certified artist with a Master’s
-                  Advanced Level in Permanent Makeup, Sandhiya has combined her love for beauty, art, and precision to create
-                  a brand dedicated to helping people feel their most confident selves.
-                </p>
-                <p>
-                  Her journey began with a passion for empowering others through transformation, not just in how they look,
-                  but in how they feel. With advanced training in microblading, lip blushing, and beauty mark creation,
-                  Sandhiya blends technical expertise with a personalized approach for each client.
-                </p>
-                <blockquote className="border-l-4 border-theme bg-cream py-4 pr-4 pl-6 font-title text-2xl leading-snug text-title">
-                  “Not just looking renewed, but feeling reborn.”
-                </blockquote>
-                <p>
-                  She believes permanent makeup is more than a service. It’s an experience. Whether you’re enhancing your
-                  natural features or saving time in your beauty routine, Sandhiya is committed to providing results that
-                  are subtle, seamless, and tailored to you.
-                </p>
-                <p>
-                  Through Rebornurself, Sandhiya has created a welcoming space built on trust, comfort, and care. Her mission
-                  is to help you embrace your individuality and walk away not just looking renewed, but feeling reborn.
-                </p>
-              </div>
-              <Link href="/gallery" className="btn-theme mt-7">See Her Work <LuArrowRight /></Link>
-              <ul className="mt-6 divide-y divide-line border-b border-line">
-                <li className="py-3"><span className="mr-4 text-sm font-semibold tracking-[0.15em] text-title uppercase">Phone:</span><a href={`tel:${site.phone}`} className="hover:text-theme">{site.phoneDisplay}</a></li>
-                <li className="py-3"><span className="mr-4 text-sm font-semibold tracking-[0.15em] text-title uppercase">Email:</span><a href={`mailto:${site.founder.email}`} className="break-all hover:text-theme">{site.founder.email}</a></li>
-              </ul>
-              <SocialLinks links={site.founder.social} className="mt-8 justify-center lg:justify-start" itemClassName="border-line text-title transition hover:-translate-y-1 hover:border-theme hover:bg-theme hover:text-white" />
-            </div>
-          </div>
-
-          <div data-reveal className="mt-16 rounded-lg border border-theme/25 bg-gradient-to-br from-cream to-peach/70 p-7 sm:p-10">
-            <h3 className="mb-6 text-2xl">At a glance</h3>
-            <dl data-reveal="stagger" className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-              {facts.map(({ Icon, label, value }) => (
-                <div key={label}>
-                  <dt className="flex items-center gap-2 text-sm tracking-[0.12em] text-theme uppercase"><Icon aria-hidden="true" /> {label}</dt>
-                  <dd className="mt-2 text-title/80">{value}</dd>
+          <div className="grid items-start gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+            {/* Portrait in a pill; stays in view on large screens while the story scrolls. */}
+            <div className="lg:sticky lg:top-28">
+              <div data-wipe className="mx-auto w-full max-w-[230px] rounded-full border border-theme/30 p-1.5 sm:max-w-[320px] lg:max-w-[420px]">
+                <div className="flex aspect-[385/540] items-end justify-center overflow-hidden rounded-full bg-[#e7d3cc]">
+                  <Image
+                    src={site.founder.image}
+                    alt="Sandhiya Srinivasan, permanent makeup artist and founder of Rebornurself"
+                    width={296}
+                    height={421}
+                    priority
+                    sizes="(min-width: 1024px) 480px, 300px"
+                    className="h-auto w-full origin-bottom scale-[1.18]"
+                  />
                 </div>
-              ))}
-            </dl>
+              </div>
+            </div>
+
+            <div data-reveal="right" className="text-center lg:text-left">
+              <span className="eyebrow text-base">{site.founder.role}</span>
+              <h2 className="text-4xl sm:text-5xl">{site.founder.name}</h2>
+              <ul className="mt-5 flex flex-wrap justify-center gap-2 lg:justify-start">
+                {quickFacts.map(({ Icon, text }) => (
+                  <li key={text} className="flex items-center gap-2 rounded-full bg-peach/70 px-4 py-2 text-sm font-medium text-title">
+                    <Icon className="text-theme" aria-hidden="true" /> {text}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 space-y-5 text-left">
+                <p>
+                  Sandhiya Srinivasan is the heart and hands behind Rebornurself. A certified artist with a Master’s Advanced
+                  Level in Permanent Makeup, she brings together a love of beauty, art and precision, with advanced training
+                  in microblading, lip blushing and beauty spots.
+                </p>
+                <p>
+                  For Sandhiya, permanent makeup is more than a service. It is an experience built on trust, comfort and care,
+                  with results that are subtle, seamless and tailored to you, so you leave feeling confident in your own skin.
+                </p>
+              </div>
+              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
+                <a href={whatsappLink("Hi Sandhiya, I would like to book a consultation.")} target="_blank" rel="noopener" className="btn-wa">
+                  <FaWhatsapp className="text-lg" /> Book with Sandhiya
+                </a>
+                <Link href="/gallery" className="btn border border-theme text-theme hover:bg-theme hover:text-white">
+                  See Her Work <LuArrowRight />
+                </Link>
+              </div>
+              <SocialLinks links={site.founder.social} className="mt-7 justify-center lg:justify-start" itemClassName="border-line text-title transition hover:-translate-y-1 hover:border-theme hover:bg-theme hover:text-white" />
+            </div>
           </div>
         </div>
+      </section>
+
+      {/* Her words, given room of their own. */}
+      <section className="bg-peach/60 py-16 lg:py-24">
+        <figure data-reveal="up" className="container-site max-w-3xl text-center">
+          <span aria-hidden="true" className="block font-title text-7xl leading-none text-theme/40">“</span>
+          <blockquote className="font-title text-3xl leading-snug text-title sm:text-4xl lg:text-5xl">
+            Not just looking renewed, but feeling reborn.
+          </blockquote>
+          <figcaption className="mt-6 text-sm tracking-[0.15em] text-theme uppercase">
+            {site.founder.name}, {site.founder.role}
+          </figcaption>
+        </figure>
       </section>
 
       {/* Training & certifications: proof of expertise. */}
