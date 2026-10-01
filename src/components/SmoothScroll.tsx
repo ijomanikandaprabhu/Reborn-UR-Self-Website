@@ -47,6 +47,9 @@ export default function SmoothScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // A reload starts from the top so the opening animations play cleanly, instead of the browser jumping back mid-page.
+    history.scrollRestoration = "manual";
+    if (!location.hash) window.scrollTo(0, 0);
     if (reducedMotion()) return;
     lenis = new Lenis({ lerp: 0.1, anchors: true });
     lenis.on("scroll", ScrollTrigger.update);
