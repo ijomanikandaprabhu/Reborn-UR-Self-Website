@@ -234,7 +234,7 @@ export default function HeroSlider() {
               <circle cx="50" cy="50" r="49" fill="none" stroke="#9a563a" strokeWidth="0.6" pathLength={1} strokeDasharray="1" strokeDashoffset="1" />
             </svg>
           </div>
-          <div data-depth="24" className="hero-photo absolute inset-x-0 bottom-0 h-[92%] lg:left-[calc(var(--cx)-var(--d)*0.53)] lg:h-[calc(var(--d)*1.1)] lg:w-[calc(var(--d)*1.066)]">
+          <div data-depth="24" className="hero-photo absolute inset-x-0 bottom-0 h-[92%] max-lg:mask-b-from-70% max-lg:mask-b-to-100% lg:left-[calc(var(--cx)-var(--d)*0.53)] lg:h-[calc(var(--d)*1.1)] lg:w-[calc(var(--d)*1.066)]">
             {heroSlides.map((s, i) => (i === 0 || loadAll) && (
               <Image
                 key={s.image}
