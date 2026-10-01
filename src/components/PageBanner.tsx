@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { preload } from "react-dom";
 import { LuChevronsRight } from "react-icons/lu";
 import { breadcrumbSchema } from "@/lib/schema";
 import JsonLd from "./JsonLd";
@@ -20,6 +21,8 @@ export default function PageBanner({
   current?: React.ReactNode;
   image?: string;
 }) {
+  // The banner is the first big thing on screen; fetch its photo straight away.
+  preload(image, { as: "image", fetchPriority: "high" });
   const trail = [{ name: "Home", path: "/" }, ...crumbs];
   return (
     <div data-parallax-bg className="bg-peach bg-cover bg-center py-16 sm:py-24 lg:py-32" style={{ backgroundImage: `url(${image})` }}>
