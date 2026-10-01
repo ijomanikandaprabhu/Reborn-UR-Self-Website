@@ -14,7 +14,16 @@ export default function WhatsAppFloat() {
   // On the home page (desktop) the hero box has its own WhatsApp button,
   // so this one waits until the hero has been scrolled past.
   const [overHero, setOverHero] = useState(false);
-  const hidden = pathname === "/" && overHero;
+  // The footer has its own Book on WhatsApp button, so step aside there too.
+  const [overFooter, setOverFooter] = useState(false);
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+    const io = new IntersectionObserver(([e]) => setOverFooter(e.isIntersecting), { rootMargin: "0px 0px -15% 0px" });
+    io.observe(footer);
+    return () => io.disconnect();
+  }, [pathname]);
+  const hidden = (pathname === "/" && overHero) || overFooter;
   useEffect(() => {
     if (pathname !== "/") return;
     const update = () => {
