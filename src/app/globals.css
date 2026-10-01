@@ -64,11 +64,16 @@
 }
 @utility btn {
   @apply inline-flex items-center justify-center gap-2.5 rounded-full px-7 py-3.5 text-[15px] font-medium transition duration-300 hover:-translate-y-0.5;
-  /* Phones: every button the same size, full width up to 320px and 54px tall. */
+  /* Phones: every button the same size (full width up to 320px, 58px tall) and centred. */
   @variant max-sm {
     width: 100% !important;
     max-width: 20rem !important;
-    height: 54px !important;
+    height: 58px !important;
+    margin-inline: auto !important;
+    /* Block-level so it can centre; buttons hidden on phones stay hidden. */
+    &:not([class*="hidden"]) {
+      display: flex !important;
+    }
     padding-block: 0 !important;
     font-size: 15px !important;
   }

@@ -68,7 +68,7 @@ export default function ServiceTabs() {
                 <i className="size-1.5 rounded-full bg-theme/40" /><i className="size-1.5 rounded-full bg-theme" /><i className="size-1.5 rounded-full bg-theme/40" />
               </span>
               <p className="flex-1 text-[15px]">{s.card}</p>
-              <div className="mt-6 flex flex-col items-center gap-3">
+              <div className="mt-6 flex w-full flex-col items-center gap-3">
                 <a href={whatsappLink(enquiryMessage(serviceFullName(s)))} target="_blank" rel="noopener" className="btn-wa px-6 py-2.5 text-sm">
                   <FaWhatsapp /> Enquire Now
                 </a>
