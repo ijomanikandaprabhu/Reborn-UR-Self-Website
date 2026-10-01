@@ -29,7 +29,7 @@ export default function Footer() {
               <Image src="/assets/img/footlogo.svg" alt="Rebornurself" width={261} height={80} className="h-[70px] w-auto" />
             </Link>
             <p className="mt-5 max-w-xs text-[15px] leading-relaxed">
-              Permanent makeup studio in New Perungalathur, Chennai, for natural brows and lips, for women and men.
+              Permanent makeup studio for natural-looking brows and lips, for women and men.
             </p>
             <ul className="mt-5 text-sm lg:space-y-1">
               <li className="flex items-center justify-center gap-2 py-2.5 lg:justify-start lg:py-1"><LuMapPin className="text-theme" aria-hidden="true" /> New Perungalathur, Chennai</li>
