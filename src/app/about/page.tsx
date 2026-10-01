@@ -46,10 +46,10 @@ export default function AboutPage() {
       <section className="bg-cream bg-cover bg-center" style={{ backgroundImage: "url(/assets/img/bg/body-bg-1.webp)" }}>
         <div className="relative mx-auto max-w-[1140px] bg-white px-4 py-16 lg:py-28">
           <Image src="/assets/img/hero/hero-leaf-5.png" alt="" width={246} height={251} data-parallax="0.6" className="absolute top-4 right-[15%] hidden w-40 xl:block" />
-          <div className="grid items-start gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
-            {/* Portrait in a pill; stays in view on large screens while the story scrolls. */}
-            <div className="lg:sticky lg:top-28">
-              <div data-wipe className="mx-auto w-full max-w-[230px] rounded-full border border-theme/30 p-1.5 sm:max-w-[290px] lg:max-w-[310px]">
+          <div className="grid items-center gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
+            {/* Portrait in a pill. */}
+            <div>
+              <div data-wipe className="mx-auto w-full max-w-[230px] rounded-full border border-theme/30 p-1.5 sm:max-w-[320px] lg:max-w-[380px]">
                 <div className="flex aspect-[300/400] items-end justify-center overflow-hidden rounded-full bg-[#e7d3cc]">
                   <Image
                     src={site.founder.image}
