@@ -43,6 +43,16 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // Photos, logos and icons rarely change: let browsers keep them for 30 days,
+  // and quietly fetch a fresh copy in the background after that.
+  async headers() {
+    const keep = [{ key: "Cache-Control", value: "public, max-age=2592000, stale-while-revalidate=86400" }];
+    return [
+      { source: "/assets/:path*", headers: keep },
+      { source: "/icons/:path*", headers: keep },
+      { source: "/:file(favicon.ico|apple-touch-icon.png)", headers: keep },
+    ];
+  },
   async redirects() {
     return [
       ...pages.map((p) => ({ source: `/${p}.html`, destination: `/${p}`, permanent: true })),
