@@ -11,7 +11,7 @@ export default function WhatsAppFloat() {
   const service = getService(pathname.slice(1));
   const href = whatsappLink(service ? enquiryMessage(serviceFullName(service)) : undefined);
 
-  // On the home page (desktop) the hero box has its own WhatsApp button,
+  // On the home page the hero has its own WhatsApp button (in the box on desktop, under the heading on phones),
   // so this one waits until the hero has been scrolled past.
   const [overHero, setOverHero] = useState(false);
   // The footer has its own Book on WhatsApp button, so step aside there too.
@@ -29,7 +29,7 @@ export default function WhatsAppFloat() {
     const update = () => {
       const hero = document.querySelector("main section");
       const heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
-      setOverHero(window.innerWidth >= 1024 && heroBottom > window.innerHeight * 0.4);
+      setOverHero(heroBottom > window.innerHeight * 0.4);
     };
     const raf = requestAnimationFrame(update);
     window.addEventListener("scroll", update, { passive: true });

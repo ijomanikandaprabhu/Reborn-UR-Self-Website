@@ -7,9 +7,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
-import { LuArrowRight, LuAward, LuHourglass, LuUsers } from "react-icons/lu";
+import { LuArrowRight, LuAward, LuHourglass, LuPhone, LuUsers } from "react-icons/lu";
 import { heroSlides } from "@/data/content";
-import { whatsappLink } from "@/lib/site";
+import { site, whatsappLink } from "@/lib/site";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -190,7 +190,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Words: one block per slide, stacked; only the active one shows. */}
-        <div className="hero-scroll-text relative z-10 px-4 pt-12 pb-8 md:self-center md:px-0 md:pt-0 md:pb-10 lg:absolute lg:top-1/2 lg:right-[calc(100%-var(--cx)+var(--d)/2+var(--g))] lg:-translate-y-[40%] lg:p-0">
+        <div className="hero-scroll-text relative z-10 px-4 pt-6 pb-4 md:self-center md:px-0 md:pt-0 md:pb-10 lg:absolute lg:top-1/2 lg:right-[calc(100%-var(--cx)+var(--d)/2+var(--g))] lg:-translate-y-[40%] lg:p-0">
           <div data-depth="-10" className="grid text-center md:text-left">
             {heroSlides.map((s, i) => (
               <div key={s.line1} className={`hero-slide col-start-1 row-start-1 ${i === 0 ? "" : "invisible"}`} aria-hidden={i !== active}>
@@ -199,17 +199,32 @@ export default function HeroSlider() {
                   <Letters text={s.line1} />
                   <Letters text={s.line2} />
                 </p>
-                <Link href="/contact" tabIndex={i === active ? 0 : -1} className="hl-btn btn-shine group mt-7 inline-flex items-center gap-4 whitespace-nowrap rounded-full bg-white py-2 pr-2 pl-6 text-base text-theme shadow-sm transition-[box-shadow,color] hover:shadow-card-hover hover:text-title">
+                <Link href="/contact" tabIndex={i === active ? 0 : -1} className="hl-btn btn-shine group mt-7 hidden items-center lg:inline-flex gap-4 whitespace-nowrap rounded-full bg-white py-2 pr-2 pl-6 text-base text-theme shadow-sm transition-[box-shadow,color] hover:shadow-card-hover hover:text-title">
                   Make Appointment
                   <span className="flex size-[46px] items-center justify-center rounded-full bg-theme text-xl text-white transition group-hover:bg-title"><LuArrowRight className="transition-transform duration-300 group-hover:translate-x-1" /></span>
                 </Link>
               </div>
             ))}
           </div>
+          {/* Phones and tablets: what we do, how to book, and why trust us. Desktop has the hero box instead. */}
+          <div className="hero-mobile-cta mt-3 text-center md:text-left lg:hidden">
+            <p className="text-[15px] text-balance text-title/80">Microblading, powder brows &amp; lip blushing in Chennai</p>
+            <div className="mt-5 flex items-center justify-center gap-3 md:justify-start">
+              <a href={whatsappLink("Hi Rebornurself, I would like to book an appointment.")} target="_blank" rel="noopener" className="btn-wa btn-shine px-6 py-3">
+                <FaWhatsapp className="text-lg" /> Book on WhatsApp
+              </a>
+              <a href={`tel:${site.phone}`} aria-label={`Call ${site.phoneDisplay}`} className="btn border border-theme bg-white/60 px-5 py-3 text-theme">
+                <LuPhone /> Call
+              </a>
+            </div>
+            <p className="mt-4 text-[13px] text-title/70">
+              <span className="text-theme" aria-hidden="true">★</span> Certified Master Artist · For women &amp; men
+            </p>
+          </div>
         </div>
 
         {/* Circle and photo */}
-        <div className="hero-scroll-art hero-art relative mt-2 aspect-square w-full max-w-[min(520px,84vw,calc(100svh-var(--header-h,145px)-380px))] md:mt-10 md:max-w-[min(52%,calc(62svh-40px))] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto lg:w-auto lg:max-w-none">
+        <div className="hero-scroll-art hero-art relative mt-2 aspect-square w-full max-w-[min(520px,84vw,calc(100svh-var(--header-h,145px)-440px))] md:mt-10 md:max-w-[min(52%,calc(62svh-40px))] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto lg:w-auto lg:max-w-none">
           <div data-depth="12" className="absolute inset-[4%] flex items-center justify-center lg:inset-auto lg:top-[var(--ctop)] lg:left-[calc(var(--cx)-var(--d)/2)] lg:size-[var(--d)]" aria-hidden="true">
             {[0, 1, 2].map((i) => (
               <span key={i} className="hero-ring absolute size-[66%] rounded-full bg-theme opacity-0" />
