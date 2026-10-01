@@ -20,7 +20,7 @@ const groups: { gender: Gender; title: string }[] = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1d2429] pt-16 pb-24 text-white/75 md:pb-10">
+    <footer className="bg-[#1d2429] pt-16 pb-24 text-white/75">
       <div data-reveal="fade" className="container-site">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-[1.3fr_1fr_1fr_1fr] lg:gap-10">
           {/* Brand, contact and booking */}
@@ -82,11 +82,11 @@ export default function Footer() {
           </nav>
         </div>
 
-        <p className="mt-12 flex flex-col items-center gap-1 border-t border-white/10 pt-7 text-center text-sm text-white/60 sm:flex-row sm:justify-between">
+        <p className="mt-12 flex flex-col items-center gap-1 border-t border-white/10 pt-7 text-center text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} Rebornurself. All rights reserved.</span>
           <span>
             Website by{" "}
-            <a href="https://ijocreations.com/" target="_blank" rel="noopener" className="link-slide inline-block py-2.5 text-white/80 hover:text-theme lg:py-0">Ijocreations</a>
+            <a href="https://ijocreations.com/" target="_blank" rel="noopener" className="link-slide inline-block py-2.5 text-white/80 hover:text-theme sm:py-0">Ijocreations</a>
           </span>
         </p>
       </div>

@@ -7,13 +7,24 @@ import { site } from "@/lib/site";
 
 /** Phones: a booking bar pinned to the bottom once the visitor scrolls into the page. */
 export default function StickyBookBar({ whatsappHref }: { whatsappHref: string }) {
-  const [shown, setShown] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [overFooter, setOverFooter] = useState(false);
+  const shown = scrolled && !overFooter;
 
   useEffect(() => {
-    const update = () => setShown(window.scrollY > 500);
+    const update = () => setScrolled(window.scrollY > 500);
     update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
+  }, []);
+
+  // The footer has its own booking button, so step aside there.
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+    const io = new IntersectionObserver(([e]) => setOverFooter(e.isIntersecting), { rootMargin: "0px 0px -15% 0px" });
+    io.observe(footer);
+    return () => io.disconnect();
   }, []);
 
   return (

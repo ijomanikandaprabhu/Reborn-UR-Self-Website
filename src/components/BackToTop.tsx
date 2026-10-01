@@ -29,6 +29,16 @@ export default function BackToTop() {
     };
   }, [pathname]);
 
+  // The booking bar steps aside over the footer, so drop back down with it.
+  const [overFooter, setOverFooter] = useState(false);
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+    const io = new IntersectionObserver(([e]) => setOverFooter(e.isIntersecting), { rootMargin: "0px 0px -15% 0px" });
+    io.observe(footer);
+    return () => io.disconnect();
+  }, [pathname]);
+
   // A ring around the arrow shows how far down the page you are.
   const r = 21;
   const c = 2 * Math.PI * r;
@@ -40,7 +50,7 @@ export default function BackToTop() {
       aria-label="Back to top"
       tabIndex={shown ? 0 : -1}
       aria-hidden={!shown}
-      className={`fixed right-4 z-30 flex size-12 items-center justify-center rounded-full bg-white text-lg text-theme shadow-card-hover transition duration-300 hover:-translate-y-1 hover:bg-theme hover:text-white md:right-6 md:bottom-8 ${raised ? "bottom-[84px]" : "bottom-5"} ${shown ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
+      className={`fixed right-4 z-30 flex size-12 items-center justify-center rounded-full bg-white text-lg text-theme shadow-card-hover transition duration-300 hover:-translate-y-1 hover:bg-theme hover:text-white md:right-6 md:bottom-8 ${raised && !overFooter ? "bottom-[84px]" : "bottom-5"} ${shown ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
     >
       <svg className="absolute inset-0 -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
         <circle cx="24" cy="24" r={r} fill="none" stroke="currentColor" strokeOpacity="0.15" strokeWidth="2.5" />
