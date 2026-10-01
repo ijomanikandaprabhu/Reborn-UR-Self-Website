@@ -153,7 +153,7 @@ export default function Gallery({
             aria-pressed={filter === c.id}
             className={`shrink-0 whitespace-nowrap rounded-full border px-5 py-2 text-sm transition ${filter === c.id ? "border-theme bg-theme text-white" : "border-line text-title hover:border-theme hover:text-theme"}`}
           >
-            {c.label} <span className={filter === c.id ? "text-white/80" : "text-body"}>({c.count})</span>
+            {c.label} <span className={filter === c.id ? "text-white" : "text-body"}>({c.count})</span>
           </button>
         ))}
       </div>
