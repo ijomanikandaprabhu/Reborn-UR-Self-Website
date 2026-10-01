@@ -267,7 +267,7 @@ export default function HeroSlider() {
               ))}
             </ul>
 
-            <p className="hb-txt mt-5 [@media(max-height:820px)]:mt-3 text-[11px] font-bold tracking-[0.2em] text-white uppercase">How to book</p>
+            <p className="hb-txt mt-5 [@media(max-height:820px)]:mt-3 text-xs font-bold tracking-[0.2em] text-white uppercase">How to book</p>
             <ol className="mt-2 space-y-1.5 text-[13px] [@media(max-height:820px)]:space-y-1 [@media(max-height:820px)]:text-xs">
               {["Send a photo on WhatsApp", "Get honest advice", "Book your slot"].map((step, i) => (
                 <li key={step} className="hb-txt flex items-center gap-2.5">

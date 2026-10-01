@@ -130,7 +130,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
                 See {s.name} results <LuArrowRight />
               </Link>
             )}
-            <p className="mt-8 text-sm opacity-80">
+            <p className="mt-8 text-sm text-body">
               Reviewed by {site.founder.name}, {site.founder.role.toLowerCase()} · Last updated <time dateTime={site.updated}>{formatUpdated()}</time>
             </p>
           </article>
