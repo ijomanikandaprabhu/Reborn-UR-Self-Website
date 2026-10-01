@@ -81,7 +81,7 @@ export default function Header() {
       const full = el?.offsetHeight ?? 150;
       const past = pinned.current ? y > topBar : y > full;
       // Slim down only well clear of the top; near the top the pinned bar grows back first, so content never moves.
-      setCompact(y > full);
+      setCompact(y > full + 200);
       pinned.current = past;
       setScrolled(past);
       if (Math.abs(y - lastY.current) > 6) {
@@ -128,11 +128,11 @@ export default function Header() {
       </div>
 
       <div
-        className={`${scrolled ? "fixed inset-x-0 top-0 shadow-md" : "relative"} bg-white ${animate ? "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" : ""} ${scrolled && hidden && !open && !ddOpen ? "-translate-y-full" : "translate-y-0"}`}
+        className={`${scrolled ? "fixed inset-x-0 top-0 shadow-md" : "relative"} bg-white will-change-transform ${animate ? "transition-[translate,box-shadow] duration-300 ease-out" : ""} ${scrolled && hidden && !open && !ddOpen ? "-translate-y-full" : "translate-y-0"}`}
       >
         <div className="container-site flex items-center justify-between gap-6">
           <Link href="/" className="shrink-0 py-3" aria-label="Rebornurself home">
-            <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} priority className={`w-auto transition-[height] duration-300 ${compact ? "h-12" : "h-16 xl:h-20"}`} />
+            <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} priority className={`w-auto transition-[height] duration-300 h-16 ${compact ? "lg:h-12" : "xl:h-20"}`} />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">
