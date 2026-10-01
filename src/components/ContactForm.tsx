@@ -40,22 +40,22 @@ export default function ContactForm() {
   return (
     <form onSubmit={onSubmit} className="grid gap-4">
       <label>
-        <span className="sr-only">Your name</span>
-        <input name="name" required autoComplete="name" placeholder="Your Name*" className={field} />
+        <span className="mb-1.5 block text-sm font-medium text-title">Name <span className="text-theme" aria-hidden="true">*</span></span>
+        <input name="name" required autoComplete="name" placeholder="e.g. Priya" className={field} />
       </label>
       <label>
-        <span className="sr-only">Email</span>
-        <input name="email" type="email" autoComplete="email" placeholder="Your Email" className={field} />
+        <span className="mb-1.5 block text-sm font-medium text-title">Email <span className="font-normal text-body">(optional)</span></span>
+        <input name="email" type="email" autoComplete="email" placeholder="you@example.com" className={field} />
       </label>
       <label>
-        <span className="sr-only">Phone number</span>
+        <span className="mb-1.5 block text-sm font-medium text-title">Mobile number <span className="text-theme" aria-hidden="true">*</span></span>
         <input
           name="phone"
           type="tel"
           inputMode="tel"
           required
           autoComplete="tel"
-          placeholder="Phone Number*"
+          placeholder="10-digit mobile number"
           pattern={phonePattern}
           title="Please enter a 10-digit mobile number"
           onInvalid={(e) =>
@@ -68,25 +68,25 @@ export default function ContactForm() {
         />
       </label>
       <label className="relative">
-        <span className="sr-only">Gender (optional)</span>
+        <span className="mb-1.5 block text-sm font-medium text-title">Gender <span className="font-normal text-body">(optional)</span></span>
         <select name="gender" defaultValue="" className={`${field} appearance-none`}>
-          <option value="">Gender (optional)</option>
+          <option value="">Prefer not to say</option>
           <option>Female</option>
           <option>Male</option>
         </select>
-        <LuChevronDown className="pointer-events-none absolute top-1/2 right-5 -translate-y-1/2 text-theme" aria-hidden="true" />
+        <LuChevronDown className="pointer-events-none absolute right-5 bottom-[19px] text-theme" aria-hidden="true" />
       </label>
       <label className="relative">
-        <span className="sr-only">Service</span>
+        <span className="mb-1.5 block text-sm font-medium text-title">Treatment <span className="text-theme" aria-hidden="true">*</span></span>
         <select name="service" required defaultValue="" className={`${field} appearance-none invalid:text-body`}>
-          <option value="" disabled>Service*</option>
+          <option value="" disabled>Choose a treatment</option>
           {serviceOptions.map((s) => <option key={s}>{s}</option>)}
         </select>
-        <LuChevronDown className="pointer-events-none absolute top-1/2 right-5 -translate-y-1/2 text-theme" aria-hidden="true" />
+        <LuChevronDown className="pointer-events-none absolute right-5 bottom-[19px] text-theme" aria-hidden="true" />
       </label>
       <label>
-        <span className="sr-only">Message</span>
-        <textarea name="message" rows={5} placeholder="Message" className={`${field} h-auto py-4`} />
+        <span className="mb-1.5 block text-sm font-medium text-title">Message <span className="font-normal text-body">(optional)</span></span>
+        <textarea name="message" rows={5} placeholder="Anything you would like us to know" className={`${field} h-auto py-4`} />
       </label>
       <div>
         <button type="submit" className="btn-theme w-full py-4 text-sm font-bold tracking-[0.15em] uppercase max-sm:!max-w-none">
