@@ -29,7 +29,7 @@ export const site = {
     name: "Sandhiya Srinivasan",
     role: "Founder & Lead Artist",
     email: "sandhiyasrinivasan@rebornurself.com",
-    image: "/assets/img/profile1.png",
+    image: "/assets/img/sandhiya-srinivasan.png",
     social: {
       facebook: "https://www.facebook.com/people/Sandhiya-Srinivasan/61573776896636/",
       instagram: "https://www.instagram.com/sandhiyasrinivasan_pmu/",
