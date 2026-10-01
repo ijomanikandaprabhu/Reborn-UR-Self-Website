@@ -39,7 +39,6 @@ export default function Header() {
     };
   }, [ddOpen]);
   const [scrolled, setScrolled] = useState(false);
-  const [compact, setCompact] = useState(false);
 
   // Close the mobile menu whenever the page changes.
   const [lastPath, setLastPath] = useState(pathname);
@@ -80,8 +79,6 @@ export default function Header() {
       const topBar = (el?.children[0] as HTMLElement | undefined)?.offsetHeight ?? 0;
       const full = el?.offsetHeight ?? 150;
       const past = pinned.current ? y > topBar : y > full;
-      // Slim down only well clear of the top; near the top the pinned bar grows back first, so content never moves.
-      setCompact(y > full + 200);
       pinned.current = past;
       setScrolled(past);
       if (Math.abs(y - lastY.current) > 6) {
@@ -111,7 +108,7 @@ export default function Header() {
   const isActive = (href: string) => pathname === href;
   const onServicePage = groups.some((g) => servicesFor(g).some((s) => pathname === servicePath(s)));
   const navLink = (active: boolean) =>
-    `relative ${compact ? "py-6" : "py-9"} text-[14px] font-semibold uppercase transition-[padding] duration-300 xl:text-[15px] ${active ? "text-theme" : "text-title hover:text-theme"}`;
+    `relative py-8 text-[14px] font-semibold uppercase xl:text-[15px] ${active ? "text-theme" : "text-title hover:text-theme"}`;
 
   return (
     <header ref={headerRef} className="relative z-40">
@@ -132,7 +129,7 @@ export default function Header() {
       >
         <div className="container-site flex items-center justify-between gap-6">
           <Link href="/" className="shrink-0 py-3" aria-label="Rebornurself home">
-            <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} priority className={`w-auto transition-[height] duration-300 h-16 ${compact ? "lg:h-12" : "xl:h-20"}`} />
+            <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} priority className="h-16 w-auto" />
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">
