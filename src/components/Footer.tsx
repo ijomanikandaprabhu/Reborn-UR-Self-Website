@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa6";
-import { LuClock, LuMail, LuMapPin, LuPhone } from "react-icons/lu";
+import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 import { servicesFor, servicePath, type Gender } from "@/data/services";
 import { site, whatsappLink } from "@/lib/site";
 import SocialLinks from "./SocialLinks";
@@ -33,7 +33,6 @@ export default function Footer() {
             </p>
             <ul className="mt-5 text-sm lg:space-y-1">
               <li className="flex items-center justify-center gap-2 py-2.5 lg:justify-start lg:py-1"><LuMapPin className="text-theme" aria-hidden="true" /> New Perungalathur, Chennai</li>
-              <li className="flex items-center justify-center gap-2 py-2.5 lg:justify-start lg:py-1"><LuClock className="text-theme" aria-hidden="true" /> Open daily, {site.hours.display}</li>
               <li>
                 <a href={`tel:${site.phone}`} className="inline-flex items-center gap-2 py-2.5 text-white hover:text-theme lg:py-1">
                   <LuPhone className="text-theme" aria-hidden="true" /> {site.phoneDisplay}

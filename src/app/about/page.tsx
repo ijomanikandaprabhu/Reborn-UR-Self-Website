@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
-import { LuArrowRight, LuAward, LuClock, LuMapPin, LuSparkles, LuUserRound, LuUsers } from "react-icons/lu";
+import { LuArrowRight, LuAward, LuMapPin, LuSparkles, LuUserRound, LuUsers } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
 import PageBanner from "@/components/PageBanner";
@@ -48,7 +48,6 @@ const facts = [
   },
   { Icon: LuUsers, label: "Works with", value: "Women and men" },
   { Icon: LuMapPin, label: "Studio", value: "New Perungalathur, Chennai" },
-  { Icon: LuClock, label: "Consultations", value: `By appointment, ${site.hours.display}` },
 ];
 
 export default function AboutPage() {

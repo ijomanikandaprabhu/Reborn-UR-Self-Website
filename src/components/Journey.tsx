@@ -60,7 +60,7 @@ export default function Journey({ steps, whatsappHref }: { steps: JourneyStep[];
             const Icon = icons[step.icon] ?? LuStar;
             const right = i % 2 === 1;
             return (
-              <li key={step.title} data-reveal="up" className={`relative mb-7 pl-14 last:mb-0 ${!all && i >= 3 ? "max-md:hidden" : ""} md:mb-0 md:w-1/2 ${i > 0 ? "md:-mt-16" : ""} ${right ? "md:ml-[50%] md:pl-14" : "md:pr-14 md:pl-0"}`}>
+              <li key={step.title} data-reveal="up" className={`relative z-[2] mb-7 pl-14 last:mb-0 ${!all && i >= 3 ? "max-md:hidden" : ""} md:mb-0 md:w-1/2 ${i > 0 ? "md:-mt-16" : ""} ${right ? "md:ml-[50%] md:pl-14" : "md:pr-14 md:pl-0"}`}>
                 <span className={`jr-num absolute top-8 left-0 z-[2] flex size-10 items-center justify-center rounded-full bg-theme font-bold text-white ring-5 ring-white ${right ? "md:-left-5" : "md:right-[-20px] md:left-auto"}`}>
                   {i + 1}
                 </span>

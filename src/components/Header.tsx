@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
-import { LuChevronDown, LuClock, LuMail, LuMenu, LuPhone, LuX } from "react-icons/lu";
+import { LuChevronDown, LuMail, LuMenu, LuPhone, LuX } from "react-icons/lu";
 import { iconPath, servicesFor, servicePath, type Gender } from "@/data/services";
 import { site, whatsappLink } from "@/lib/site";
 import { setScrollLocked } from "./SmoothScroll";
@@ -118,7 +118,6 @@ export default function Header() {
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-body">
             <li><a href={`tel:${site.phone}`} className="flex items-center gap-2 py-3 hover:text-theme lg:py-1"><LuPhone className="text-theme" aria-hidden="true" /> {site.phoneDisplay}</a></li>
             <li><a href={`mailto:${site.email}`} className="flex items-center gap-2 py-3 hover:text-theme lg:py-1"><LuMail className="text-theme" aria-hidden="true" /> {site.email}</a></li>
-            <li className="hidden items-center gap-2 lg:flex"><LuClock className="text-theme" aria-hidden="true" /> Open daily, {site.hours.display}</li>
           </ul>
           <SocialLinks itemClassName="border-line text-title hover:border-theme hover:bg-theme hover:text-white" />
         </div>
