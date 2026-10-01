@@ -5,6 +5,7 @@ import { FaInstagram } from "react-icons/fa6";
 import { LuArrowRight, LuHourglass, LuMessagesSquare, LuSparkles } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
 import Faq from "@/components/Faq";
+import { AreasServed } from "@/components/Guides";
 import Gallery from "@/components/Gallery";
 import HeroSlider from "@/components/HeroSlider";
 import SectionTitle from "@/components/SectionTitle";
@@ -166,6 +167,7 @@ export default function Home() {
         </div>
       </section>
 
+      <AreasServed className="pt-0" />
       <CtaBand />
     </>
   );

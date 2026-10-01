@@ -4,6 +4,8 @@
 export const site = {
   name: "Rebornurself",
   url: "https://www.rebornurself.com",
+  // When the page content was last reviewed. Shown on pages and given to search engines.
+  updated: "2026-10-01",
   tagline: "Permanent Makeup & Microblading in Chennai",
   description:
     "Permanent makeup studio in New Perungalathur, Chennai. Microblading, ombre powder brows, combination brows, lip blushing and beauty spot for women and men.",
@@ -66,3 +68,7 @@ export function whatsappLink(message?: string) {
 
 export const enquiryMessage = (topic: string) =>
   `Hi Rebornurself, I would like to enquire about ${topic}.`;
+
+/** "October 2026" */
+export const formatUpdated = () =>
+  new Date(site.updated).toLocaleDateString("en-IN", { month: "long", year: "numeric", timeZone: "Asia/Kolkata" });

@@ -7,6 +7,7 @@ import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
+import { AreasServed } from "@/components/Guides";
 import Testimonials from "@/components/Testimonials";
 import { servicePath, servicesFor } from "@/data/services";
 import { fullAddress, mapsDirectionsUrl, mapsEmbedUrl, site, whatsappLink } from "@/lib/site";
@@ -159,6 +160,7 @@ export default function ContactPage() {
         </div>
       </section>
 
+      <AreasServed className="bg-cream" />
       <Testimonials />
     </>
   );

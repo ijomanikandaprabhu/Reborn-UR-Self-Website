@@ -4,6 +4,7 @@ import { services, serviceFullName, servicePath, type Service } from "@/data/ser
 const abs = (path: string) => `${site.url}${path === "/" ? "/" : path}`;
 export const studioId = `${site.url}/#studio`;
 export const founderId = `${site.url}/#founder`;
+export const websiteId = `${site.url}/#website`;
 
 /** The studio as a local business. Rendered on every page. */
 export function studioSchema() {
@@ -106,5 +107,34 @@ export function faqSchema(faqs: { q: string; a: string }[]) {
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
+  };
+}
+
+/** The website itself, so search engines show the right site name. */
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": websiteId,
+    name: site.name,
+    alternateName: ["Reborn Ur Self", "Rebornurself Permanent Makeup"],
+    url: abs("/"),
+    inLanguage: "en-IN",
+    publisher: { "@id": studioId },
+  };
+}
+
+/** A page with the date its content was last reviewed. */
+export function webPageSchema({ name, path, description }: { name: string; path: string; description?: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    url: abs(path),
+    description,
+    inLanguage: "en-IN",
+    isPartOf: { "@id": websiteId },
+    about: { "@id": studioId },
+    dateModified: site.updated,
   };
 }

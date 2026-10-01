@@ -7,6 +7,7 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { LuArrowRight, LuHourglass, LuRotateCw, LuSyringe, LuUsers } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
 import Faq from "@/components/Faq";
+import { Aftercare, Compare } from "@/components/Guides";
 import { galleryCategoryFor, galleryItems } from "@/data/content";
 import StickyBookBar from "@/components/StickyBookBar";
 import JsonLd from "@/components/JsonLd";
@@ -16,8 +17,8 @@ import {
   counterpart, faqsFor, genderLabel, getService, iconPath, servicePath, services, servicesFor,
   serviceFullName, type ContentBlock,
 } from "@/data/services";
-import { serviceSchema } from "@/lib/schema";
-import { enquiryMessage, site, whatsappLink } from "@/lib/site";
+import { serviceSchema, webPageSchema } from "@/lib/schema";
+import { enquiryMessage, formatUpdated, site, whatsappLink } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -70,6 +71,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
   return (
     <>
       <JsonLd data={serviceSchema(s)} />
+      <JsonLd data={webPageSchema({ name: s.title, path: servicePath(s), description: s.description })} />
       <PageBanner
         title={titleStart}
         highlight={titleEnd}
@@ -129,6 +131,9 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
                 See our {s.name} results <LuArrowRight />
               </Link>
             )}
+            <p className="mt-8 text-sm opacity-80">
+              Reviewed by {site.founder.name}, {site.founder.role.toLowerCase()} · Last updated <time dateTime={site.updated}>{formatUpdated()}</time>
+            </p>
           </article>
 
           <aside data-reveal="left" className="hidden space-y-6 lg:block lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
@@ -186,7 +191,9 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
         </div>
       </section>
 
+      <Compare service={s} />
       <Journey steps={s.journey} whatsappHref={enquire} />
+      <Aftercare service={s} />
       <Faq faqs={faqsFor(s)} title={`${s.name}: Your Questions`} />
       <CtaBand title={s.cta.title} text={s.cta.text} message={enquiryMessage(name)} />
       <StickyBookBar whatsappHref={enquire} />

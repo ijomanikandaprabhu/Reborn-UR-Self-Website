@@ -7,7 +7,7 @@ import Loader, { loaderScript } from "@/components/Loader";
 import SmoothScroll from "@/components/SmoothScroll";
 import BackToTop from "@/components/BackToTop";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { studioSchema } from "@/lib/schema";
+import { studioSchema, websiteSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
 import "lenis/dist/lenis.css";
 import "./globals.css";
@@ -59,6 +59,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <Loader />
         <JsonLd data={studioSchema()} />
+        <JsonLd data={websiteSchema()} />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[1000] focus:rounded focus:bg-white focus:px-4 focus:py-2">
           Skip to content
         </a>
