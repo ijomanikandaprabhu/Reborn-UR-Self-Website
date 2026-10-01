@@ -74,7 +74,7 @@ export default function AboutPage() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 space-y-5 text-left">
+              <div className="mx-auto mt-6 max-w-2xl space-y-5 lg:mx-0 lg:max-w-none">
                 <p>
                   Sandhiya Srinivasan is the heart and hands behind Rebornurself. A certified artist with a Master’s Advanced
                   Level in Permanent Makeup, she brings together a love of beauty, art and precision, with advanced training
@@ -102,7 +102,7 @@ export default function AboutPage() {
       {/* Her words, given room of their own. */}
       <section className="bg-peach/60 py-16 lg:py-24">
         <figure data-reveal="up" className="container-site max-w-3xl text-center">
-          <span aria-hidden="true" className="block font-title text-7xl leading-none text-theme/40">“</span>
+          <span aria-hidden="true" className="block h-14 font-title text-[120px] leading-[1] text-theme/40 lg:h-16 lg:text-[140px]">“</span>
           <blockquote className="font-title text-3xl leading-snug text-title sm:text-4xl lg:text-5xl">
             Not just looking renewed, but feeling reborn.
           </blockquote>
