@@ -49,8 +49,8 @@ export default function AboutPage() {
           <div className="grid items-start gap-10 lg:grid-cols-[5fr_7fr] lg:gap-16">
             {/* Portrait in a pill; stays in view on large screens while the story scrolls. */}
             <div className="lg:sticky lg:top-28">
-              <div data-wipe className="mx-auto w-full max-w-[230px] rounded-full border border-theme/30 p-1.5 sm:max-w-[320px] lg:max-w-[420px]">
-                <div className="flex aspect-[385/540] items-end justify-center overflow-hidden rounded-full bg-[#e7d3cc]">
+              <div data-wipe className="mx-auto w-full max-w-[230px] rounded-full border border-theme/30 p-1.5 sm:max-w-[300px] lg:max-w-[340px]">
+                <div className="flex aspect-[385/540] items-end justify-center overflow-hidden rounded-full bg-[#e7d3cc] px-4 pt-8">
                   <Image
                     src={site.founder.image}
                     alt="Sandhiya Srinivasan, permanent makeup artist and founder of Rebornurself"
@@ -58,7 +58,7 @@ export default function AboutPage() {
                     height={421}
                     priority
                     sizes="(min-width: 1024px) 480px, 300px"
-                    className="h-auto w-full origin-bottom scale-[1.18]"
+                    className="h-auto w-[92%]"
                   />
                 </div>
               </div>
