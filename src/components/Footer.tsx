@@ -51,7 +51,7 @@ export default function Footer() {
             >
               <FaWhatsapp className="text-base" /> Book on WhatsApp
             </a>
-            <SocialLinks className="mt-6 justify-center lg:justify-start" itemClassName="size-11 border-white/25 lg:size-10 text-white transition hover:-translate-y-1 hover:border-theme hover:bg-theme" />
+            <SocialLinks className="mt-6 justify-center lg:justify-start" itemClassName="size-11 border-white/25 lg:size-10 !text-white visited:!text-white [&_svg]:!fill-white [&_svg]:!text-white transition hover:-translate-y-1 hover:border-theme hover:bg-theme" />
           </div>
 
           {/* Treatments for women and men */}
