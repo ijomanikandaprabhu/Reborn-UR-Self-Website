@@ -23,18 +23,8 @@ export const site = {
     country: "IN",
   },
   geo: { latitude: 12.8899944, longitude: 80.1156151 },
-  // Neighbourhoods customers travel from. Used in structured data and copy.
-  areasServed: [
-    "New Perungalathur",
-    "Perungalathur",
-    "Alapakkam",
-    "Tambaram",
-    "Vandalur",
-    "Chromepet",
-    "Urapakkam",
-    "Guduvanchery",
-    "Chennai",
-  ],
+  // Where clients come from. Kept general: Chennai as a whole.
+  areasServed: ["Chennai"],
   founder: {
     name: "Sandhiya Srinivasan",
     role: "Founder & lead artist",

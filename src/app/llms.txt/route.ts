@@ -15,7 +15,7 @@ export function GET() {
     `- Email: ${site.email}`,
     `- Hours: open daily, ${site.hours.display}, by appointment`,
     `- Founder and lead artist: ${site.founder.name}, Master's Advanced Level in Permanent Makeup`,
-    `- Areas served: ${site.areasServed.join(", ")}`,
+    "- Clients from: all over Chennai",
     `- Last updated: ${site.updated}`,
     "",
     "## Treatments",

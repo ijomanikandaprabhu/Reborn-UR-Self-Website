@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { aftercareFor, compareFor } from "@/data/guides";
 import { serviceFullName, type Service } from "@/data/services";
-import { site } from "@/lib/site";
 import JsonLd from "./JsonLd";
 import SectionTitle from "./SectionTitle";
 
@@ -102,23 +101,17 @@ export function Aftercare({ service }: { service: Service }) {
   );
 }
 
-/** Neighbourhoods clients come from, for local searches. */
+/** Short note that clients come from all over Chennai, for local searches. */
 export function AreasServed({ className = "" }: { className?: string }) {
-  const areas = site.areasServed.filter((a) => a !== "Chennai");
   return (
     <section className={`section ${className}`} aria-labelledby="areas-title">
       <div data-reveal="up" className="container-site max-w-3xl text-center">
         <span className="eyebrow">Easy to reach</span>
-        <h2 id="areas-title" className="text-3xl lg:text-4xl">Areas We Serve in Chennai</h2>
+        <h2 id="areas-title" className="text-3xl lg:text-4xl">Serving Clients Across Chennai</h2>
         <p className="mt-4">
-          Our permanent makeup studio is in New Perungalathur, a short drive for clients across south Chennai.
-          People visit us for microblading, powder brows and lip treatments from:
+          Our permanent makeup studio welcomes clients from all over Chennai for microblading, powder brows, lip
+          treatments and more. Message us on WhatsApp and we will help you plan your visit.
         </p>
-        <ul className="mt-6 flex flex-wrap justify-center gap-2">
-          {areas.map((a) => (
-            <li key={a} className="rounded-full border border-theme/30 bg-white px-4 py-2 text-sm text-title">{a}</li>
-          ))}
-        </ul>
       </div>
     </section>
   );
