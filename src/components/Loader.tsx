@@ -1,5 +1,5 @@
 // The winking-eyes intro. Pure CSS: it fades out by itself after the wink,
-// and a tiny inline script shows it only on the home page, once per visit.
+// and a tiny inline script shows it only on the home page (every time it opens).
 
 const brow = (
   <>
@@ -27,7 +27,7 @@ const eye = (
 
 const spline = ".4 0 .6 1";
 
-export const loaderScript = `try{var d=document.documentElement;d.classList.add('js');if(location.pathname!=='/'||sessionStorage.getItem('seen'))d.setAttribute('data-seen','');else sessionStorage.setItem('seen','1')}catch(e){}`;
+export const loaderScript = `try{var d=document.documentElement;d.classList.add('js');if(location.pathname!=='/')d.setAttribute('data-seen','')}catch(e){}`;
 
 export default function Loader() {
   return (

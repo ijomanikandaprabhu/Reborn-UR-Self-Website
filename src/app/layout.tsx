@@ -3,7 +3,8 @@ import { DM_Sans, Marcellus } from "next/font/google";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
-import Loader, { loaderScript } from "@/components/Loader";
+import HomeIntro from "@/components/HomeIntro";
+import { loaderScript } from "@/components/Loader";
 import SmoothScroll from "@/components/SmoothScroll";
 import BackToTop from "@/components/BackToTop";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -57,7 +58,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: loaderScript }} />
       </head>
       <body>
-        <Loader />
+        <HomeIntro />
         <JsonLd data={studioSchema()} />
         <JsonLd data={websiteSchema()} />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[1000] focus:rounded focus:bg-white focus:px-4 focus:py-2">
