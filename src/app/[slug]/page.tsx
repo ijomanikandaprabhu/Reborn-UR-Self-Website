@@ -175,7 +175,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
       <section className="pb-16 lg:hidden" aria-label="You may also like">
         <div className="container-site">
           <h2 className="mb-5 text-3xl">You may also like</h2>
-          <ul className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none]">
+          <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pt-2 pb-4 [scrollbar-width:none]">
             {related.map((o) => (
               <li key={o.slug} className="w-[70%] shrink-0 snap-start sm:w-[40%]">
                 <Link href={servicePath(o)} className="card flex h-full flex-col items-center p-6 text-center hover:translate-y-0">
