@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Loader from "./Loader";
 
 /**
@@ -26,12 +26,21 @@ export default function HomeIntro() {
     const html = document.documentElement;
     if (pathname === "/") {
       html.removeAttribute("data-seen");
-      // Start the wink from the beginning on the freshly drawn eyes.
-      wrap.current?.querySelector("svg")?.setCurrentTime(0);
     } else {
       html.setAttribute("data-seen", "");
     }
   }, [pathname, run]);
+
+  // Coming back to Home: hold the eyes open while they fade in, then wink from the start.
+  useEffect(() => {
+    if (run === 0) return;
+    const svg = wrap.current?.querySelector("svg");
+    if (!svg) return;
+    svg.pauseAnimations();
+    svg.setCurrentTime(0);
+    const id = setTimeout(() => svg.unpauseAnimations(), 280);
+    return () => clearTimeout(id);
+  }, [run]);
 
   return (
     <div ref={wrap}>
