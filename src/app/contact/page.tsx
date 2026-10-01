@@ -3,10 +3,12 @@ import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa6";
 import { LuClock, LuHeartHandshake, LuLayers, LuMail, LuMapPin, LuNavigation, LuPenLine, LuPhone, LuRotateCw, LuShieldCheck } from "react-icons/lu";
+import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import PageBanner from "@/components/PageBanner";
 import SectionTitle from "@/components/SectionTitle";
 import Testimonials from "@/components/Testimonials";
+import { servicePath, servicesFor } from "@/data/services";
 import { fullAddress, mapsDirectionsUrl, mapsEmbedUrl, site, whatsappLink } from "@/lib/site";
 
 const description =
@@ -30,7 +32,7 @@ const bookingSteps = [
 export default function ContactPage() {
   const details = [
     { Icon: LuMapPin, label: "Address", value: fullAddress },
-    { Icon: LuClock, label: "Open", value: `${site.hours.display}, by appointment` },
+    { Icon: LuClock, label: "Open", value: `Open daily, ${site.hours.display}, by appointment` },
     { Icon: LuPhone, label: "Phone", value: <a href={`tel:${site.phone}`} className="hover:text-theme">{site.phoneDisplay}</a> },
     { Icon: LuMail, label: "Email", value: <a href={`mailto:${site.email}`} className="hover:text-theme">{site.email}</a> },
   ];
@@ -38,6 +40,21 @@ export default function ContactPage() {
   return (
     <>
       <PageBanner title="Contact" highlight="Us" crumbs={[{ name: "Contact Us", path: "/contact" }]} />
+
+      {/* Phones: one-tap ways to get in touch, before the form. */}
+      <div className="container-site -mt-7 md:hidden">
+        <div className="relative z-10 grid grid-cols-3 gap-2 rounded-xl bg-white p-2 shadow-card-hover">
+          {[
+            { href: whatsappLink("Hi Rebornurself, I would like to get in touch."), Icon: FaWhatsapp, label: "WhatsApp", ext: true, cls: "bg-wa text-white" },
+            { href: `tel:${site.phone}`, Icon: LuPhone, label: "Call", ext: false, cls: "bg-theme text-white" },
+            { href: mapsDirectionsUrl, Icon: LuNavigation, label: "Directions", ext: true, cls: "bg-peach text-theme" },
+          ].map(({ href, Icon, label, ext, cls }) => (
+            <a key={label} href={href} {...(ext ? { target: "_blank", rel: "noopener" } : {})} className={`flex flex-col items-center gap-1 rounded-lg py-3 text-sm font-semibold ${cls}`}>
+              <Icon className="text-xl" aria-hidden="true" /> {label}
+            </a>
+          ))}
+        </div>
+      </div>
 
       <section className="section">
         <div className="container-site grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -53,7 +70,7 @@ export default function ContactPage() {
             </div>
             <ContactForm />
           </div>
-          <div data-wipe className="overflow-hidden"><Image src="/assets/img/about/about-9-2.jpg" alt="Permanent makeup being applied at Rebornurself, Chennai" width={380} height={380} sizes="(min-width: 1024px) 560px, 100vw" className="h-full max-h-[480px] w-full object-cover lg:max-h-none" /></div>
+          <div data-wipe className="hidden overflow-hidden md:block"><Image src="/assets/img/about/about-9-2.jpg" alt="Permanent makeup being applied at Rebornurself, Chennai" width={380} height={380} sizes="(min-width: 1024px) 560px, 100vw" className="h-full max-h-[480px] w-full object-cover lg:max-h-none" /></div>
         </div>
       </section>
 
@@ -105,7 +122,7 @@ export default function ContactPage() {
             ))}
           </ul>
           <div className="mt-10 rounded-lg bg-smoke p-6 text-center">
-            <p>Studio hours: {site.hours.display} | Call: <a href={`tel:${site.phone}`} className="font-medium text-theme">{site.phoneDisplay}</a> | Email: <a href={`mailto:${site.email}`} className="font-medium text-theme">{site.email}</a></p>
+            <p>Studio hours: open daily, {site.hours.display} | Call: <a href={`tel:${site.phone}`} className="font-medium text-theme">{site.phoneDisplay}</a> | Email: <a href={`mailto:${site.email}`} className="font-medium text-theme">{site.email}</a></p>
             <p className="mt-1">Prefer to ask first? <a href={whatsappLink()} target="_blank" rel="noopener" className="font-medium text-theme">Send us an enquiry on WhatsApp</a> and we will guide you to the right procedure.</p>
           </div>
         </div>
@@ -115,7 +132,21 @@ export default function ContactPage() {
         <div className="container-site">
           <div data-reveal="stagger" className="grid overflow-hidden rounded-xl bg-peach md:grid-cols-2">
             {[
-              { Icon: LuLayers, title: "What we offer", text: "Microblading, ombre powder brows, combination brows, lip neutralization, lip blushing and beauty spot, each available for both women and men." },
+              {
+                Icon: LuLayers,
+                title: "What we offer",
+                text: (
+                  <>
+                    {servicesFor("women").map((sv, i, all) => (
+                      <span key={sv.slug}>
+                        <Link href={servicePath(sv)} className="text-theme hover:underline">{sv.name}</Link>
+                        {i < all.length - 2 ? ", " : i === all.length - 2 ? " and " : ""}
+                      </span>
+                    ))}
+                    , each available for both women and men.
+                  </>
+                ),
+              },
               { Icon: LuHeartHandshake, title: "Not sure what you need?", text: "That is normal, and it is exactly what the first consultation is for. Send us a photo and we will recommend the procedure that suits your features, your skin and the look you are after." },
             ].map(({ Icon, title, text }) => (
               <div key={title} className="p-8 sm:p-11 md:[&+&]:border-l [&+&]:border-t md:[&+&]:border-t-0 [&+&]:border-title/[0.08]">
