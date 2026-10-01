@@ -30,7 +30,7 @@ export default function ServiceTabs() {
 
   return (
     <div ref={scope}>
-      <div className="relative mx-auto mb-12 grid w-fit grid-cols-2 rounded-full bg-peach p-1.5" role="tablist" aria-label="Services for">
+      <div className="relative mx-auto mb-12 grid w-fit grid-cols-2 rounded-full bg-peach p-1.5 max-sm:h-[58px] max-sm:w-full max-sm:max-w-xs" role="tablist" aria-label="Services for">
         {/* Brown pill that slides under the selected option. */}
         <span
           aria-hidden="true"
@@ -45,7 +45,7 @@ export default function ServiceTabs() {
             aria-selected={gender === g}
             aria-controls={`panel-${g}`}
             onClick={() => { switched.current = true; setGender(g); }}
-            className={`relative z-10 rounded-full px-9 py-2.5 text-sm font-medium transition-colors duration-500 ${gender === g ? "text-white" : "text-title hover:text-theme"}`}
+            className={`relative z-10 rounded-full px-9 py-2.5 text-sm font-medium max-sm:py-0 max-sm:text-[15px] transition-colors duration-500 ${gender === g ? "text-white" : "text-title hover:text-theme"}`}
           >
             {genderLabel(g)}
           </button>

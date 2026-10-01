@@ -83,12 +83,12 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
           <article className="lg:col-start-2 lg:row-start-1">
             {/* Women / Men switch, when the treatment is offered for both. */}
             {other && (
-              <div className="mb-5 inline-grid grid-cols-2 rounded-full bg-peach p-1 text-sm font-medium" role="group" aria-label="Treatment for">
+              <div className="mb-5 inline-grid grid-cols-2 rounded-full bg-peach p-1 text-sm font-medium max-sm:mx-auto max-sm:grid max-sm:h-[58px] max-sm:w-full max-sm:max-w-xs max-sm:p-1.5 max-sm:text-[15px]" role="group" aria-label="Treatment for">
                 {[s, other].sort((a, b) => (a.gender === b.gender ? 0 : a.gender === "women" ? -1 : 1)).map((v) =>
                   v.slug === s.slug ? (
-                    <span key={v.slug} aria-current="page" className="rounded-full bg-theme px-6 py-2.5 text-center text-white shadow">{genderLabel(v.gender)}</span>
+                    <span key={v.slug} aria-current="page" className="flex items-center justify-center rounded-full bg-theme px-6 py-2.5 text-white shadow">{genderLabel(v.gender)}</span>
                   ) : (
-                    <Link key={v.slug} href={servicePath(v)} className="rounded-full px-6 py-2.5 text-center text-title hover:text-theme">{genderLabel(v.gender)}</Link>
+                    <Link key={v.slug} href={servicePath(v)} className="flex items-center justify-center rounded-full px-6 py-2.5 text-title hover:text-theme">{genderLabel(v.gender)}</Link>
                   ),
                 )}
               </div>
