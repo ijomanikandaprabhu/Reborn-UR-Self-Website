@@ -8,9 +8,9 @@ import SocialLinks from "./SocialLinks";
 
 const menu = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About Us" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 const groups: { gender: Gender; title: string }[] = [

@@ -11,6 +11,12 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 let lenis: Lenis | null = null;
 
+/** Smoothly scroll back to the top of the page. */
+export function scrollToTop() {
+  if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+  else window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 /** Freeze or release page scrolling (menus and the photo viewer use this). */
 export function setScrollLocked(locked: boolean) {
   document.body.style.overflow = locked ? "hidden" : "";

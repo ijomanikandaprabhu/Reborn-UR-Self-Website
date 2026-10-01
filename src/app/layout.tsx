@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import JsonLd from "@/components/JsonLd";
 import Loader, { loaderScript } from "@/components/Loader";
 import SmoothScroll from "@/components/SmoothScroll";
+import BackToTop from "@/components/BackToTop";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { studioSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main">{children}</main>
         <Footer />
         <WhatsAppFloat />
+        <BackToTop />
         <SmoothScroll />
       </body>
     </html>
