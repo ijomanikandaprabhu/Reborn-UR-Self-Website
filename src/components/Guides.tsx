@@ -1,4 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa6";
+import { whatsappLink } from "@/lib/site";
 import { aftercareFor, compareFor } from "@/data/guides";
 import { serviceFullName, type Service } from "@/data/services";
 import JsonLd from "./JsonLd";
@@ -70,9 +73,8 @@ export function Compare({ service }: { service: Service }) {
 /** Aftercare as numbered steps, also described for search engines as a how-to. */
 export function Aftercare({ service }: { service: Service }) {
   const steps = aftercareFor(service);
-  const title = `${service.name} Aftercare: Step by Step`;
   return (
-    <section className="section" aria-label={title}>
+    <section className="section bg-gradient-to-b from-white to-[#fbf3ef]" aria-labelledby="aftercare-title">
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -81,16 +83,36 @@ export function Aftercare({ service }: { service: Service }) {
           step: steps.map((st, i) => ({ "@type": "HowToStep", position: i + 1, name: st.title, text: st.text })),
         }}
       />
-      <div className="container-site max-w-4xl">
-        <SectionTitle eyebrow="After your visit" title={title}>
-          Follow these steps for the best healed result. We also give you written aftercare on the day.
-        </SectionTitle>
-        <ol data-reveal="stagger" className="grid gap-4 sm:grid-cols-2">
+      <div className="container-site grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
+        {/* Intro and photo; stays in view on large screens while the steps scroll. */}
+        <div data-reveal="up" className="lg:sticky lg:top-28 lg:self-start">
+          <span className="eyebrow">After your visit</span>
+          <h2 id="aftercare-title" className="text-4xl lg:text-5xl">{service.name} Aftercare</h2>
+          <p className="mt-5">
+            Healing is where great results are made. Follow these simple steps for soft, even colour that lasts.
+            We also give you written aftercare on the day.
+          </p>
+          <div className="relative mt-8 hidden max-w-[300px] overflow-hidden rounded-t-full sm:block">
+            <Image src={service.pairImages[1] ?? service.heroImage} alt={`${service.name} at Rebornurself, Chennai`} width={437} height={419} sizes="300px" className="aspect-[3/4] w-full object-cover" />
+          </div>
+          <a
+            href={whatsappLink(`Hi Rebornurself, I have a question about my ${service.name.toLowerCase()} aftercare.`)}
+            target="_blank"
+            rel="noopener"
+            className="mt-8 inline-flex items-center gap-2 py-2 font-medium text-theme hover:underline"
+          >
+            <FaWhatsapp className="text-lg" aria-hidden="true" /> Questions while healing? Message us
+          </a>
+        </div>
+
+        <ol data-reveal="stagger" className="divide-y divide-theme/15 border-y border-theme/15">
           {steps.map((st, i) => (
-            <li key={st.title} className="card flex gap-4 p-5 hover:translate-y-0">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-theme font-bold text-white">{i + 1}</span>
+            <li key={st.title} className="group flex gap-5 py-7 sm:gap-8">
+              <span aria-hidden="true" className="w-12 shrink-0 font-title text-4xl leading-none text-theme/45 transition-colors duration-300 group-hover:text-theme sm:w-16 sm:text-5xl">
+                {String(i + 1).padStart(2, "0")}
+              </span>
               <div>
-                <h3 className="mb-1 text-lg">{st.title}</h3>
+                <h3 className="mb-2 text-xl">{st.title}</h3>
                 <p className="text-[15px]">{st.text}</p>
               </div>
             </li>
