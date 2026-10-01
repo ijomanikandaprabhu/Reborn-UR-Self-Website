@@ -64,7 +64,7 @@ export default function Testimonials() {
           </p>
         </div>
         <ul
-          data-reveal="stagger"
+          data-reveal="up"
           className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
