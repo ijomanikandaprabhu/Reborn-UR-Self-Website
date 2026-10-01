@@ -79,6 +79,12 @@
     white-space: nowrap !important;
     font-size: 15px !important;
   }
+  /* Tablets and desktops: every button 54px tall, label on one line. */
+  @variant sm {
+    height: 54px !important;
+    padding-block: 0 !important;
+    white-space: nowrap !important;
+  }
 }
 @utility btn-theme {
   @apply btn bg-theme text-white hover:bg-title;
