@@ -101,8 +101,8 @@ export default function Header() {
       <div className="hidden md:block">
         <div className="container-site flex items-center justify-center gap-4 border-b border-line py-2.5 md:justify-between">
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-body">
-            <li><a href={`tel:${site.phone}`} className="flex items-center gap-2 hover:text-theme"><LuPhone className="text-theme" aria-hidden="true" /> {site.phoneDisplay}</a></li>
-            <li><a href={`mailto:${site.email}`} className="flex items-center gap-2 hover:text-theme"><LuMail className="text-theme" aria-hidden="true" /> {site.email}</a></li>
+            <li><a href={`tel:${site.phone}`} className="flex items-center gap-2 py-3 hover:text-theme lg:py-1"><LuPhone className="text-theme" aria-hidden="true" /> {site.phoneDisplay}</a></li>
+            <li><a href={`mailto:${site.email}`} className="flex items-center gap-2 py-3 hover:text-theme lg:py-1"><LuMail className="text-theme" aria-hidden="true" /> {site.email}</a></li>
             <li className="hidden items-center gap-2 lg:flex"><LuClock className="text-theme" aria-hidden="true" /> Open daily, {site.hours.display}</li>
           </ul>
           <SocialLinks itemClassName="border-line text-title hover:border-theme hover:bg-theme hover:text-white" />
@@ -187,7 +187,7 @@ export default function Header() {
       >
         <div className="flex items-center justify-between">
           <Image src="/assets/img/logos.svg" alt="Rebornurself" width={1899} height={554} className="h-12 w-auto" />
-          <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="flex size-10 items-center justify-center rounded-full bg-theme text-lg text-white">
+          <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="flex size-11 items-center justify-center rounded-full bg-theme text-lg text-white">
             <LuX />
           </button>
         </div>
