@@ -89,7 +89,7 @@ export default function ContactForm() {
         <textarea name="message" rows={5} placeholder="Message" className={`${field} h-auto py-4`} />
       </label>
       <div>
-        <button type="submit" className="btn-theme w-full py-4 text-sm font-bold tracking-[0.15em] uppercase">
+        <button type="submit" className="btn-theme w-full py-4 text-sm font-bold tracking-[0.15em] uppercase max-sm:!max-w-none">
           Submit Details
         </button>
         {sent ? (

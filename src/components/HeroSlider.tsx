@@ -209,7 +209,7 @@ export default function HeroSlider() {
           {/* Phones and tablets: what we do, how to book, and why trust us. Desktop has the hero box instead. */}
           <div className="hero-mobile-cta mt-3 text-center md:text-left lg:hidden">
             <p className="text-[15px] text-balance text-title/80">Microblading, powder brows &amp; lip blushing in Chennai</p>
-            <div className="mt-5 flex items-center justify-center gap-3 md:justify-start">
+            <div className="mt-5 flex items-center justify-center gap-3 max-sm:flex-col md:justify-start">
               <a href={whatsappLink("Hi Rebornurself, I would like to book an appointment.")} target="_blank" rel="noopener" className="btn-wa btn-shine px-6 py-3">
                 <FaWhatsapp className="text-lg" /> Book on WhatsApp
               </a>
@@ -224,7 +224,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Circle and photo */}
-        <div className="hero-scroll-art hero-art relative mt-2 aspect-square w-full max-w-[min(520px,84vw,calc(100svh-var(--header-h,145px)-440px))] md:mt-10 md:max-w-[min(52%,calc(62svh-40px))] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto lg:w-auto lg:max-w-none">
+        <div className="hero-scroll-art hero-art relative mt-2 aspect-square w-full max-w-[min(520px,84vw,max(250px,calc(100svh-var(--header-h,145px)-520px)))] md:mt-10 md:max-w-[min(52%,calc(62svh-40px))] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto lg:w-auto lg:max-w-none">
           <div data-depth="12" className="absolute inset-[4%] flex items-center justify-center lg:inset-auto lg:top-[var(--ctop)] lg:left-[calc(var(--cx)-var(--d)/2)] lg:size-[var(--d)]" aria-hidden="true">
             {[0, 1, 2].map((i) => (
               <span key={i} className="hero-ring absolute size-[66%] rounded-full bg-theme opacity-0" />
