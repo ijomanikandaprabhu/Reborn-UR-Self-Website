@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { LuChevronDown, LuCircleCheck } from "react-icons/lu";
+import { LuCircleCheck } from "react-icons/lu";
 import { site, whatsappLink } from "@/lib/site";
+import FormSelect from "./FormSelect";
 
 const serviceOptions = [
   "Microblading",
@@ -67,23 +68,8 @@ export default function ContactForm() {
           className={field}
         />
       </label>
-      <label className="relative">
-        <span className="mb-1.5 block text-sm font-medium text-title">Gender <span className="font-normal text-body">(optional)</span></span>
-        <select name="gender" defaultValue="" className={`${field} appearance-none`}>
-          <option value="">Prefer not to say</option>
-          <option>Female</option>
-          <option>Male</option>
-        </select>
-        <LuChevronDown className="pointer-events-none absolute right-5 bottom-[19px] text-theme" aria-hidden="true" />
-      </label>
-      <label className="relative">
-        <span className="mb-1.5 block text-sm font-medium text-title">Treatment <span className="text-theme" aria-hidden="true">*</span></span>
-        <select name="service" required defaultValue="" className={`${field} appearance-none invalid:text-body`}>
-          <option value="" disabled>Choose a treatment</option>
-          {serviceOptions.map((s) => <option key={s}>{s}</option>)}
-        </select>
-        <LuChevronDown className="pointer-events-none absolute right-5 bottom-[19px] text-theme" aria-hidden="true" />
-      </label>
+      <FormSelect name="gender" label="Gender" hint={<span className="font-normal text-body">(optional)</span>} options={["Female", "Male"]} placeholder="Prefer not to say" />
+      <FormSelect name="service" label="Treatment" hint={<span className="text-theme" aria-hidden="true">*</span>} options={serviceOptions} placeholder="Choose a treatment" required />
       <label>
         <span className="mb-1.5 block text-sm font-medium text-title">Message <span className="font-normal text-body">(optional)</span></span>
         <textarea name="message" rows={5} placeholder="Anything you would like us to know" className={`${field} h-auto py-4`} />
