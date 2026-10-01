@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
+import { preload } from "react-dom";
 import { FaWhatsapp } from "react-icons/fa6";
 import { LuArrowRight, LuAward, LuSparkles, LuUsers } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
@@ -38,6 +39,8 @@ const quickFacts = [
 ];
 
 export default function AboutPage() {
+  // The patterned background behind the founder section is the largest thing on screen; fetch it early.
+  preload("/assets/img/bg/body-bg-1.webp", { as: "image", fetchPriority: "high" });
   return (
     <>
       <JsonLd data={founderSchema()} />
