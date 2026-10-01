@@ -9,7 +9,6 @@ import CtaBand from "@/components/CtaBand";
 import Faq from "@/components/Faq";
 import { Aftercare, Compare } from "@/components/Guides";
 import { galleryCategoryFor, galleryItems } from "@/data/content";
-import StickyBookBar from "@/components/StickyBookBar";
 import JsonLd from "@/components/JsonLd";
 import Journey from "@/components/Journey";
 import PageBanner from "@/components/PageBanner";
@@ -196,7 +195,6 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
       <Aftercare service={s} />
       <Faq faqs={faqsFor(s)} title={`${s.name}: Your Questions`} />
       <CtaBand title={s.cta.title} text={s.cta.text} message={enquiryMessage(name)} />
-      <StickyBookBar whatsappHref={enquire} />
     </>
   );
 }
