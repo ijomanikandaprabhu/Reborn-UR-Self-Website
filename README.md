@@ -55,4 +55,4 @@ Every push to the `main` branch is published to the live site automatically by V
 
 ---
 
-Website by [Ijocreations](https://ijocreations.com/).
+Website by [Ijo Creations](https://ijocreations.com/).

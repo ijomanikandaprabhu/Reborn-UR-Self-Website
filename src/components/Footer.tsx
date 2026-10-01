@@ -84,7 +84,7 @@ export default function Footer() {
           <span>© {new Date().getFullYear()} Rebornurself. All rights reserved.</span>
           <span className="flex items-center gap-1">
             Website by
-            <a href="https://ijocreations.com/" target="_blank" rel="noopener" className="link-slide inline-flex min-h-11 items-center text-white/80 hover:text-theme">Ijocreations</a>
+            <a href="https://ijocreations.com/" target="_blank" rel="noopener" className="link-slide inline-flex min-h-11 items-center text-white/80 hover:text-theme">Ijo Creations</a>
           </span>
         </p>
       </div>
