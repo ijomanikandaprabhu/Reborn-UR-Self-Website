@@ -127,7 +127,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
             <Blocks blocks={s.body} />
             {photoCat && galleryItems.some((g) => g.cat === photoCat) && (
               <Link href={`/gallery?filter=${photoCat}`} className="btn mt-8 border border-theme text-theme hover:bg-theme hover:text-white">
-                See our {s.name} results <LuArrowRight />
+                See {s.name} results <LuArrowRight />
               </Link>
             )}
             <p className="mt-8 text-sm opacity-80">
