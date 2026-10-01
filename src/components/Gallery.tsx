@@ -5,9 +5,10 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
-import { LuChevronDown, LuChevronLeft, LuChevronRight, LuX, LuZoomIn } from "react-icons/lu";
+import { LuChevronLeft, LuChevronRight, LuX, LuZoomIn } from "react-icons/lu";
 import { galleryCategories, galleryItems, type GalleryCategory } from "@/data/content";
 import { enquiryMessage, whatsappLink } from "@/lib/site";
+import FilterMenu from "./FilterMenu";
 import { setScrollLocked } from "./SmoothScroll";
 
 type Item = (typeof galleryItems)[number];
@@ -143,22 +144,9 @@ export default function Gallery({
 
   return (
     <div ref={scope}>
-      {/* Phones: one dropdown (the phone's own picker). Larger screens: a row of filter buttons. */}
-      <div className="mb-8 flex items-center justify-center gap-3 sm:hidden">
-        <label htmlFor="gallery-filter" className="text-sm font-medium text-title">Show</label>
-        <div className="relative">
-          <select
-            id="gallery-filter"
-            value={filter}
-            onChange={(e) => choose(e.target.value as GalleryCategory)}
-            className="h-11 cursor-pointer appearance-none rounded-full border border-theme bg-white pr-11 pl-5 text-[15px] font-medium text-theme"
-          >
-            {categories.map((c) => (
-              <option key={c.id} value={c.id}>{c.label} ({c.count})</option>
-            ))}
-          </select>
-          <LuChevronDown className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-theme" aria-hidden="true" />
-        </div>
+      {/* Phones: a brand-styled dropdown. Larger screens: a row of filter buttons. */}
+      <div className="mb-8 sm:hidden">
+        <FilterMenu options={categories} value={filter} onChange={(id) => choose(id as GalleryCategory)} />
       </div>
       <div className="mb-10 hidden flex-wrap justify-center gap-2 sm:flex" role="group" aria-label="Filter photos">
 
