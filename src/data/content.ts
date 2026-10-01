@@ -36,6 +36,10 @@ export const galleryCategories = [
   { id: "events", label: "Events" },
 ] as const;
 
+/** Gallery filter for a service, e.g. "Ombre Powder Brows" -> "ombre". */
+export const galleryCategoryFor = (serviceName: string) =>
+  galleryCategories.find((c) => c.id !== "all" && c.label === serviceName)?.id;
+
 export type GalleryCategory = (typeof galleryCategories)[number]["id"];
 
 const g = (file: string) => `/assets/img/gallery/${file}`;

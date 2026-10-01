@@ -7,6 +7,7 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { LuArrowRight } from "react-icons/lu";
 import CtaBand from "@/components/CtaBand";
 import Faq from "@/components/Faq";
+import { galleryCategoryFor, galleryItems } from "@/data/content";
 import JsonLd from "@/components/JsonLd";
 import Journey from "@/components/Journey";
 import PageBanner from "@/components/PageBanner";
@@ -58,6 +59,7 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
   if (!s) notFound();
 
   const name = serviceFullName(s);
+  const photoCat = galleryCategoryFor(s.name);
   const firstP = Math.max(0, s.intro.findIndex((b) => b.type === "p"));
   const enquire = whatsappLink(enquiryMessage(name));
   const other = counterpart(s);
@@ -94,6 +96,11 @@ export default async function ServicePage({ params }: PageProps<"/[slug]">) {
               </div>
             )}
             <Blocks blocks={s.body} />
+            {photoCat && galleryItems.some((g) => g.cat === photoCat) && (
+              <Link href={`/gallery?filter=${photoCat}`} className="btn mt-8 border border-theme text-theme hover:bg-theme hover:text-white">
+                See our {s.name} results <LuArrowRight />
+              </Link>
+            )}
           </article>
 
           <aside data-reveal="left" className="space-y-6 md:max-w-md lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">

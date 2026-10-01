@@ -34,7 +34,7 @@ export default function GalleryPage() {
           <div className="mx-auto mb-10 max-w-[780px] space-y-4 text-center">
             <p>
               Every set of brows and lips here was mapped, pigmented and finished by{" "}
-              <Link href="/about" className="text-theme hover:underline">Sandhiya Srinivasan</Link> at our studio in New
+              <Link href="/about" className="text-theme underline underline-offset-2 hover:text-title">Sandhiya Srinivasan</Link> at our studio in New
               Perungalathur, Chennai. Use the filters to see a single treatment on its own, or browse everything together.
             </p>
             <p>
@@ -43,7 +43,7 @@ export default function GalleryPage() {
               heals, so freshly finished work photographs bolder than the settled result you live with.
             </p>
           </div>
-          <Gallery masonry />
+          <Gallery masonry syncUrl />
 
           <div className="mt-16 border-t border-line pt-14">
             <h2 className="mb-8 text-center text-3xl">About the treatments in this gallery</h2>
