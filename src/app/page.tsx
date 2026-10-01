@@ -53,7 +53,7 @@ export default function Home() {
         <div className="container-site">
           <SectionTitle as="h1" eyebrow="Enhance, Empower, Elevate" title="Flawless Brow & Lip Solutions" />
           {/* Phones swipe through the cards; larger screens show a grid. */}
-          <ul data-reveal="stagger" className="-mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pt-16 pb-6 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-20 sm:overflow-visible sm:px-0 sm:pt-10 sm:pb-0 lg:grid-cols-3">
+          <ul data-reveal="stagger" className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-5 overflow-x-auto px-4 pt-16 pb-6 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-20 sm:overflow-visible sm:px-0 sm:pt-10 sm:pb-0 lg:grid-cols-3">
             {highlights.map((h) => {
               const s = getService(h.slug)!;
               return (
