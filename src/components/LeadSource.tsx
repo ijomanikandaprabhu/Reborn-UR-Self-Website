@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 /**
  * Remembers where a visitor came from (an ad, Instagram, Google…) and adds it to the
- * "(Sent from rebornurself.com)" note on their WhatsApp message or email, so the studio
+ * "(Sent from rebornurself.com)" note on their WhatsApp message, so the studio
  * can tell which platform brought each lead.
  *
  * Ad links should carry utm tags, e.g.
@@ -75,12 +75,12 @@ export default function LeadSource() {
       }
     } catch {}
 
-    // Just before a WhatsApp or email link opens, swap in the note with the source.
+    // Just before a WhatsApp link opens, swap in the note with the source.
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element | null)?.closest?.("a");
       if (!a) return;
       const href = a.getAttribute("href") ?? "";
-      if (!href.startsWith("https://wa.me/") && !href.startsWith("mailto:")) return;
+      if (!href.startsWith("https://wa.me/")) return;
       const note = sourceNote();
       if (note === NOTE) return;
       a.setAttribute("href", href.replace(encodeURIComponent(NOTE), encodeURIComponent(note)));

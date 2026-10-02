@@ -50,7 +50,7 @@ export const fullAddress = `${site.address.street}, ${site.address.locality}, ${
 export const mapsEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&z=16&output=embed`;
 export const mapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(fullAddress)}`;
 
-// Added to every message and email from the site, so the studio knows the lead came from the website.
+// Added to every WhatsApp message from the site, so the studio knows the lead came from the website.
 const sourceNote = "(Sent from rebornurself.com)";
 
 /** A wa.me link with a message already typed in, marked as coming from the website. */
@@ -58,9 +58,8 @@ export function whatsappLink(message = "Hi Rebornurself, I would like to know mo
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(`${message}\n\n${sourceNote}`)}`;
 }
 
-/** A mailto link with a subject that shows the email came from the website. */
-export const emailLink = (to: string = site.email) =>
-  `mailto:${to}?subject=${encodeURIComponent("Enquiry from rebornurself.com")}&body=${encodeURIComponent(`Hi Rebornurself,\n\n\n\n${sourceNote}`)}`;
+/** A plain mailto link (no website note: only WhatsApp messages are marked). */
+export const emailLink = (to: string = site.email) => `mailto:${to}`;
 
 export const enquiryMessage = (topic: string) =>
   `Hi Rebornurself, I would like to enquire about ${topic}.`;
