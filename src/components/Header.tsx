@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { LuChevronDown, LuMail, LuMenu, LuPhone, LuX } from "react-icons/lu";
 import { iconPath, servicesFor, servicePath, type Gender } from "@/data/services";
-import { site, whatsappLink } from "@/lib/site";
+import { emailLink, site, whatsappLink } from "@/lib/site";
 import { setScrollLocked } from "./SmoothScroll";
 import SocialLinks from "./SocialLinks";
 
@@ -117,7 +117,7 @@ export default function Header() {
         <div className="container-site flex items-center justify-center gap-4 border-b border-line py-2.5 md:justify-between">
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-body">
             <li><a href={`tel:${site.phone}`} className="flex items-center gap-2 py-3 hover:text-theme lg:py-1"><LuPhone className="text-theme" aria-hidden="true" /> {site.phoneDisplay}</a></li>
-            <li><a href={`mailto:${site.email}`} className="flex items-center gap-2 py-3 hover:text-theme lg:py-1"><LuMail className="text-theme" aria-hidden="true" /> {site.email}</a></li>
+            <li><a href={emailLink()} className="flex items-center gap-2 py-3 hover:text-theme lg:py-1"><LuMail className="text-theme" aria-hidden="true" /> {site.email}</a></li>
           </ul>
           <SocialLinks itemClassName="border-line text-title hover:border-theme hover:bg-theme hover:text-white" />
         </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/seo";
 import PageBanner from "@/components/PageBanner";
-import { site, whatsappLink } from "@/lib/site";
+import { emailLink, site, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
   title: "Privacy Policy | Rebornurself",
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
               message us on{" "}
               <a href={whatsappLink("Hi Rebornurself, I have a question about my personal details.")} target="_blank" rel="noopener" className="text-theme underline">WhatsApp</a>,
               call <a href={`tel:${site.phone}`} className="text-theme underline">{site.phoneDisplay}</a> or email{" "}
-              <a href={`mailto:${site.email}`} className="text-theme underline">{site.email}</a>.
+              <a href={emailLink()} className="text-theme underline">{site.email}</a>.
             </p>
           </div>
 

@@ -10,7 +10,7 @@ import SectionTitle from "@/components/SectionTitle";
 import { AreasServed } from "@/components/Guides";
 import Testimonials from "@/components/Testimonials";
 import { servicePath, servicesFor } from "@/data/services";
-import { fullAddress, mapsDirectionsUrl, mapsEmbedUrl, site, whatsappLink } from "@/lib/site";
+import { emailLink, fullAddress, mapsDirectionsUrl, mapsEmbedUrl, site, whatsappLink } from "@/lib/site";
 
 const description =
   "Book your permanent makeup appointment at Rebornurself in New Perungalathur, Chennai, or reach us on WhatsApp. Open 10 AM to 7 PM.";
@@ -35,7 +35,7 @@ export default function ContactPage() {
     { Icon: LuMapPin, label: "Address", value: fullAddress },
     { Icon: LuClock, label: "Open", value: `Open daily, ${site.hours.display}, by appointment` },
     { Icon: LuPhone, label: "Phone", value: <a href={`tel:${site.phone}`} className="hover:text-theme">{site.phoneDisplay}</a> },
-    { Icon: LuMail, label: "Email", value: <a href={`mailto:${site.email}`} className="hover:text-theme">{site.email}</a> },
+    { Icon: LuMail, label: "Email", value: <a href={emailLink()} className="hover:text-theme">{site.email}</a> },
   ];
 
   return (
@@ -123,7 +123,7 @@ export default function ContactPage() {
             ))}
           </ul>
           <div className="mt-10 rounded-lg bg-smoke p-6 text-center">
-            <p>Studio hours: open daily, {site.hours.display} | Call: <a href={`tel:${site.phone}`} className="font-medium text-theme">{site.phoneDisplay}</a> | Email: <a href={`mailto:${site.email}`} className="font-medium text-theme">{site.email}</a></p>
+            <p>Studio hours: open daily, {site.hours.display} | Call: <a href={`tel:${site.phone}`} className="font-medium text-theme">{site.phoneDisplay}</a> | Email: <a href={emailLink()} className="font-medium text-theme">{site.email}</a></p>
             <p className="mt-1">Prefer to ask first? <a href={whatsappLink()} target="_blank" rel="noopener" className="font-medium text-theme">Send us an enquiry on WhatsApp</a> and we will guide you to the right procedure.</p>
           </div>
         </div>

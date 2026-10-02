@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa6";
 import { LuMail, LuPhone } from "react-icons/lu";
 import { servicesFor, servicePath, type Gender } from "@/data/services";
-import { site, whatsappLink } from "@/lib/site";
+import { emailLink, site, whatsappLink } from "@/lib/site";
 import SocialLinks from "./SocialLinks";
 
 const menu = [
@@ -38,7 +38,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 py-2.5 text-white hover:text-theme lg:py-1">
+                <a href={emailLink()} className="inline-flex items-center gap-2 py-2.5 text-white hover:text-theme lg:py-1">
                   <LuMail className="text-theme" aria-hidden="true" /> {site.email}
                 </a>
               </li>
