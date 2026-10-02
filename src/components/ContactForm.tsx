@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LuCircleCheck } from "react-icons/lu";
 import { site, whatsappLink } from "@/lib/site";
 import FormSelect from "./FormSelect";
+import { sourceNote } from "./LeadSource";
 
 const serviceOptions = [
   "Microblading",
@@ -34,7 +35,9 @@ export default function ContactForm() {
       if (get(key)) lines.push(`${label}: ${get(key)}`);
     }
     if (get("message")) lines.push("", get("message"));
-    window.open(whatsappLink(lines.join("\n")), "_blank", "noopener");
+    // Same note as every other WhatsApp link, plus where the visitor came from (ad, Instagram…).
+    const link = whatsappLink(lines.join("\n")).replace(encodeURIComponent("(Sent from rebornurself.com)"), encodeURIComponent(sourceNote()));
+    window.open(link, "_blank", "noopener");
     setSent(true);
   }
 
